@@ -6,24 +6,32 @@ export function useLocalStorage<T>(
   key: string,
   initialValue: T
 ) {
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState<T>(initialValue);
 
   useEffect(() => {
-    const item = localStorage.getItem(key);
+    try {
+      const item = window.localStorage.getItem(key);
 
-    if (item) {
-      setValue(JSON.parse(item));
+      if (item) {
+        setValue(JSON.parse(item));
+      }
+    } catch (error) {
+      console.error(error);
     }
   }, [key]);
 
-  const setStorageValue = (newValue: T) => {
-    setValue(newValue);
+  const setStoredValue = (newValue: T) => {
+    try {
+      setValue(newValue);
 
-    localStorage.setItem(
-      key,
-      JSON.stringify(newValue)
-    );
+      window.localStorage.setItem(
+        key,
+        JSON.stringify(newValue)
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  return [value, setStorageValue] as const;
+  return [value, setStoredValue] as const;
 }

@@ -1,6 +1,11 @@
 // constants/navigation.ts
 
-export const NAVIGATION = [
+export interface NavigationItem {
+  label: string;
+  href: string;
+}
+
+export const NAVIGATION: readonly NavigationItem[] = [
   {
     label: "Home",
     href: "/",

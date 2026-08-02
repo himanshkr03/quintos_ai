@@ -3,6 +3,9 @@
 export interface NavigationItem {
   label: string;
   href: string;
-  icon?: React.ReactNode;
-  children?: NavigationItem[];
+}
+
+export interface FooterLink {
+  title: string;
+  links: NavigationItem[];
 }

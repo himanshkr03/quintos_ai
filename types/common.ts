@@ -2,23 +2,22 @@
 
 import { ReactNode } from "react";
 
-export interface BaseComponentProps {
-  className?: string;
-  children?: ReactNode;
+export interface ChildrenProps {
+  children: ReactNode;
 }
 
-export interface ButtonProps extends BaseComponentProps {
-  variant?:
-    | "primary"
-    | "secondary"
-    | "outline"
-    | "ghost"
-    | "destructive";
+export interface SectionTitleProps {
+  badge?: string;
+  title: string;
+  description?: string;
+  align?: "left" | "center";
+}
 
-  size?:
-    | "sm"
-    | "md"
-    | "lg";
+export interface ButtonProps {
+  children: ReactNode;
+}
 
-  disabled?: boolean;
+export interface CardProps {
+  title: string;
+  description: string;
 }
