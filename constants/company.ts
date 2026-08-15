@@ -3,15 +3,13 @@
 export const COMPANY = {
   founded: "2026",
 
-  headquarters: "India",
+  location: "Mohali, Punjab, India",
 
-  industry: "Artificial Intelligence",
-
-  employees: "1-10",
+  industry: "Artificial Intelligence & Advanced Computing",
 
   mission:
-    "Empowering businesses with next-generation Artificial Intelligence.",
+    "Advancing foundational artificial intelligence research and engineering sovereign intelligent systems.",
 
   vision:
-    "To build intelligent systems that transform the future of work and society.",
+    "To pioneer trustworthy, mathematically grounded, and transformative AI technologies.",
 } as const;

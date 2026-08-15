@@ -21,7 +21,7 @@ export default function Products() {
   };
 
   return (
-    <section className="bg-slate-50/60 py-24 border-b border-slate-200/60">
+    <section className="bg-slate-50/60 py-20 border-b border-slate-200/60">
       <Container>
         <SectionTitle
           badge="Product & Platform Architectures"
@@ -36,12 +36,12 @@ export default function Products() {
             return (
               <div
                 key={product.title}
-                className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/60 hover:shadow-lg"
+                className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-7 sm:p-8 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400/60 hover:shadow-md"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
-                      <Icon className="h-6 w-6" />
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-colors duration-200 group-hover:bg-blue-600 group-hover:text-white">
+                      <Icon className="h-5 w-5" />
                     </div>
 
                     {product.stage && (
@@ -55,21 +55,21 @@ export default function Products() {
                     )}
                   </div>
 
-                  <span className="text-xs font-semibold text-blue-600 uppercase tracking-wide block mb-1">
+                  <span className="text-[11px] font-mono font-semibold text-blue-600 uppercase tracking-wide block mb-1">
                     {product.category}
                   </span>
 
-                  <h3 className="text-xl font-bold text-slate-900 leading-snug">
+                  <h3 className="text-lg font-bold text-slate-900 leading-snug">
                     {product.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600 font-normal">
+                  <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600 font-normal">
                     {product.description}
                   </p>
 
                   {/* Capabilities List */}
                   {product.capabilities && (
-                    <ul className="mt-5 space-y-2 border-t border-slate-100 pt-4">
+                    <ul className="mt-4 space-y-1.5 border-t border-slate-100 pt-3.5">
                       {product.capabilities.map((cap) => (
                         <li
                           key={cap}
@@ -83,10 +83,10 @@ export default function Products() {
                   )}
                 </div>
 
-                <div className="mt-8 pt-4 border-t border-slate-100">
+                <div className="mt-6 pt-4 border-t border-slate-100">
                   <Link
                     href={product.href || "/products"}
-                    className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600 hover:text-blue-700 transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-600 hover:text-blue-700 transition-colors"
                   >
                     <span>View Architecture</span>
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />

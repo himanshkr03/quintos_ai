@@ -50,7 +50,7 @@ export default function ProductsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+      <section className="relative overflow-hidden bg-white py-16 md:py-24 border-b border-slate-100">
         <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
           <div className="relative z-10 mx-auto max-w-3xl text-center">
@@ -77,7 +77,7 @@ export default function ProductsPage() {
       <Products />
 
       {/* System Architecture Layers */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-white">
         <Container>
           <SectionTitle
             badge="Stack Architecture"
@@ -85,11 +85,11 @@ export default function ProductsPage() {
             description="Our platforms follow a strict four-layer architecture ensuring security, speed, and modularity."
           />
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {architectureLayers.map((layer) => (
               <div
                 key={layer.layer}
-                className="group rounded-2xl border border-slate-200/80 bg-slate-50/60 p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/60 hover:bg-white hover:shadow-md"
+                className="group rounded-2xl border border-slate-200/80 bg-slate-50/60 p-6 sm:p-7 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400/60 hover:bg-white hover:shadow-md"
               >
                 <span className="font-mono text-xs font-bold uppercase tracking-wider text-blue-600">
                   {layer.layer}
@@ -109,7 +109,7 @@ export default function ProductsPage() {
       </section>
 
       {/* Platform Engineering Standards */}
-      <section className="bg-slate-50/70 py-24 border-t border-slate-200/60">
+      <section className="bg-slate-50/70 py-20 border-t border-slate-200/60">
         <Container>
           <SectionTitle
             badge="Engineering Standards"
@@ -117,11 +117,11 @@ export default function ProductsPage() {
             description="Production-grade foundations designed to satisfy strict compliance and high reliability."
           />
 
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {platformStandards.map((std) => (
               <div
                 key={std}
-                className="rounded-xl border border-slate-200/80 bg-white p-5 text-sm font-medium text-slate-700 shadow-sm"
+                className="rounded-xl border border-slate-200/80 bg-white p-4.5 text-xs sm:text-sm font-medium text-slate-700 shadow-sm"
               >
                 <div className="flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-blue-600 shrink-0" />

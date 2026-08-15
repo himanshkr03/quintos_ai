@@ -71,7 +71,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+      <section className="relative overflow-hidden bg-white py-16 md:py-24 border-b border-slate-100">
         <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
           <div className="relative z-10 mx-auto max-w-3xl text-center">
@@ -98,7 +98,7 @@ export default function ServicesPage() {
       <Services />
 
       {/* Process */}
-      <section className="bg-slate-50/70 py-24 border-y border-slate-200/60">
+      <section className="bg-slate-50/70 py-20 border-y border-slate-200/60">
         <Container>
           <SectionTitle
             badge="Engineering Methodology"
@@ -106,17 +106,17 @@ export default function ServicesPage() {
             description="Our structured engineering process ensures deterministic performance, verifiable metrics, and complete data sovereignty."
           />
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {process.map((item) => (
               <div
                 key={item.step}
-                className="group rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/60 hover:shadow-md"
+                className="group rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400/60 hover:shadow-md"
               >
-                <span className="font-mono text-2xl font-bold text-blue-600">
+                <span className="font-mono text-xl font-bold text-blue-600">
                   {item.step}
                 </span>
 
-                <h3 className="mt-4 text-base font-bold text-slate-900 leading-snug">
+                <h3 className="mt-3 text-base font-bold text-slate-900 leading-snug">
                   {item.title}
                 </h3>
 
@@ -130,7 +130,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Technology Stack Taxonomy */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-white">
         <Container>
           <SectionTitle
             badge="Technical Taxonomy"
@@ -138,7 +138,7 @@ export default function ServicesPage() {
             description="We build on open-source, highly optimized computational frameworks designed for scale."
           />
 
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="mt-10 grid grid-cols-2 gap-3.5 sm:grid-cols-4">
             {technologies.map((tech) => (
               <div
                 key={tech.name}
@@ -147,7 +147,7 @@ export default function ServicesPage() {
                 <span className="block font-semibold text-sm text-slate-900">
                   {tech.name}
                 </span>
-                <span className="mt-1 block font-mono text-[11px] text-slate-500">
+                <span className="mt-1 block font-mono text-[10px] text-slate-500">
                   {tech.category}
                 </span>
               </div>
@@ -157,7 +157,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Domain Impact */}
-      <section className="bg-slate-50/70 py-24 border-t border-slate-200/60">
+      <section className="bg-slate-50/70 py-20 border-t border-slate-200/60">
         <Container>
           <SectionTitle
             badge="Applied Domains"
@@ -165,7 +165,7 @@ export default function ServicesPage() {
             description="Engineered for environments where accuracy, low latency, and regulatory compliance are non-negotiable."
           />
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {industries.map((industry) => (
               <div
                 key={industry.title}

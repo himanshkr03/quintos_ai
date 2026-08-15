@@ -6,62 +6,69 @@ const ecosystemTech = [
   {
     name: "OpenAI",
     logo: "/logos/openai.svg",
-    category: "Foundation Models & LLM APIs",
+    role: "LLM & Foundation APIs",
   },
   {
     name: "Microsoft",
     logo: "/logos/microsoft.svg",
-    category: "Enterprise Cloud & Azure AI",
+    role: "Azure Cloud & AI Infrastructure",
   },
   {
     name: "Google",
     logo: "/logos/google.svg",
-    category: "Gemini & TPU Infrastructure",
+    role: "TPU Compute & Multimodal Models",
   },
   {
     name: "NVIDIA",
     logo: "/logos/nvidia.svg",
-    category: "CUDA & GPU Acceleration",
+    role: "CUDA & TensorRT Acceleration",
   },
   {
     name: "Meta",
     logo: "/logos/meta.svg",
-    category: "Llama & Open AI Architectures",
+    role: "Llama & Open-Weight Architectures",
   },
   {
     name: "Amazon AWS",
     logo: "/logos/aws.svg",
-    category: "Cloud Compute & SageMaker",
+    role: "SageMaker & Distributed Clusters",
   },
 ];
 
 export default function TrustedBy() {
   return (
-    <section className="border-y border-slate-100 bg-slate-50/60 py-20">
+    <section className="border-y border-slate-200/60 bg-slate-50/50 py-14 md:py-16">
       <Container>
-        <SectionTitle
-          badge="Technology Stack & Ecosystem"
-          title="Engineered Across Modern AI Frameworks"
-          description="Quintos AI builds on state-of-the-art open models, accelerated computing architectures, and cloud platforms to deliver robust enterprise intelligence."
-        />
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <span className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-500 block mb-2">
+            Technology Ecosystem
+          </span>
+          <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+            Engineered Across Modern AI Frameworks
+          </h2>
+          <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Quintos AI architectures build upon open-source research models, accelerated
+            computing runtimes, and enterprise cloud infrastructure.
+          </p>
+        </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6 max-w-6xl mx-auto">
           {ecosystemTech.map((tech) => (
             <div
               key={tech.name}
-              className="group flex flex-col items-center justify-center rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-md"
+              className="group flex flex-col items-center justify-center rounded-xl border border-slate-200/70 bg-white/90 p-4 transition-all duration-200 hover:border-slate-300 hover:bg-white hover:shadow-sm"
             >
-              <div className="flex h-12 w-full items-center justify-center">
+              <div className="flex h-10 w-full items-center justify-center">
                 <Image
                   src={tech.logo}
                   alt={tech.name}
-                  width={110}
-                  height={36}
-                  className="h-8 w-auto max-w-[100px] object-contain opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+                  width={100}
+                  height={32}
+                  className="h-7 w-auto max-w-[90px] object-contain opacity-75 grayscale transition-all duration-300 group-hover:opacity-100 group-hover:grayscale-0"
                 />
               </div>
-              <span className="mt-3 text-[11px] font-mono text-slate-400 text-center leading-tight">
-                {tech.category}
+              <span className="mt-2.5 text-[10px] font-mono text-slate-400 text-center leading-tight">
+                {tech.role}
               </span>
             </div>
           ))}

@@ -71,7 +71,7 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+      <section className="relative overflow-hidden bg-white py-16 md:py-24 border-b border-slate-100">
         <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
           <div className="relative z-10 mx-auto max-w-3xl text-center">
@@ -94,7 +94,7 @@ export default function BlogPage() {
       </section>
 
       {/* Articles Grid */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-white">
         <Container>
           <SectionTitle
             badge="Published Insights"
@@ -102,36 +102,36 @@ export default function BlogPage() {
             description="Peer-reviewed methodologies, engineering postmortems, and technical explorations."
           />
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((art) => (
               <article
                 key={art.title}
-                className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/60 hover:shadow-lg"
+                className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-6 sm:p-7 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400/60 hover:shadow-md"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="rounded-md bg-blue-50 px-2.5 py-0.5 text-[11px] font-mono font-semibold text-blue-700">
+                    <span className="rounded-md bg-blue-50 px-2.5 py-0.5 text-[10px] font-mono font-semibold text-blue-700">
                       {art.category}
                     </span>
 
-                    <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
-                      <Clock className="h-3.5 w-3.5" />
+                    <div className="flex items-center gap-1.5 text-[10px] text-slate-400 font-mono">
+                      <Clock className="h-3 w-3" />
                       <span>{art.readTime}</span>
                     </div>
                   </div>
 
-                  <h3 className="text-lg font-bold text-slate-900 leading-snug group-hover:text-blue-600 transition-colors">
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug group-hover:text-blue-600 transition-colors">
                     {art.title}
                   </h3>
 
-                  <p className="mt-3 text-xs leading-relaxed text-slate-600">
+                  <p className="mt-2.5 text-xs leading-relaxed text-slate-600">
                     {art.description}
                   </p>
                 </div>
 
-                <div className="mt-8 border-t border-slate-100 pt-4 flex items-center justify-between text-xs text-slate-500">
+                <div className="mt-6 border-t border-slate-100 pt-3.5 flex items-center justify-between text-xs text-slate-500">
                   <span className="font-medium text-slate-700">{art.author}</span>
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1 font-mono text-[11px]">
                     <Calendar className="h-3 w-3" />
                     <span>{art.date}</span>
                   </div>

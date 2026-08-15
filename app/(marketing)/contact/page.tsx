@@ -14,13 +14,13 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+      <section className="relative overflow-hidden bg-white py-16 md:py-24 border-b border-slate-100">
         <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
           <div className="relative z-10 mx-auto max-w-3xl text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-blue-50/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700">
               <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
-              Direct Communication
+              Direct Inquiries
             </div>
 
             <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl leading-[1.12]">
@@ -41,25 +41,25 @@ export default function ContactPage() {
       <ContactForm />
 
       {/* Office & Verification Information */}
-      <section className="bg-slate-50/70 py-20 border-t border-slate-200/60">
+      <section className="bg-slate-50/70 py-16 border-t border-slate-200/60">
         <Container>
           <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
-            <div className="rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm">
-              <div className="flex items-center gap-3 text-blue-600 mb-3">
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
+              <div className="flex items-center gap-3 text-blue-600 mb-2.5">
                 <MapPin className="h-5 w-5" />
                 <h3 className="text-base font-bold text-slate-900">
-                  Headquarters & Lab
+                  Location & Base
                 </h3>
               </div>
               <p className="text-xs leading-relaxed text-slate-600">
-                Mohali, Punjab, India
+                Based in Mohali, Punjab, India
                 <br />
                 Global Inquiries & Deployments
               </p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm">
-              <div className="flex items-center gap-3 text-blue-600 mb-3">
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
+              <div className="flex items-center gap-3 text-blue-600 mb-2.5">
                 <Mail className="h-5 w-5" />
                 <h3 className="text-base font-bold text-slate-900">
                   Official Contact
@@ -76,8 +76,8 @@ export default function ContactPage() {
               </span>
             </div>
 
-            <div className="rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm">
-              <div className="flex items-center gap-3 text-blue-600 mb-3">
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
+              <div className="flex items-center gap-3 text-blue-600 mb-2.5">
                 <Clock className="h-5 w-5" />
                 <h3 className="text-base font-bold text-slate-900">
                   Operational Hours

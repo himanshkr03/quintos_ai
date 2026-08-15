@@ -15,7 +15,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-20 bg-white">
       <Container>
         <SectionTitle
           badge="Knowledge & Inquiries"
@@ -23,7 +23,7 @@ export default function FAQ() {
           description="Learn about Quintos AI's research methodology, enterprise security practices, and deployment architectures."
         />
 
-        <div className="mx-auto max-w-3xl space-y-4">
+        <div className="mx-auto max-w-3xl space-y-3.5">
           {faqs.map((faq, index) => {
             const isOpen = activeIndex === index;
             const headingId = `faq-heading-${index}`;
@@ -34,7 +34,7 @@ export default function FAQ() {
                 key={faq.question}
                 className={`overflow-hidden rounded-2xl border transition-colors duration-200 ${
                   isOpen
-                    ? "border-blue-300 bg-blue-50/20"
+                    ? "border-blue-300 bg-blue-50/15"
                     : "border-slate-200/80 bg-white hover:border-slate-300"
                 }`}
               >
@@ -43,15 +43,15 @@ export default function FAQ() {
                   aria-expanded={isOpen}
                   aria-controls={contentId}
                   onClick={() => toggleFAQ(index)}
-                  className="flex w-full items-center justify-between p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-2xl"
+                  className="flex w-full items-center justify-between p-5 sm:p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-2xl"
                 >
                   <span className="text-base font-semibold text-slate-900 pr-4 sm:text-lg">
                     {faq.question}
                   </span>
 
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors">
                     <ChevronDown
-                      className={`h-4 w-4 transition-transform duration-300 ${
+                      className={`h-4 w-4 transition-transform duration-200 ${
                         isOpen ? "rotate-180 text-blue-600" : ""
                       }`}
                     />
@@ -63,9 +63,9 @@ export default function FAQ() {
                     id={contentId}
                     role="region"
                     aria-labelledby={headingId}
-                    className="border-t border-slate-100 px-6 pb-6 pt-4"
+                    className="border-t border-slate-100 px-5 sm:px-6 pb-5 pt-3.5"
                   >
-                    <p className="text-sm leading-relaxed text-slate-600 font-normal">
+                    <p className="text-xs sm:text-sm leading-relaxed text-slate-600 font-normal">
                       {faq.answer}
                     </p>
                   </div>

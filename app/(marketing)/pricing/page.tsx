@@ -66,7 +66,7 @@ export default function PricingPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+      <section className="relative overflow-hidden bg-white py-16 md:py-24 border-b border-slate-100">
         <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
           <div className="relative z-10 mx-auto max-w-3xl text-center">
@@ -90,7 +90,7 @@ export default function PricingPage() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-white">
         <Container>
           <SectionTitle
             badge="Tiers & Architecture"
@@ -98,11 +98,11 @@ export default function PricingPage() {
             description="Clear infrastructure options with zero hidden compute surcharges."
           />
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {plans.map((plan) => (
               <div
                 key={plan.name}
-                className={`relative flex flex-col justify-between rounded-2xl border bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+                className={`relative flex flex-col justify-between rounded-2xl border bg-white p-7 sm:p-8 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${
                   plan.popular
                     ? "border-blue-500 ring-2 ring-blue-500/20"
                     : "border-slate-200/80"
@@ -110,12 +110,12 @@ export default function PricingPage() {
               >
                 <div>
                   {plan.popular && (
-                    <div className="mb-4 inline-flex rounded-full bg-blue-600 px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+                    <div className="mb-3.5 inline-flex rounded-full bg-blue-600 px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
                       Recommended
                     </div>
                   )}
 
-                  <h3 className="text-xl font-bold text-slate-900 leading-snug">
+                  <h3 className="text-lg font-bold text-slate-900 leading-snug">
                     {plan.name}
                   </h3>
 
@@ -123,7 +123,7 @@ export default function PricingPage() {
                     {plan.description}
                   </p>
 
-                  <div className="mt-6 flex items-baseline border-y border-slate-100 py-4">
+                  <div className="mt-5 flex items-baseline border-y border-slate-100 py-3.5">
                     <span className="text-3xl font-extrabold text-slate-900">
                       {plan.price}
                     </span>
@@ -134,7 +134,7 @@ export default function PricingPage() {
                     )}
                   </div>
 
-                  <ul className="mt-6 space-y-3">
+                  <ul className="mt-5 space-y-2.5">
                     {plan.features.map((feature) => (
                       <li
                         key={feature}
@@ -147,7 +147,7 @@ export default function PricingPage() {
                   </ul>
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-slate-100">
+                <div className="mt-8 pt-5 border-t border-slate-100">
                   <Button
                     href="/contact"
                     variant={plan.variant}

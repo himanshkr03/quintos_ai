@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { X } from "lucide-react";
@@ -16,13 +17,32 @@ interface MobileNavProps {
 export default function MobileNav({ open, onClose }: MobileNavProps) {
   const pathname = usePathname();
 
+  // Escape key handler & body scroll lock
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open, onClose]);
+
   if (!open) return null;
 
   return (
     <>
       {/* Overlay */}
       <div
-        className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden transition-opacity duration-300"
+        className="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm lg:hidden transition-opacity duration-200"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -35,19 +55,19 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
         aria-label="Navigation Menu"
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-gray-100 p-6">
-          <span className="text-lg font-bold text-gray-900">Menu</span>
+        <div className="flex items-center justify-between border-b border-slate-100 p-5">
+          <span className="text-base font-bold text-slate-900">Navigation</span>
           <button
             onClick={onClose}
             aria-label="Close menu"
-            className="rounded-lg p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+            className="rounded-lg p-1.5 text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors"
           >
-            <X className="h-6 w-6" />
+            <X className="h-5 w-5" />
           </button>
         </div>
 
         {/* Navigation Links */}
-        <nav className="flex-1 overflow-y-auto p-6 space-y-1">
+        <nav className="flex-1 overflow-y-auto p-5 space-y-1">
           {NAVIGATION.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -56,10 +76,10 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                 href={item.href}
                 onClick={onClose}
                 className={clsx(
-                  "block rounded-xl px-4 py-3 text-base font-medium transition-colors",
+                  "block rounded-xl px-3.5 py-2.5 text-sm font-medium transition-colors",
                   isActive
                     ? "bg-blue-50 text-blue-600 font-semibold"
-                    : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                    : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
                 )}
               >
                 {item.label}
@@ -69,10 +89,11 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
         </nav>
 
         {/* Footer Actions */}
-        <div className="border-t border-gray-100 p-6 space-y-3">
+        <div className="border-t border-slate-100 p-5 space-y-2.5">
           <Button
             href="/dashboard"
             variant="outline"
+            size="sm"
             className="w-full justify-center"
             onClick={onClose}
           >
@@ -82,6 +103,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
           <Button
             href="/contact"
             variant="primary"
+            size="sm"
             className="w-full justify-center"
             onClick={onClose}
           >

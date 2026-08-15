@@ -41,7 +41,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+      <section className="relative overflow-hidden bg-white py-16 md:py-24 border-b border-slate-100">
         <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
           <div className="relative z-10 mx-auto max-w-3xl text-center">
@@ -66,9 +66,9 @@ export default function AboutPage() {
       </section>
 
       {/* Laboratory Vision & Origin */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-white">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-2 items-center">
+          <div className="grid gap-10 lg:grid-cols-2 items-center">
             <div>
               <SectionTitle
                 badge="Laboratory Origins"
@@ -77,7 +77,7 @@ export default function AboutPage() {
                 align="left"
               />
 
-              <div className="space-y-4 text-slate-600 text-sm leading-relaxed">
+              <div className="space-y-4 text-slate-600 text-xs sm:text-sm leading-relaxed">
                 <p>
                   Modern AI development often sacrifices interpretability and
                   rigorous verification for rapid iteration. At Quintos AI, we
@@ -93,13 +93,13 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-slate-200/80 bg-slate-50/70 p-8 md:p-10">
-              <div className="space-y-6">
+            <div className="rounded-3xl border border-slate-200/80 bg-slate-50/70 p-6 sm:p-8">
+              <div className="space-y-5">
                 <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
                   <span className="text-xs font-bold uppercase tracking-wider text-blue-600">
                     Our Mission
                   </span>
-                  <h3 className="mt-1 text-lg font-bold text-slate-900">
+                  <h3 className="mt-1 text-base font-bold text-slate-900">
                     Sovereign, Interpretable Intelligence
                   </h3>
                   <p className="mt-2 text-xs leading-relaxed text-slate-600">
@@ -113,7 +113,7 @@ export default function AboutPage() {
                   <span className="text-xs font-bold uppercase tracking-wider text-purple-600">
                     Our Vision
                   </span>
-                  <h3 className="mt-1 text-lg font-bold text-slate-900">
+                  <h3 className="mt-1 text-base font-bold text-slate-900">
                     Global Scientific & Technical Leadership
                   </h3>
                   <p className="mt-2 text-xs leading-relaxed text-slate-600">
@@ -129,7 +129,7 @@ export default function AboutPage() {
       </section>
 
       {/* Foundational Pillars */}
-      <section className="bg-slate-50/70 py-24 border-t border-slate-200/60">
+      <section className="bg-slate-50/70 py-20 border-t border-slate-200/60">
         <Container>
           <SectionTitle
             badge="Pillars of Excellence"
@@ -137,16 +137,16 @@ export default function AboutPage() {
             description="The methodological standards governing our research papers, model architectures, and enterprise solutions."
           />
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {foundations.map((item) => {
               const Icon = item.icon;
 
               return (
                 <div
                   key={item.title}
-                  className="group rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/60 hover:shadow-md"
+                  className="group rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400/60 hover:shadow-md"
                 >
-                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-200">
                     <Icon className="h-5 w-5" />
                   </div>
 

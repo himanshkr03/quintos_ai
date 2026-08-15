@@ -45,7 +45,7 @@ export default function TermsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+      <section className="relative overflow-hidden bg-white py-16 md:py-24 border-b border-slate-100">
         <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
           <div className="relative z-10 mx-auto max-w-3xl text-center">
@@ -67,19 +67,19 @@ export default function TermsPage() {
       </section>
 
       {/* Terms Sections */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-white">
         <Container>
-          <div className="mx-auto max-w-4xl space-y-6">
+          <div className="mx-auto max-w-4xl space-y-5">
             {terms.map((term) => (
               <div
                 key={term.title}
-                className="rounded-2xl border border-slate-200/80 bg-slate-50/40 p-7 md:p-8 shadow-sm"
+                className="rounded-2xl border border-slate-200/80 bg-slate-50/40 p-6 sm:p-7 shadow-sm"
               >
-                <h2 className="text-lg font-bold text-slate-900 leading-snug">
+                <h2 className="text-base sm:text-lg font-bold text-slate-900 leading-snug">
                   {term.title}
                 </h2>
 
-                <p className="mt-3 text-xs sm:text-sm leading-relaxed text-slate-600 font-normal">
+                <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-600 font-normal">
                   {term.content}
                 </p>
               </div>

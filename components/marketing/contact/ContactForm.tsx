@@ -36,7 +36,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-20 bg-white">
       <Container>
         <SectionTitle
           badge="Direct Inquiries"
@@ -44,12 +44,12 @@ export default function ContactForm() {
           description="Whether you have an enterprise integration project, research collaboration inquiry, or sovereign deployment question, we are ready to assist."
         />
 
-        <div className="grid gap-12 lg:grid-cols-12 max-w-5xl mx-auto">
+        <div className="grid gap-10 lg:grid-cols-12 max-w-5xl mx-auto">
           {/* Contact Information */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-5">
             <div className="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-6">
               <div className="flex items-start gap-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
@@ -67,14 +67,14 @@ export default function ContactForm() {
 
             <div className="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-6">
               <div className="flex items-start gap-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold text-slate-900">Laboratory & Engineering Hub</h3>
-                  <p className="mt-0.5 text-xs text-slate-500">Headquarters</p>
+                  <h3 className="text-sm font-bold text-slate-900">Location</h3>
+                  <p className="mt-0.5 text-xs text-slate-500">Research & Development</p>
                   <p className="mt-2 text-xs font-medium text-slate-700 leading-relaxed">
-                    Mohali, Punjab, India
+                    Based in Mohali, Punjab, India
                   </p>
                 </div>
               </div>

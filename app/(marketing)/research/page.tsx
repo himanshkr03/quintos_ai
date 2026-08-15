@@ -52,7 +52,7 @@ export default function ResearchPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+      <section className="relative overflow-hidden bg-white py-16 md:py-24 border-b border-slate-100">
         <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
           <div className="relative z-10 mx-auto max-w-3xl text-center">
@@ -81,7 +81,7 @@ export default function ResearchPage() {
       <Research />
 
       {/* Research Methodology */}
-      <section className="bg-slate-50/70 py-24 border-y border-slate-200/60">
+      <section className="bg-slate-50/70 py-20 border-y border-slate-200/60">
         <Container>
           <SectionTitle
             badge="Methodology"
@@ -89,17 +89,17 @@ export default function ResearchPage() {
             description="How our laboratory discovers, validates, and refines new artificial intelligence paradigms."
           />
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {methodologySteps.map((step) => (
               <div
                 key={step.step}
-                className="group rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/60 hover:shadow-md"
+                className="group rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-purple-400/60 hover:shadow-md"
               >
-                <span className="font-mono text-2xl font-bold text-purple-600">
+                <span className="font-mono text-xl font-bold text-purple-600">
                   {step.step}
                 </span>
 
-                <h3 className="mt-4 text-base font-bold text-slate-900 leading-snug">
+                <h3 className="mt-3 text-base font-bold text-slate-900 leading-snug">
                   {step.title}
                 </h3>
 
@@ -113,7 +113,7 @@ export default function ResearchPage() {
       </section>
 
       {/* Collaborative Research Focus Areas */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-white">
         <Container>
           <SectionTitle
             badge="Open Topics"
@@ -121,11 +121,11 @@ export default function ResearchPage() {
             description="Domains where we actively explore partnerships with academic institutions, laboratories, and technology organizations."
           />
 
-          <div className="mt-12 flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+          <div className="mt-10 flex flex-wrap justify-center gap-2.5 max-w-4xl mx-auto">
             {collaborationAreas.map((area) => (
               <span
                 key={area}
-                className="rounded-full border border-slate-200 bg-slate-50/80 px-5 py-2.5 text-xs font-mono font-medium text-slate-700 hover:border-purple-300 hover:text-purple-700 hover:bg-purple-50/40 transition-colors"
+                className="rounded-full border border-slate-200 bg-slate-50/80 px-4 py-2 text-xs font-mono font-medium text-slate-700 hover:border-purple-300 hover:text-purple-700 hover:bg-purple-50/40 transition-colors"
               >
                 {area}
               </span>

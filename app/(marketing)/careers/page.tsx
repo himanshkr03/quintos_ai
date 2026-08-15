@@ -76,7 +76,7 @@ export default function CareersPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+      <section className="relative overflow-hidden bg-white py-16 md:py-24 border-b border-slate-100">
         <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
           <div className="relative z-10 mx-auto max-w-3xl text-center">
@@ -100,7 +100,7 @@ export default function CareersPage() {
       </section>
 
       {/* Open Positions */}
-      <section className="py-24 bg-white">
+      <section className="py-20 bg-white">
         <Container>
           <SectionTitle
             badge="Open Opportunities"
@@ -108,27 +108,27 @@ export default function CareersPage() {
             description="Explore full-time and fellowship roles in our laboratory and systems engineering teams."
           />
 
-          <div className="mt-12 space-y-5 max-w-4xl mx-auto">
+          <div className="mt-10 space-y-4 max-w-4xl mx-auto">
             {openings.map((job) => (
               <div
                 key={job.title}
-                className="group rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-400/60 hover:shadow-md"
+                className="group rounded-2xl border border-slate-200/80 bg-white p-6 sm:p-7 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400/60 hover:shadow-md"
               >
-                <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
+                <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                   <div>
                     <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <span className="rounded-md bg-blue-50 px-2.5 py-0.5 font-mono text-[11px] font-semibold text-blue-700">
+                      <span className="rounded-md bg-blue-50 px-2.5 py-0.5 font-mono text-[10px] font-semibold text-blue-700">
                         {job.team}
                       </span>
-                      <span className="rounded-md bg-slate-100 px-2.5 py-0.5 font-mono text-[11px] font-medium text-slate-600">
+                      <span className="rounded-md bg-slate-100 px-2.5 py-0.5 font-mono text-[10px] font-medium text-slate-600">
                         {job.location}
                       </span>
-                      <span className="rounded-md bg-emerald-50 px-2.5 py-0.5 font-mono text-[11px] font-medium text-emerald-700">
+                      <span className="rounded-md bg-emerald-50 px-2.5 py-0.5 font-mono text-[10px] font-medium text-emerald-700">
                         {job.type}
                       </span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-slate-900 leading-snug">
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-snug">
                       {job.title}
                     </h3>
 
@@ -153,7 +153,7 @@ export default function CareersPage() {
       </section>
 
       {/* Benefits */}
-      <section className="bg-slate-50/70 py-24 border-t border-slate-200/60">
+      <section className="bg-slate-50/70 py-20 border-t border-slate-200/60">
         <Container>
           <SectionTitle
             badge="Laboratory Culture"
@@ -161,7 +161,7 @@ export default function CareersPage() {
             description="We combine open academic inquiry with deep computational resources."
           />
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
             {benefits.map((benefit) => (
               <div
                 key={benefit.title}
