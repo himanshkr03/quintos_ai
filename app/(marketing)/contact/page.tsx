@@ -1,82 +1,92 @@
 // File: E:\quintos_ai\app\(marketing)\contact\page.tsx
 
+import { Mail, MapPin, Clock } from "lucide-react";
 import Container from "@/components/shared/layout/Container";
 import ContactForm from "@/components/marketing/contact/ContactForm";
 import CTA from "@/components/sections/CTA";
 
 export const metadata = {
-  title: "Contact Us | Quintos AI",
-  description: "Connect with the Quintos AI team for enterprise inquiries, research collaboration, and AI solutions.",
+  title: "Contact Laboratory & Partnerships | Quintos AI",
+  description: "Connect with the Quintos AI research laboratory for enterprise inquiries, research collaboration, and technical audits.",
 };
 
 export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-b from-white via-slate-50 to-white py-24">
+      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+        <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
-          <div className="mx-auto max-w-4xl text-center">
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-              Contact Us
-            </span>
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-blue-50/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
+              Direct Communication
+            </div>
 
-            <h1 className="mt-8 text-5xl font-bold text-gray-900 md:text-6xl">
-              Let&apos;s Build the Future
-              <span className="block text-blue-600">
-                Together with AI
-              </span>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl leading-[1.12]">
+              Let&apos;s Architect the Future{" "}
+              <span className="gradient-ai">Together with AI</span>
             </h1>
 
-            <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-gray-600">
-              Whether you&apos;re looking for AI consulting, enterprise solutions,
-              research collaboration, or product development, we&apos;d love to
-              hear from you.
+            <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-600 font-normal">
+              Whether you are seeking custom LLM development, medical imaging
+              perception, sovereign private infrastructure, or academic research
+              collaboration, our team is ready to assist.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Contact Form */}
+      {/* Contact Form Section */}
       <ContactForm />
 
-      {/* Office Information */}
-      <section className="bg-slate-50 py-24">
+      {/* Office & Verification Information */}
+      <section className="bg-slate-50/70 py-20 border-t border-slate-200/60">
         <Container>
-          <div className="grid gap-8 md:grid-cols-3">
-            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
-              <h2 className="mb-4 text-2xl font-bold text-gray-900">
-                Headquarters
-              </h2>
-
-              <p className="leading-7 text-gray-600">
-                Mohali, Punjab
+          <div className="grid gap-6 md:grid-cols-3 max-w-5xl mx-auto">
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm">
+              <div className="flex items-center gap-3 text-blue-600 mb-3">
+                <MapPin className="h-5 w-5" />
+                <h3 className="text-base font-bold text-slate-900">
+                  Headquarters & Lab
+                </h3>
+              </div>
+              <p className="text-xs leading-relaxed text-slate-600">
+                Mohali, Punjab, India
                 <br />
-                India
+                Global Inquiries & Deployments
               </p>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
-              <h2 className="mb-4 text-2xl font-bold text-gray-900">
-                Email
-              </h2>
-
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm">
+              <div className="flex items-center gap-3 text-blue-600 mb-3">
+                <Mail className="h-5 w-5" />
+                <h3 className="text-base font-bold text-slate-900">
+                  Official Contact
+                </h3>
+              </div>
               <a
                 href="mailto:contact.quintosresearch@gmail.com"
-                className="leading-7 text-gray-600 hover:text-blue-600 transition-colors block"
+                className="font-mono text-xs font-semibold text-blue-600 hover:text-blue-700 transition-colors block"
               >
                 contact.quintosresearch@gmail.com
               </a>
+              <span className="mt-1 block text-[11px] text-slate-400">
+                Encrypted & Reviewed Daily
+              </span>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
-              <h2 className="mb-4 text-2xl font-bold text-gray-900">
-                Business Hours
-              </h2>
-
-              <p className="leading-7 text-gray-600">
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm">
+              <div className="flex items-center gap-3 text-blue-600 mb-3">
+                <Clock className="h-5 w-5" />
+                <h3 className="text-base font-bold text-slate-900">
+                  Operational Hours
+                </h3>
+              </div>
+              <p className="text-xs leading-relaxed text-slate-600">
                 Monday – Friday
                 <br />
-                9:00 AM – 6:00 PM IST
+                9:00 AM – 6:00 PM IST (UTC +5:30)
               </p>
             </div>
           </div>

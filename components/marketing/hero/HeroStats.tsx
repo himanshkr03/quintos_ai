@@ -1,41 +1,49 @@
-// File: E:\quintos_ai\components\marketing\hero\HeroStats.tsx
+import { Cpu, ShieldCheck, Atom, Network } from "lucide-react";
 
-const stats = [
+const pillars = [
   {
-    value: "50+",
-    label: "AI Projects",
+    icon: Network,
+    title: "Foundational AI",
+    subtitle: "Reasoning & LLM Architecture",
   },
   {
-    value: "20+",
-    label: "Research Works",
+    icon: ShieldCheck,
+    title: "Enterprise Systems",
+    subtitle: "Sovereign & Secure Workflows",
   },
   {
-    value: "99%",
-    label: "Client Satisfaction",
+    icon: Cpu,
+    title: "Autonomous Agents",
+    subtitle: "Multimodal Task Planning",
   },
   {
-    value: "10+",
-    label: "Enterprise Solutions",
+    icon: Atom,
+    title: "Quantum ML",
+    subtitle: "Hybrid Classical Computing",
   },
 ];
 
 export default function HeroStats() {
   return (
-    <div className="mt-16 grid w-full max-w-4xl grid-cols-2 gap-8 border-t border-gray-200 pt-10 md:grid-cols-4">
-      {stats.map((stat) => (
-        <div
-          key={stat.label}
-          className="text-center"
-        >
-          <h3 className="text-3xl font-bold text-blue-600 md:text-4xl">
-            {stat.value}
-          </h3>
-
-          <p className="mt-2 text-sm text-gray-600">
-            {stat.label}
-          </p>
-        </div>
-      ))}
+    <div className="mt-14 pt-8 border-t border-slate-200/80">
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+        {pillars.map((pillar) => {
+          const Icon = pillar.icon;
+          return (
+            <div key={pillar.title} className="group">
+              <div className="flex items-center gap-2 text-blue-600 mb-1.5">
+                <Icon className="h-4 w-4" />
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-900">
+                  {pillar.title}
+                </span>
+              </div>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                {pillar.subtitle}
+              </p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

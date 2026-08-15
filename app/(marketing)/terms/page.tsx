@@ -4,40 +4,40 @@ import Container from "@/components/shared/layout/Container";
 import CTA from "@/components/sections/CTA";
 
 export const metadata = {
-  title: "Terms of Service | Quintos AI",
-  description: "Terms and conditions governing the use of Quintos AI website, products, and services.",
+  title: "Terms of Service & Research Usage | Quintos AI",
+  description: "Terms and conditions governing the use of Quintos AI website, research preprints, APIs, and software platforms.",
 };
 
 const terms = [
   {
-    title: "Acceptance of Terms",
+    title: "1. Acceptance of Terms",
     content:
-      "By accessing or using Quintos AI's website, products, or services, you agree to comply with these Terms and Conditions. If you do not agree, please discontinue use of our services.",
+      "By accessing or using Quintos AI's website, preprints, APIs, or software platforms, you agree to comply with and be bound by these Terms of Service. If you do not agree to these terms, please discontinue use immediately.",
   },
   {
-    title: "Use of Services",
+    title: "2. Permitted Use & Prohibited Conduct",
     content:
-      "Our services are intended for lawful purposes only. Users must not misuse the platform, attempt unauthorized access, distribute malicious software, or violate applicable laws.",
+      "Quintos AI platforms and APIs are provided strictly for lawful research, development, and commercial operations. Users must not attempt unauthorized penetration testing, reverse-engineer model weights through adversarial perturbation attacks, or deploy models for unlawful, harmful, or fraudulent activities.",
   },
   {
-    title: "Intellectual Property",
+    title: "3. Intellectual Property & Research Artifacts",
     content:
-      "All content, trademarks, logos, software, research materials, and designs published by Quintos AI remain the intellectual property of Quintos AI unless otherwise stated.",
+      "All proprietary algorithms, platform interfaces, architectural documentation, and trademarks belong to Quintos AI. Open-source models and preprints are licensed under their respective repository licenses (e.g. Apache 2.0 or MIT) as explicitly noted in their distribution manifests.",
   },
   {
-    title: "User Responsibilities",
+    title: "4. API Service Level & Compute Quotas",
     content:
-      "Users are responsible for maintaining the confidentiality of their accounts and ensuring that any information they provide is accurate and up to date.",
+      "API access is subject to computational rate limits, security throttling, and operational maintenance windows. Quintos AI reserves the right to suspend API keys engaged in abusive or non-compliant request patterns.",
   },
   {
-    title: "Limitation of Liability",
+    title: "5. Disclaimer of Warranties & Liability Limitation",
     content:
-      "Quintos AI shall not be liable for any indirect, incidental, or consequential damages arising from the use or inability to use our services.",
+      "Except as explicitly defined in custom enterprise service level agreements (SLAs), research prototypes and public interfaces are provided 'as is' without warranties of continuous availability or absolute accuracy.",
   },
   {
-    title: "Changes to Terms",
+    title: "6. Modifications to Terms",
     content:
-      "We reserve the right to modify these Terms and Conditions at any time. Continued use of our services after updates constitutes acceptance of the revised terms.",
+      "We reserve the right to revise these Terms of Service as our research and regulatory requirements evolve. Continued use of our platforms constitutes acceptance of updated terms.",
   },
 ];
 
@@ -45,42 +45,41 @@ export default function TermsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-b from-white via-slate-50 to-white py-24">
+      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+        <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
-          <div className="mx-auto max-w-4xl text-center">
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-              Terms & Conditions
-            </span>
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-blue-50/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
+              Legal & Platform Terms
+            </div>
 
-            <h1 className="mt-8 text-5xl font-bold text-gray-900 md:text-6xl">
-              Terms of
-              <span className="block text-blue-600">
-                Service
-              </span>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl leading-[1.12]">
+              Terms of <span className="gradient-ai">Service</span>
             </h1>
 
-            <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-gray-600">
-              These Terms and Conditions govern your use of Quintos AI&apos;s
-              website, products, research, and enterprise AI services.
+            <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-600 font-normal">
+              These terms govern access to Quintos AI&apos;s digital platforms,
+              APIs, open research artifacts, and enterprise software services.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Terms */}
-      <section className="py-24">
+      {/* Terms Sections */}
+      <section className="py-24 bg-white">
         <Container>
-          <div className="mx-auto max-w-5xl space-y-10">
+          <div className="mx-auto max-w-4xl space-y-6">
             {terms.map((term) => (
               <div
                 key={term.title}
-                className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
+                className="rounded-2xl border border-slate-200/80 bg-slate-50/40 p-7 md:p-8 shadow-sm"
               >
-                <h2 className="mb-4 text-2xl font-bold text-gray-900">
+                <h2 className="text-lg font-bold text-slate-900 leading-snug">
                   {term.title}
                 </h2>
 
-                <p className="leading-8 text-gray-600">
+                <p className="mt-3 text-xs sm:text-sm leading-relaxed text-slate-600 font-normal">
                   {term.content}
                 </p>
               </div>

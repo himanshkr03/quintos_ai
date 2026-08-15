@@ -1,28 +1,19 @@
-// File: E:\quintos_ai\components\marketing\hero\HeroBackground.tsx
+"use client";
 
 export default function HeroBackground() {
   return (
-    <>
-      {/* Blue Glow */}
-      <div className="absolute left-0 top-20 h-96 w-96 rounded-full bg-blue-500/20 blur-[140px]" />
+    <div className="absolute inset-0 pointer-events-none overflow-hidden select-none" aria-hidden="true">
+      {/* Scientific Technical Grid */}
+      <div className="absolute inset-0 tech-grid opacity-70" />
 
-      {/* Purple Glow */}
-      <div className="absolute right-0 top-40 h-96 w-96 rounded-full bg-violet-500/20 blur-[160px]" />
+      {/* Radial Gradient Ambient Lighting */}
+      <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-gradient-to-b from-blue-500/10 via-purple-500/5 to-transparent blur-3xl" />
+      <div className="absolute top-[30%] -right-[10%] h-[450px] w-[450px] rounded-full bg-cyan-400/8 blur-3xl" />
+      <div className="absolute top-[40%] -left-[10%] h-[450px] w-[450px] rounded-full bg-violet-400/8 blur-3xl" />
 
-      {/* Cyan Glow */}
-      <div className="absolute bottom-0 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-cyan-400/20 blur-[150px]" />
-
-      {/* Grid Pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, #94a3b8 1px, transparent 1px),
-            linear-gradient(to bottom, #94a3b8 1px, transparent 1px)
-          `,
-          backgroundSize: "50px 50px",
-        }}
-      />
-    </>
+      {/* Subtle Coordinate Axis / Framing Lines */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+    </div>
   );
 }

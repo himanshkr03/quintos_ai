@@ -5,7 +5,6 @@ import { ChevronDown } from "lucide-react";
 
 import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
-
 import { faqs } from "@/data/faq";
 
 export default function FAQ() {
@@ -16,45 +15,64 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-24">
+    <section className="py-24 bg-white">
       <Container>
         <SectionTitle
-          badge="FAQ"
+          badge="Knowledge & Inquiries"
           title="Frequently Asked Questions"
-          description="Find answers to the most common questions about Quintos AI, our products, and our services."
+          description="Learn about Quintos AI's research methodology, enterprise security practices, and deployment architectures."
         />
 
-        <div className="mx-auto max-w-4xl space-y-4">
-          {faqs.map((faq, index) => (
-            <div
-              key={faq.question}
-              className="overflow-hidden rounded-2xl border border-gray-200 bg-white"
-            >
-              <button
-                onClick={() => toggleFAQ(index)}
-                className="flex w-full items-center justify-between p-6 text-left"
+        <div className="mx-auto max-w-3xl space-y-4">
+          {faqs.map((faq, index) => {
+            const isOpen = activeIndex === index;
+            const headingId = `faq-heading-${index}`;
+            const contentId = `faq-content-${index}`;
+
+            return (
+              <div
+                key={faq.question}
+                className={`overflow-hidden rounded-2xl border transition-colors duration-200 ${
+                  isOpen
+                    ? "border-blue-300 bg-blue-50/20"
+                    : "border-slate-200/80 bg-white hover:border-slate-300"
+                }`}
               >
-                <span className="text-lg font-semibold text-gray-900">
-                  {faq.question}
-                </span>
+                <button
+                  id={headingId}
+                  aria-expanded={isOpen}
+                  aria-controls={contentId}
+                  onClick={() => toggleFAQ(index)}
+                  className="flex w-full items-center justify-between p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-2xl"
+                >
+                  <span className="text-base font-semibold text-slate-900 pr-4 sm:text-lg">
+                    {faq.question}
+                  </span>
 
-                <ChevronDown
-                  className={`transition-transform duration-300 ${
-                    activeIndex === index ? "rotate-180" : ""
-                  }`}
-                  size={22}
-                />
-              </button>
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors">
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform duration-300 ${
+                        isOpen ? "rotate-180 text-blue-600" : ""
+                      }`}
+                    />
+                  </span>
+                </button>
 
-              {activeIndex === index && (
-                <div className="border-t border-gray-100 px-6 py-5">
-                  <p className="leading-7 text-gray-600">
-                    {faq.answer}
-                  </p>
-                </div>
-              )}
-            </div>
-          ))}
+                {isOpen && (
+                  <div
+                    id={contentId}
+                    role="region"
+                    aria-labelledby={headingId}
+                    className="border-t border-slate-100 px-6 pb-6 pt-4"
+                  >
+                    <p className="text-sm leading-relaxed text-slate-600 font-normal">
+                      {faq.answer}
+                    </p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </Container>
     </section>

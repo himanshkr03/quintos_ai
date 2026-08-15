@@ -1,8 +1,11 @@
+import { cn } from "@/utils/cn";
+
 interface SectionTitleProps {
   badge?: string;
   title: string;
   description?: string;
   align?: "left" | "center";
+  className?: string;
 }
 
 export default function SectionTitle({
@@ -10,29 +13,34 @@ export default function SectionTitle({
   title,
   description,
   align = "center",
+  className,
 }: SectionTitleProps) {
-  const alignment =
-    align === "center"
-      ? "items-center text-center"
-      : "items-start text-left";
+  const isCenter = align === "center";
 
   return (
-    <div className={`mb-16 flex flex-col ${alignment}`}>
-      {/* Badge */}
+    <div
+      className={cn(
+        "mb-14 md:mb-16 flex flex-col",
+        isCenter ? "items-center text-center mx-auto max-w-3xl" : "items-start text-left max-w-2xl",
+        className
+      )}
+    >
+      {/* Eyebrow Badge */}
       {badge && (
-        <span className="mb-4 inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-1 text-sm font-semibold text-blue-700">
-          {badge}
-        </span>
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-blue-50/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700 shadow-sm backdrop-blur-sm">
+          <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
+          <span>{badge}</span>
+        </div>
       )}
 
       {/* Heading */}
-      <h2 className="max-w-4xl text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">
+      <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl md:text-5xl leading-[1.15]">
         {title}
       </h2>
 
       {/* Description */}
       {description && (
-        <p className="mt-5 max-w-3xl text-lg leading-8 text-gray-600">
+        <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-600 font-normal">
           {description}
         </p>
       )}

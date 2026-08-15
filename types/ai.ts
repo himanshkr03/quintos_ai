@@ -8,21 +8,15 @@ import { LucideIcon } from "lucide-react";
 
 export interface ChatMessage {
   id: string;
-
   role: "user" | "assistant" | "system";
-
   content: string;
-
   createdAt: Date;
 }
 
 export interface AIModel {
   id: string;
-
   name: string;
-
   provider: string;
-
   description?: string;
 }
 
@@ -32,10 +26,10 @@ export interface AIModel {
 
 export interface AIService {
   icon: LucideIcon;
-
   title: string;
-
   description: string;
+  tags?: string[];
+  href?: string;
 }
 
 /* =====================================================
@@ -44,10 +38,12 @@ export interface AIService {
 
 export interface AIProduct {
   icon: LucideIcon;
-
   title: string;
-
   description: string;
+  category?: string;
+  stage?: "Enterprise Platform" | "Applied Framework" | "Research Engine" | "Platform Infrastructure";
+  capabilities?: string[];
+  href?: string;
 }
 
 /* =====================================================
@@ -56,24 +52,27 @@ export interface AIProduct {
 
 export interface ResearchArea {
   icon: LucideIcon;
-
   title: string;
-
   description: string;
+  focusTopics?: string[];
+  href?: string;
 }
 
 /* =====================================================
-   Testimonials
+   Testimonials / Engineering Principles
 ===================================================== */
 
 export interface Testimonial {
   name: string;
-
   role: string;
-
   company: string;
-
   review: string;
+}
+
+export interface EngineeringPrinciple {
+  title: string;
+  description: string;
+  category: string;
 }
 
 /* =====================================================
@@ -82,6 +81,6 @@ export interface Testimonial {
 
 export interface FAQItem {
   question: string;
-
   answer: string;
+  category?: string;
 }

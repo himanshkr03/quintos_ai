@@ -1,85 +1,94 @@
-// File: E:\quintos_ai\components\sections\Features.tsx
-
 import {
   Brain,
-  Bot,
   Cpu,
   ShieldCheck,
   Workflow,
   Sparkles,
+  Layers,
 } from "lucide-react";
 
 import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
 
-const features = [
+const capabilities = [
   {
     icon: Brain,
-    title: "Artificial Intelligence",
+    tag: "Foundational Reasoning",
+    title: "Large-Scale Language & Reasoning",
     description:
-      "Enterprise-grade AI solutions tailored for modern businesses.",
+      "Domain-adapted LLMs, Retrieval-Augmented Generation (RAG) architectures, and structured context reasoning for high-stakes enterprise decisions.",
   },
   {
-    icon: Bot,
-    title: "Generative AI",
+    icon: Layers,
+    tag: "Visual Intelligence",
+    title: "Multimodal Perception & Computer Vision",
     description:
-      "Build intelligent assistants, copilots, and LLM-powered applications.",
-  },
-  {
-    icon: Cpu,
-    title: "Machine Learning",
-    description:
-      "Predictive analytics and intelligent decision-making systems.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Secure AI",
-    description:
-      "Privacy-first AI infrastructure with enterprise-grade security.",
+      "High-precision diagnostic imaging, object detection, zero-shot visual classification, and real-time visual inspection pipelines.",
   },
   {
     icon: Workflow,
-    title: "Workflow Automation",
+    tag: "Autonomous Systems",
+    title: "Intelligent Agentic Workflows",
     description:
-      "Automate repetitive business processes using intelligent agents.",
+      "Self-directed AI agents capable of multistep tool interaction, automated planning, API orchestration, and deterministic self-correction.",
+  },
+  {
+    icon: ShieldCheck,
+    tag: "Data Sovereignty",
+    title: "Enterprise Security & Privacy Architecture",
+    description:
+      "On-premise deployments, fine-grained role-based access control, cryptographic data isolation, and strictly zero data retention compliance.",
+  },
+  {
+    icon: Cpu,
+    tag: "Distributed Compute",
+    title: "High-Performance ML Inference",
+    description:
+      "Low-latency model serving, quantization, kernel optimization, and autoscaling GPU/TPU cluster management.",
   },
   {
     icon: Sparkles,
-    title: "Innovation",
+    tag: "Emerging Paradigms",
+    title: "Quantum-Classical Hybrid Computing",
     description:
-      "Research-driven AI technologies designed for the future.",
+      "Exploratory algorithms fusing quantum state optimization with classical deep learning for combinatorial and molecular simulations.",
   },
 ];
 
 export default function Features() {
   return (
-    <section className="bg-slate-50 py-24">
+    <section className="bg-slate-50/70 py-24 border-b border-slate-200/60">
       <Container>
         <SectionTitle
-          badge="Why Choose Quintos AI"
-          title="Powerful AI Capabilities for Every Business"
-          description="We combine cutting-edge research, enterprise engineering, and modern AI technologies to deliver scalable intelligent solutions."
+          badge="Core Architectural Strengths"
+          title="Engineered for Rigorous Scientific & Enterprise Demands"
+          description="We combine algorithmic research, mathematically grounded architectures, and distributed systems engineering to build trustworthy AI systems."
         />
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => {
-            const Icon = feature.icon;
+        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {capabilities.map((cap) => {
+            const Icon = cap.icon;
 
             return (
               <div
-                key={feature.title}
-                className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-blue-500 hover:shadow-xl"
+                key={cap.title}
+                className="group relative rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/60 hover:shadow-lg"
               >
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
-                  <Icon size={28} />
+                <div className="mb-6 flex items-center justify-between">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <span className="text-[11px] font-mono font-medium text-slate-400 uppercase tracking-wider">
+                    {cap.tag}
+                  </span>
                 </div>
 
-                <h3 className="mb-3 text-xl font-semibold text-gray-900">
-                  {feature.title}
+                <h3 className="text-xl font-bold text-slate-900 leading-snug">
+                  {cap.title}
                 </h3>
 
-                <p className="leading-7 text-gray-600">
-                  {feature.description}
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  {cap.description}
                 </p>
               </div>
             );

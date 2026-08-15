@@ -6,95 +6,105 @@ import Research from "@/components/marketing/research/Research";
 import CTA from "@/components/sections/CTA";
 
 export const metadata = {
-  title: "AI Research | Quintos AI",
-  description: "Pioneering research across Machine Learning, Generative AI, Quantum Computing, and Medical Intelligence.",
+  title: "AI Research Laboratory | Quintos AI",
+  description: "Pioneering research across large-scale language models, quantum machine learning, biomedical vision, and mechanistic interpretability.",
 };
 
-const researchAreas = [
+const methodologySteps = [
   {
-    title: "Large Language Models",
+    step: "01",
+    title: "Theoretical & Mathematical Formulation",
     description:
-      "Building intelligent conversational AI, RAG systems, and domain-specific language models.",
+      "Formulating hypotheses grounded in information theory, probability bounds, and computational complexity before scaling models.",
   },
   {
-    title: "Computer Vision",
+    step: "02",
+    title: "Empirical Benchmarking & Ablation",
     description:
-      "Research in medical imaging, object detection, image segmentation, and visual intelligence.",
+      "Stress-testing architectures against standardized gold-standard benchmarks across out-of-distribution robustness and edge conditions.",
   },
   {
-    title: "Quantum AI",
+    step: "03",
+    title: "Mechanistic Interpretability Audits",
     description:
-      "Exploring hybrid quantum-classical algorithms for next-generation intelligent systems.",
+      "Deconstructing internal activation circuits to verify exact decision pathways and eliminate deceptive alignment artifacts.",
   },
   {
-    title: "AI Agents",
+    step: "04",
+    title: "Translational Deployment & Open Tools",
     description:
-      "Developing autonomous agents capable of reasoning, planning, and executing complex workflows.",
+      "Packaging verified algorithms into hardened open-source libraries, reproducible notebooks, and enterprise SDK components.",
   },
 ];
 
-const publications = [
-  "Artificial Intelligence",
-  "Generative AI",
-  "Machine Learning",
-  "Deep Learning",
-  "Computer Vision",
-  "Natural Language Processing",
-  "Quantum Machine Learning",
-  "Responsible AI",
+const collaborationAreas = [
+  "Large Language Model Reasoning Chains",
+  "Variational Quantum Circuit Optimization",
+  "Cellular Pathology & Histology Segmentation",
+  "Autonomous Agent Tool Verification",
+  "Low-Precision (FP4/INT8) Quantization Kernels",
+  "Mechanistic Circuit Attribution in Deep Nets",
+  "Algorithmic Fairness & Bias Mitigation",
+  "Cross-Modal Representation Learning",
 ];
 
 export default function ResearchPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-b from-white via-slate-50 to-white py-24">
+      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+        <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
-          <div className="mx-auto max-w-4xl text-center">
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-              Research
-            </span>
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-200/80 bg-purple-50/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-purple-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-purple-600 animate-pulse" />
+              Scientific Inquiries & Discoveries
+            </div>
 
-            <h1 className="mt-8 text-5xl font-bold text-gray-900 md:text-6xl">
-              Advancing the Future
-              <span className="block text-blue-600">
-                Through AI Research
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl leading-[1.12]">
+              Fundamental AI Research &{" "}
+              <span className="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                Algorithmic Frontiers
               </span>
             </h1>
 
-            <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-gray-600">
-              Our research focuses on solving real-world challenges through
-              Artificial Intelligence, Machine Learning, Generative AI, and
-              emerging technologies.
+            <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-600 font-normal">
+              Our research team investigates foundational questions across
+              neural reasoning, quantum-classical machine learning, biomedical
+              imaging, and deterministic AI safety.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Research Component */}
+      {/* Research Program Component */}
       <Research />
 
-      {/* Research Areas */}
-      <section className="py-24">
+      {/* Research Methodology */}
+      <section className="bg-slate-50/70 py-24 border-y border-slate-200/60">
         <Container>
           <SectionTitle
-            badge="Research Areas"
-            title="Our Focus Domains"
-            description="Innovation driven by cutting-edge research and practical applications."
+            badge="Methodology"
+            title="A Rigorous Scientific Framework"
+            description="How our laboratory discovers, validates, and refines new artificial intelligence paradigms."
           />
 
-          <div className="mt-16 grid gap-8 md:grid-cols-2">
-            {researchAreas.map((area) => (
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {methodologySteps.map((step) => (
               <div
-                key={area.title}
-                className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                key={step.step}
+                className="group rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/60 hover:shadow-md"
               >
-                <h3 className="text-2xl font-semibold text-gray-900">
-                  {area.title}
+                <span className="font-mono text-2xl font-bold text-purple-600">
+                  {step.step}
+                </span>
+
+                <h3 className="mt-4 text-base font-bold text-slate-900 leading-snug">
+                  {step.title}
                 </h3>
 
-                <p className="mt-4 leading-7 text-gray-600">
-                  {area.description}
+                <p className="mt-2 text-xs leading-relaxed text-slate-600">
+                  {step.description}
                 </p>
               </div>
             ))}
@@ -102,22 +112,22 @@ export default function ResearchPage() {
         </Container>
       </section>
 
-      {/* Publications */}
-      <section className="bg-slate-50 py-24">
+      {/* Collaborative Research Focus Areas */}
+      <section className="py-24 bg-white">
         <Container>
           <SectionTitle
-            badge="Research Topics"
-            title="Areas of Publication"
-            description="Knowledge creation through interdisciplinary AI research."
+            badge="Open Topics"
+            title="Active Research Directions & Inquiries"
+            description="Domains where we actively explore partnerships with academic institutions, laboratories, and technology organizations."
           />
 
-          <div className="mt-16 flex flex-wrap justify-center gap-4">
-            {publications.map((topic) => (
+          <div className="mt-12 flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+            {collaborationAreas.map((area) => (
               <span
-                key={topic}
-                className="rounded-full border border-blue-200 bg-white px-6 py-3 font-medium text-gray-700 transition hover:border-blue-500 hover:text-blue-600"
+                key={area}
+                className="rounded-full border border-slate-200 bg-slate-50/80 px-5 py-2.5 text-xs font-mono font-medium text-slate-700 hover:border-purple-300 hover:text-purple-700 hover:bg-purple-50/40 transition-colors"
               >
-                {topic}
+                {area}
               </span>
             ))}
           </div>

@@ -1,62 +1,69 @@
 // File: E:\quintos_ai\app\(marketing)\blog\page.tsx
 
+import { ArrowRight, BookOpen, Calendar, Clock } from "lucide-react";
 import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
 import CTA from "@/components/sections/CTA";
 
 export const metadata = {
-  title: "Blog & Insights | Quintos AI",
-  description: "Explore the latest insights, research findings, and technical deep-dives from the Quintos AI team.",
+  title: "Research Insights & Publications | Quintos AI",
+  description: "Explore algorithmic deep-dives, research papers, tutorials, and engineering articles from the Quintos AI laboratory.",
 };
 
-const posts = [
+const articles = [
   {
-    category: "Generative AI",
-    title: "The Future of Large Language Models",
+    category: "LLM Reasoning",
+    title: "Latent Chain-of-Thought: Verifying Multi-Step Reasoning Bounds",
     description:
-      "Explore how LLMs are transforming enterprise applications and software development.",
+      "An analysis of internal hidden-state trajectories in transformer models during complex multi-step symbolic reasoning tasks.",
     date: "August 2026",
-    author: "Quintos AI Research Team",
+    readTime: "7 min read",
+    author: "Quintos AI Lab",
   },
   {
-    category: "Computer Vision",
-    title: "AI in Medical Imaging",
+    category: "Medical AI",
+    title: "Sub-Millimeter Anomaly Detection in 3D Volumetric MRI",
     description:
-      "Understanding how deep learning is revolutionizing disease diagnosis and healthcare.",
+      "How hierarchical vision transformers achieve high sensitivity in biomedical pathology without excessive false positive drift.",
     date: "July 2026",
-    author: "Quintos AI Research Team",
+    readTime: "9 min read",
+    author: "Biomedical Perception Team",
   },
   {
-    category: "Machine Learning",
-    title: "Building Production-Ready ML Systems",
+    category: "Quantum ML",
+    title: "Variational Eigensolvers on Noisy Intermediate-Scale Quantum Hardware",
     description:
-      "Best practices for deploying scalable machine learning solutions.",
+      "A technical walkthrough of hybrid quantum-classical error mitigation techniques for molecular energy simulations.",
     date: "June 2026",
-    author: "Quintos AI Engineering",
+    readTime: "11 min read",
+    author: "Quantum AI Research",
   },
   {
-    category: "Quantum AI",
-    title: "Quantum Machine Learning Explained",
+    category: "Systems & Inference",
+    title: "Zero-Overhead INT4 Quantization for Sovereign Enterprise Deployments",
     description:
-      "A beginner-friendly introduction to hybrid quantum-classical AI systems.",
+      "Benchmarking custom CUDA kernel optimizations and memory bandwidth throughput for air-gapped on-premise inference.",
     date: "May 2026",
-    author: "Quintos AI Research Team",
+    readTime: "6 min read",
+    author: "Systems Engineering",
   },
   {
-    category: "AI Agents",
-    title: "Autonomous AI Agents in Business",
+    category: "Autonomous Agents",
+    title: "Deterministic Guardrails for Multi-Agent Tool-Calling Loops",
     description:
-      "How AI agents can automate workflows and improve enterprise productivity.",
+      "Preventing cascading failure modes in autonomous agents using formal schema verification and rollback checkpoints.",
     date: "April 2026",
-    author: "Quintos AI",
+    readTime: "8 min read",
+    author: "Agent Architectures Team",
   },
   {
-    category: "Responsible AI",
-    title: "Building Ethical AI Systems",
+    category: "Interpretability",
+    title: "Mechanistic Circuit Attribution in Modern Foundation Models",
     description:
-      "Principles for creating transparent, fair, and trustworthy AI applications.",
+      "Extracting interpretable neural circuits to audit and explain high-stakes decision pathways in automated scoring pipelines.",
     date: "March 2026",
-    author: "Quintos AI",
+    readTime: "10 min read",
+    author: "Alignment & Safety Lab",
   },
 ];
 
@@ -64,60 +71,70 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-b from-white via-slate-50 to-white py-24">
+      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+        <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
-          <div className="mx-auto max-w-4xl text-center">
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-              Blog
-            </span>
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-blue-50/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
+              Technical Dissemination & Insights
+            </div>
 
-            <h1 className="mt-8 text-5xl font-bold text-gray-900 md:text-6xl">
-              Insights, Research &
-              <span className="block text-blue-600">
-                AI Innovation
-              </span>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl leading-[1.12]">
+              Research Insights &{" "}
+              <span className="gradient-ai">Algorithmic Papers</span>
             </h1>
 
-            <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-gray-600">
-              Discover the latest trends, research findings, tutorials,
-              and engineering insights from the Quintos AI team.
+            <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-600 font-normal">
+              Deep-dives, scientific preprints, algorithmic tutorials, and
+              infrastructure benchmarks published by the Quintos AI team.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Blog Posts */}
-      <section className="py-24">
+      {/* Articles Grid */}
+      <section className="py-24 bg-white">
         <Container>
           <SectionTitle
-            badge="Latest Articles"
-            title="Explore Our Knowledge Hub"
-            description="Stay updated with AI technologies, research, and industry trends."
+            badge="Published Insights"
+            title="Explore the Knowledge Hub"
+            description="Peer-reviewed methodologies, engineering postmortems, and technical explorations."
           />
 
-          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {articles.map((art) => (
               <article
-                key={post.title}
-                className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-blue-500 hover:shadow-xl flex flex-col justify-between"
+                key={art.title}
+                className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/60 hover:shadow-lg"
               >
                 <div>
-                  <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
-                    {post.category}
-                  </span>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="rounded-md bg-blue-50 px-2.5 py-0.5 text-[11px] font-mono font-semibold text-blue-700">
+                      {art.category}
+                    </span>
 
-                  <h2 className="mt-6 text-2xl font-bold text-gray-900">
-                    {post.title}
-                  </h2>
+                    <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
+                      <Clock className="h-3.5 w-3.5" />
+                      <span>{art.readTime}</span>
+                    </div>
+                  </div>
 
-                  <p className="mt-4 leading-7 text-gray-600">
-                    {post.description}
+                  <h3 className="text-lg font-bold text-slate-900 leading-snug group-hover:text-blue-600 transition-colors">
+                    {art.title}
+                  </h3>
+
+                  <p className="mt-3 text-xs leading-relaxed text-slate-600">
+                    {art.description}
                   </p>
                 </div>
 
-                <div className="mt-8 border-t border-gray-100 pt-4 text-xs text-gray-500 flex items-center justify-between">
-                  <span>{post.author}</span>
-                  <span>{post.date}</span>
+                <div className="mt-8 border-t border-slate-100 pt-4 flex items-center justify-between text-xs text-slate-500">
+                  <span className="font-medium text-slate-700">{art.author}</span>
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-3 w-3" />
+                    <span>{art.date}</span>
+                  </div>
                 </div>
               </article>
             ))}

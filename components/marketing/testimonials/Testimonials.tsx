@@ -1,47 +1,47 @@
-import { Quote } from "lucide-react";
-
 import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
-
-import { testimonials } from "@/data/testimonials";
+import { engineeringPrinciples } from "@/data/testimonials";
 
 export default function Testimonials() {
   return (
-    <section className="bg-gray-50 py-24">
+    <section className="bg-slate-50/70 py-24 border-b border-slate-200/60">
       <Container>
         <SectionTitle
-          badge="Testimonials"
-          title="Trusted by Businesses and Researchers"
-          description="Our mission is to deliver intelligent AI solutions that create measurable impact across industries."
+          badge="Guiding Principles"
+          title="Our Research & Engineering Philosophy"
+          description="We are committed to building transparent, rigorously evaluated, and mathematically grounded artificial intelligence systems."
         />
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.name}
-              className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
-            >
-              <Quote className="mb-6 h-10 w-10 text-blue-600" />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {engineeringPrinciples.map((item) => {
+            const Icon = item.icon;
 
-              <p className="mb-8 leading-7 text-gray-600">
-                "{testimonial.review}"
-              </p>
+            return (
+              <div
+                key={item.title}
+                className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/60 hover:shadow-md"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <span className="text-[10px] font-mono font-medium uppercase tracking-wider text-slate-400">
+                      {item.category}
+                    </span>
+                  </div>
 
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">
-                  {testimonial.name}
-                </h3>
+                  <h3 className="text-lg font-bold text-slate-900 leading-snug">
+                    {item.title}
+                  </h3>
 
-                <p className="text-sm text-gray-500">
-                  {testimonial.role}
-                </p>
-
-                <p className="text-sm font-medium text-blue-600">
-                  {testimonial.company}
-                </p>
+                  <p className="mt-3 text-xs leading-relaxed text-slate-600">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Container>
     </section>

@@ -9,28 +9,27 @@ export const theme = {
     },
 
     secondary: {
-      light: "#C084FC",
-      DEFAULT: "#9333EA",
-      dark: "#7E22CE",
+      light: "#A78BFA",
+      DEFAULT: "#7C3AED",
+      dark: "#6D28D9",
     },
 
     accent: {
       DEFAULT: "#06B6D4",
     },
 
-    success: "#22C55E",
+    success: "#16A34A",
     warning: "#F59E0B",
-    error: "#EF4444",
+    error: "#DC2626",
 
     background: "#FFFFFF",
     surface: "#F8FAFC",
-
-    border: "#E5E7EB",
+    border: "#E2E8F0",
 
     text: {
-      primary: "#111827",
-      secondary: "#6B7280",
-      muted: "#9CA3AF",
+      primary: "#0F172A",
+      secondary: "#475569",
+      muted: "#64748B",
       white: "#FFFFFF",
     },
   },
@@ -56,9 +55,9 @@ export const theme = {
   },
 
   shadow: {
-    sm: "0 2px 8px rgba(0,0,0,0.06)",
-    md: "0 8px 24px rgba(0,0,0,0.10)",
-    lg: "0 20px 60px rgba(0,0,0,0.15)",
+    subtle: "0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02)",
+    card: "0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02)",
+    elevated: "0 20px 40px -15px rgba(37, 99, 235, 0.08), 0 0 1px 1px rgba(0, 0, 0, 0.04)",
   },
 
   container: {

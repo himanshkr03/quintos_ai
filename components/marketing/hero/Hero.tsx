@@ -1,58 +1,49 @@
-// File: E:\quintos_ai\components\marketing\hero\Hero.tsx
-
 "use client";
 
 import Container from "@/components/shared/layout/Container";
-
 import HeroBackground from "./HeroBackground";
+import HeroBadge from "./HeroBadge";
 import HeroButtons from "./HeroButtons";
 import HeroPreview from "./HeroPreview";
 import HeroStats from "./HeroStats";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white">
-      {/* Background */}
+    <section className="relative overflow-hidden bg-white py-16 md:py-24">
+      {/* Ambient background with grid */}
       <HeroBackground />
 
       <Container>
-        <div className="relative z-10 grid min-h-[90vh] items-center gap-20 py-24 lg:grid-cols-2">
+        <div className="relative z-10 grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+          {/* Left Column (Content) */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left">
+            <HeroBadge />
 
-          {/* Left Content */}
-          <div>
-
-            {/* Badge */}
-            <div className="mb-8 inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-5 py-2 text-sm font-medium text-blue-700">
-              🚀 Next Generation AI Company
-            </div>
-
-            {/* Heading */}
-            <h1 className="max-w-3xl text-5xl font-extrabold leading-tight text-gray-900 md:text-6xl xl:text-7xl">
-              Empowering Businesses
-              <span className="block text-blue-600">
-                with Artificial Intelligence
+            <h1 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl leading-[1.12]">
+              Architecting Intelligence for the{" "}
+              <span className="gradient-ai">
+                Next Era of Computing
               </span>
             </h1>
 
-            {/* Description */}
-            <p className="mt-8 max-w-2xl text-lg leading-8 text-gray-600">
-              Quintos AI develops enterprise-grade Artificial Intelligence,
-              Generative AI, Machine Learning, Computer Vision, and Quantum AI
-              solutions that help organizations innovate faster and build
-              intelligent products.
+            <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-slate-600 font-normal">
+              Quintos AI is an advanced artificial intelligence laboratory
+              and engineering company. We advance foundational AI research,
+              multimodal perception, autonomous agents, and quantum machine
+              learning to build transformative, production-ready systems.
             </p>
 
-            {/* Buttons */}
             <HeroButtons />
 
-            {/* Stats */}
-            <HeroStats />
-
+            <div className="w-full">
+              <HeroStats />
+            </div>
           </div>
 
-          {/* Right Preview */}
-          <HeroPreview />
-
+          {/* Right Column (Hero Visual) */}
+          <div className="lg:col-span-5 flex items-center justify-center">
+            <HeroPreview />
+          </div>
         </div>
       </Container>
     </section>

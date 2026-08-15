@@ -7,52 +7,57 @@ import Button from "@/components/shared/ui/Button";
 import CTA from "@/components/sections/CTA";
 
 export const metadata = {
-  title: "Pricing | Quintos AI",
-  description: "Flexible, transparent pricing for individuals, startups, and enterprises.",
+  title: "Pricing & Deployment Models | Quintos AI",
+  description: "Transparent access tiers and sovereign enterprise deployment options for Quintos AI platforms.",
 };
 
 const plans = [
   {
-    name: "Starter",
+    name: "Developer & Academic",
     price: "Free",
-    description: "Perfect for students and AI enthusiasts.",
+    period: " / community",
+    description: "Ideal for researchers, students, and prototype evaluation.",
     features: [
-      "Community Support",
-      "Basic AI Tools",
-      "Research Resources",
-      "Limited API Access",
+      "Access to open benchmark models",
+      "Standard API rate limits",
+      "Community research forum access",
+      "Interactive knowledge notebook runtime",
+      "Public documentation & tutorials",
     ],
-    cta: "Get Started",
+    cta: "Start Exploring",
     variant: "outline" as const,
   },
   {
-    name: "Professional",
-    price: "$29",
-    period: "/month",
-    description: "Ideal for startups and growing businesses.",
+    name: "Pro & Applied Scale",
+    price: "$49",
+    period: " / month",
+    description: "Designed for engineering teams scaling production workloads.",
     features: [
-      "Everything in Starter",
-      "Advanced AI Models",
-      "Priority Support",
-      "API Access",
-      "Analytics Dashboard",
+      "Priority GPU-accelerated inference",
+      "Fine-tuning pipeline access",
+      "High-throughput vector indexing",
+      "Dedicated API key management",
+      "Direct technical email support",
+      "Automated evaluation suites",
     ],
     popular: true,
-    cta: "Start Free Trial",
+    cta: "Deploy Workspace",
     variant: "primary" as const,
   },
   {
-    name: "Enterprise",
+    name: "Enterprise Sovereign",
     price: "Custom",
-    description: "Tailored AI solutions for enterprises.",
+    period: " / tailored",
+    description: "For organizations demanding air-gapped security and private custom models.",
     features: [
-      "Unlimited AI Usage",
-      "Dedicated AI Consultant",
-      "Private Deployment",
-      "Custom Integrations",
-      "24/7 Enterprise Support",
+      "Air-gapped on-premise / private VPC runtime",
+      "Custom domain-adapted LLM training",
+      "Full tensor encryption & audit logging",
+      "Sub-millisecond custom CUDA kernels",
+      "Dedicated AI research consultant",
+      "24/7 mission-critical SLA support",
     ],
-    cta: "Contact Sales",
+    cta: "Contact Enterprise Lab",
     variant: "outline" as const,
   },
 ];
@@ -61,88 +66,92 @@ export default function PricingPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-b from-white via-slate-50 to-white py-24">
+      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+        <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
-          <div className="mx-auto max-w-4xl text-center">
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-              Pricing
-            </span>
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-blue-50/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
+              Transparent Access
+            </div>
 
-            <h1 className="mt-8 text-5xl font-bold text-gray-900 md:text-6xl">
-              Flexible Pricing
-              <span className="block text-blue-600">
-                For Every Stage
-              </span>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl leading-[1.12]">
+              Flexible Tiers for Research &{" "}
+              <span className="gradient-ai">Enterprise Deployments</span>
             </h1>
 
-            <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-gray-600">
-              Choose the plan that fits your AI journey. Scale from personal
-              experimentation to enterprise-grade deployments.
+            <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-600 font-normal">
+              Whether you are an academic researcher exploring prototypes or an
+              enterprise deploying sovereign models into private infrastructure,
+              we have a transparent tier for your scale.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Pricing Plans */}
-      <section className="py-24">
+      {/* Pricing Cards */}
+      <section className="py-24 bg-white">
         <Container>
           <SectionTitle
-            badge="Plans"
-            title="Simple & Transparent Pricing"
-            description="Designed for individuals, startups, and enterprises."
+            badge="Tiers & Architecture"
+            title="Predictable Compute & Access Models"
+            description="Clear infrastructure options with zero hidden compute surcharges."
           />
 
-          <div className="mt-16 grid gap-8 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {plans.map((plan) => (
               <div
                 key={plan.name}
-                className={`relative flex flex-col rounded-3xl border bg-white p-8 md:p-10 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl ${
+                className={`relative flex flex-col justify-between rounded-2xl border bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
                   plan.popular
-                    ? "border-blue-600 ring-2 ring-blue-600/20"
-                    : "border-gray-200"
+                    ? "border-blue-500 ring-2 ring-blue-500/20"
+                    : "border-slate-200/80"
                 }`}
               >
-                {plan.popular && (
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-4 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-sm">
-                    Most Popular
-                  </span>
-                )}
-
-                <h2 className="text-2xl font-bold text-gray-900">
-                  {plan.name}
-                </h2>
-
-                <p className="mt-2 text-sm text-gray-600 min-h-[40px]">
-                  {plan.description}
-                </p>
-
-                <div className="mt-6 flex items-baseline">
-                  <span className="text-4xl font-extrabold text-gray-900">
-                    {plan.price}
-                  </span>
-                  {plan.period && (
-                    <span className="ml-1 text-sm font-medium text-gray-500">
-                      {plan.period}
-                    </span>
+                <div>
+                  {plan.popular && (
+                    <div className="mb-4 inline-flex rounded-full bg-blue-600 px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">
+                      Recommended
+                    </div>
                   )}
+
+                  <h3 className="text-xl font-bold text-slate-900 leading-snug">
+                    {plan.name}
+                  </h3>
+
+                  <p className="mt-2 text-xs leading-relaxed text-slate-600 min-h-[36px]">
+                    {plan.description}
+                  </p>
+
+                  <div className="mt-6 flex items-baseline border-y border-slate-100 py-4">
+                    <span className="text-3xl font-extrabold text-slate-900">
+                      {plan.price}
+                    </span>
+                    {plan.period && (
+                      <span className="ml-1 text-xs font-mono text-slate-500">
+                        {plan.period}
+                      </span>
+                    )}
+                  </div>
+
+                  <ul className="mt-6 space-y-3">
+                    {plan.features.map((feature) => (
+                      <li
+                        key={feature}
+                        className="flex items-start gap-2.5 text-xs text-slate-700 leading-normal"
+                      >
+                        <Check className="h-4 w-4 text-blue-600 shrink-0 mt-0.5" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <ul className="mt-8 space-y-4 flex-1">
-                  {plan.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-center gap-3 text-sm text-gray-700"
-                    >
-                      <Check className="h-4 w-4 text-blue-600 shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-8 pt-6 border-t border-gray-100">
+                <div className="mt-8 pt-6 border-t border-slate-100">
                   <Button
                     href="/contact"
                     variant={plan.variant}
+                    size="md"
                     className="w-full justify-center"
                   >
                     {plan.cta}

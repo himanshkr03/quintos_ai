@@ -6,92 +6,101 @@ import Products from "@/components/marketing/products/Products";
 import CTA from "@/components/sections/CTA";
 
 export const metadata = {
-  title: "AI Products | Quintos AI",
-  description: "Explore the Quintos AI product ecosystem for enterprise automation, multimodal intelligence, and secure AI infrastructure.",
+  title: "AI Products & Platforms | Quintos AI",
+  description: "Explore the Quintos AI product ecosystem for enterprise automation, multimodal visual intelligence, and secure private AI infrastructure.",
 };
 
-const productCategories = [
+const architectureLayers = [
   {
-    title: "Enterprise AI",
+    layer: "Layer 01",
+    title: "Application & Agent Orchestration",
     description:
-      "AI-powered business applications for automation, decision-making, and intelligent process workflows.",
+      "Context-aware copilot interfaces, multi-turn memory buffers, deterministic tool execution, and role-based client applications.",
   },
   {
-    title: "Generative AI",
+    layer: "Layer 02",
+    title: "Foundational Model & Vision Engines",
     description:
-      "Domain-adapted conversational agents, reasoning copilots, content generation, and RAG architectures.",
+      "Domain-tuned LLMs, fine-grained visual segmentation kernels, and multimodal alignment encoders.",
   },
   {
-    title: "Computer Vision",
+    layer: "Layer 03",
+    title: "Vector & Knowledge Retrieval Matrix",
     description:
-      "Real-time visual intelligence, automated defect inspection, OCR, and medical imaging diagnostics.",
+      "Sub-millisecond semantic search, hybrid sparse/dense retrieval, and continuous document embeddings.",
   },
   {
-    title: "Autonomous AI Agents",
+    layer: "Layer 04",
+    title: "Sovereign Compute & Security Runtime",
     description:
-      "Self-directed AI agents capable of multistep planning, tool usage, reasoning, and task execution.",
+      "Encrypted parameter storage, air-gapped on-premise execution, and zero external telemetry isolation.",
   },
 ];
 
-const features = [
-  "Cloud & On-Prem Ready",
-  "Enterprise Security & RBAC",
-  "Standardized REST & gRPC APIs",
-  "Multi-Model Routing & Fallbacks",
-  "Real-Time Analytics & Observability",
-  "Scalable Kubernetes Deployments",
+const platformStandards = [
+  "Zero-Telemetry Private VPC / On-Prem Deployments",
+  "Standardized OpenAPI, gRPC, and Python SDK Interfaces",
+  "Granular Role-Based Access Control & Key Management",
+  "Sub-100ms Optimized TensorRT Inference Pipelines",
+  "Automated Drift & Hallucination Guardrails",
+  "Comprehensive Audit Logs & Latency Telemetry",
 ];
 
 export default function ProductsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-b from-white via-slate-50 to-white py-24">
+      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+        <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
-          <div className="mx-auto max-w-4xl text-center">
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-              Our Products
-            </span>
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-blue-50/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
+              Platform Architectures
+            </div>
 
-            <h1 className="mt-8 text-5xl font-bold text-gray-900 md:text-6xl">
-              Intelligent AI Products
-              <span className="block text-blue-600">
-                Built for Modern Businesses
-              </span>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl leading-[1.12]">
+              Intelligent Systems &{" "}
+              <span className="gradient-ai">Modular AI Platforms</span>
             </h1>
 
-            <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-gray-600">
-              Discover innovative AI products designed to automate workflows,
-              enhance productivity, and accelerate digital transformation.
+            <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-600 font-normal">
+              Modular, high-throughput software architectures designed for
+              sovereign enterprise deployment, precision biomedical imaging,
+              and autonomous process automation.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Products */}
+      {/* Products Component */}
       <Products />
 
-      {/* Categories */}
-      <section className="py-24">
+      {/* System Architecture Layers */}
+      <section className="py-24 bg-white">
         <Container>
           <SectionTitle
-            badge="Categories"
-            title="AI Solutions for Every Need"
-            description="Our product portfolio covers multiple domains of Artificial Intelligence."
+            badge="Stack Architecture"
+            title="Layered Intelligence Infrastructure"
+            description="Our platforms follow a strict four-layer architecture ensuring security, speed, and modularity."
           />
 
-          <div className="mt-16 grid gap-8 md:grid-cols-2">
-            {productCategories.map((item) => (
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {architectureLayers.map((layer) => (
               <div
-                key={item.title}
-                className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                key={layer.layer}
+                className="group rounded-2xl border border-slate-200/80 bg-slate-50/60 p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/60 hover:bg-white hover:shadow-md"
               >
-                <h3 className="text-2xl font-semibold text-gray-900">
-                  {item.title}
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-blue-600">
+                  {layer.layer}
+                </span>
+
+                <h3 className="mt-3 text-base font-bold text-slate-900 leading-snug">
+                  {layer.title}
                 </h3>
 
-                <p className="mt-4 leading-7 text-gray-600">
-                  {item.description}
+                <p className="mt-2 text-xs leading-relaxed text-slate-600">
+                  {layer.description}
                 </p>
               </div>
             ))}
@@ -99,22 +108,25 @@ export default function ProductsPage() {
         </Container>
       </section>
 
-      {/* Features */}
-      <section className="bg-slate-50 py-24">
+      {/* Platform Engineering Standards */}
+      <section className="bg-slate-50/70 py-24 border-t border-slate-200/60">
         <Container>
           <SectionTitle
-            badge="Platform Features"
-            title="Designed for Scale"
-            description="Every Quintos AI product is engineered with enterprise-grade capabilities."
+            badge="Engineering Standards"
+            title="Enterprise Guarantees Built Into Every System"
+            description="Production-grade foundations designed to satisfy strict compliance and high reliability."
           />
 
-          <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature) => (
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {platformStandards.map((std) => (
               <div
-                key={feature}
-                className="rounded-xl border border-gray-200 bg-white p-6 text-center font-medium text-gray-700 shadow-sm transition hover:border-blue-500 hover:text-blue-600"
+                key={std}
+                className="rounded-xl border border-slate-200/80 bg-white p-5 text-sm font-medium text-slate-700 shadow-sm"
               >
-                {feature}
+                <div className="flex items-center gap-3">
+                  <span className="h-2 w-2 rounded-full bg-blue-600 shrink-0" />
+                  <span>{std}</span>
+                </div>
               </div>
             ))}
           </div>

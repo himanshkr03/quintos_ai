@@ -1,42 +1,53 @@
 import { Brain, Bot, Cpu, Eye, Database, Sparkles } from "lucide-react";
-
 import { AIService } from "@/types";
 
 export const services: AIService[] = [
   {
     icon: Brain,
-    title: "Artificial Intelligence",
+    title: "Foundational & Generative AI",
     description:
-      "Custom AI solutions that help businesses automate processes and make smarter decisions.",
-  },
-  {
-    icon: Bot,
-    title: "Generative AI",
-    description:
-      "Build intelligent chatbots, copilots, and content generation systems powered by LLMs.",
-  },
-  {
-    icon: Cpu,
-    title: "Machine Learning",
-    description:
-      "Develop predictive models using supervised, unsupervised, and reinforcement learning.",
+      "Design, fine-tune, and deploy customized Large Language Models, specialized reasoning agents, and enterprise RAG systems.",
+    tags: ["LLMs", "RAG", "Prompt Tuning", "LangChain"],
+    href: "/services",
   },
   {
     icon: Eye,
-    title: "Computer Vision",
+    title: "Computer Vision & Medical AI",
     description:
-      "Image classification, object detection, OCR, and medical image analysis solutions.",
+      "High-precision visual computing for diagnostic imaging, automated defect inspection, OCR, and real-time spatial intelligence.",
+    tags: ["Medical Imaging", "PyTorch", "Segmentation", "OCR"],
+    href: "/services",
+  },
+  {
+    icon: Cpu,
+    title: "Machine Learning Engineering",
+    description:
+      "Scalable predictive modeling, reinforcement learning algorithms, distributed model training, and continuous automated retraining.",
+    tags: ["MLOps", "Distributed Training", "CUDA", "TensorFlow"],
+    href: "/services",
+  },
+  {
+    icon: Bot,
+    title: "Autonomous Agent Orchestration",
+    description:
+      "Multistep autonomous agents equipped with tool execution, memory systems, verification checkpoints, and API integration.",
+    tags: ["Agentic AI", "Tool Calling", "Workflow Engine", "Multi-Agent"],
+    href: "/services",
   },
   {
     icon: Database,
-    title: "Data Engineering",
+    title: "High-Throughput Data & Vector Infra",
     description:
-      "Scalable AI data pipelines, vector databases, and enterprise analytics.",
+      "Enterprise data ingestion pipelines, real-time vector embeddings, hybrid indexing, and sub-millisecond retrieval layers.",
+    tags: ["Vector DB", "Qdrant", "ETL Pipelines", "PostgreSQL"],
+    href: "/services",
   },
   {
     icon: Sparkles,
-    title: "AI Consulting",
+    title: "Enterprise AI Strategy & Architecture",
     description:
-      "Enterprise AI strategy, deployment, optimization, and digital transformation.",
+      "Translational AI roadmapping, algorithmic audits, sovereign infrastructure setup, and responsible governance frameworks.",
+    tags: ["Architecture", "Sovereign AI", "Security", "Audits"],
+    href: "/services",
   },
 ];

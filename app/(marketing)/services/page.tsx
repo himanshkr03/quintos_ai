@@ -7,108 +7,120 @@ import CTA from "@/components/sections/CTA";
 
 export const metadata = {
   title: "AI Services & Solutions | Quintos AI",
-  description: "End-to-end enterprise AI services: consulting, custom LLMs, ML development, and computer vision deployment.",
+  description: "End-to-end enterprise AI engineering: custom LLMs, computer vision, autonomous agents, and high-performance ML inference.",
 };
 
 const process = [
   {
     step: "01",
-    title: "Discovery & Strategy",
+    title: "Algorithmic Architecture & Audit",
     description:
-      "Understand business goals, identify high-impact AI opportunities, and define architectural requirements.",
+      "We analyze technical feasibility, evaluate appropriate model families, and design data flow architectures with strict privacy boundaries.",
   },
   {
     step: "02",
-    title: "Development & Tuning",
+    title: "Model Adaptation & Fine-Tuning",
     description:
-      "Design, fine-tune, and build scalable AI pipelines tailored to your private enterprise domain.",
+      "Domain adaptation using parameter-efficient fine-tuning (PEFT), curated vector retrieval graphs, and deterministic output schema validation.",
   },
   {
     step: "03",
-    title: "Deployment & Scale",
+    title: "Sovereign Private Deployment",
     description:
-      "Deploy secure, production-ready AI solutions with telemetry, observability, and automated optimization.",
+      "Deployment into private enterprise clouds or air-gapped clusters with low-latency GPU acceleration and rigorous telemetry safeguards.",
+  },
+  {
+    step: "04",
+    title: "Continuous Observability & Alignment",
+    description:
+      "Automated drift detection, latency monitoring, continuous evaluation against gold standard test sets, and regression prevention.",
   },
 ];
 
 const technologies = [
-  "Python",
-  "PyTorch",
-  "TensorFlow",
-  "LangChain",
-  "OpenAI",
-  "Llama",
-  "Gemini",
-  "FastAPI",
-  "Docker",
-  "PostgreSQL",
-  "Qdrant",
-  "Next.js",
+  { name: "PyTorch", category: "Core Framework" },
+  { name: "CUDA & TensorRT", category: "GPU Acceleration" },
+  { name: "Llama & Mistral", category: "Open Foundation Models" },
+  { name: "Qdrant & FAISS", category: "Vector Retrieval" },
+  { name: "FastAPI & gRPC", category: "High-Throughput APIs" },
+  { name: "Docker & Kubernetes", category: "Orchestration" },
+  { name: "LangChain / LlamaIndex", category: "Agentic Tooling" },
+  { name: "vLLM & HuggingFace", category: "Serving Engine" },
 ];
 
 const industries = [
-  "Healthcare",
-  "Finance",
-  "Education",
-  "Manufacturing",
-  "Retail",
-  "Cybersecurity",
+  {
+    title: "Biomedical & Healthcare",
+    desc: "Diagnostic image segmentation, clinical document extraction, and pathology assistance.",
+  },
+  {
+    title: "High-Tech Manufacturing",
+    desc: "Automated optical defect inspection, edge telemetry, and predictive maintenance.",
+  },
+  {
+    title: "Quantitative Finance",
+    desc: "Algorithmic risk evaluation, structured financial text mining, and fraud pattern recognition.",
+  },
+  {
+    title: "Scientific Research",
+    desc: "Accelerated molecular simulation, literature synthesis, and complex data modeling.",
+  },
 ];
 
 export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-b from-white via-slate-50 to-white py-24">
+      <section className="relative overflow-hidden bg-white py-20 md:py-28 border-b border-slate-100">
+        <div className="absolute inset-0 tech-grid opacity-50 pointer-events-none" />
         <Container>
-          <div className="mx-auto max-w-4xl text-center">
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-              Our Services
-            </span>
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-blue-50/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-blue-700">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
+              Applied Intelligence Services
+            </div>
 
-            <h1 className="mt-8 text-5xl font-bold text-gray-900 md:text-6xl">
-              Enterprise AI
-              <span className="block text-blue-600">
-                Solutions & Consulting
-              </span>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl leading-[1.12]">
+              Enterprise AI Engineering &{" "}
+              <span className="gradient-ai">Custom Systems</span>
             </h1>
 
-            <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-gray-600">
-              We help organizations adopt Artificial Intelligence through
-              research, consulting, development, deployment, and long-term
-              support.
+            <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-600 font-normal">
+              We translate state-of-the-art machine learning breakthroughs into
+              scalable, sovereign, and secure software platforms for forward-thinking
+              enterprises and laboratories.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Services */}
+      {/* Services Component */}
       <Services />
 
       {/* Process */}
-      <section className="py-24">
+      <section className="bg-slate-50/70 py-24 border-y border-slate-200/60">
         <Container>
           <SectionTitle
-            badge="Our Process"
-            title="How We Deliver AI Solutions"
-            description="A structured workflow from idea to deployment."
+            badge="Engineering Methodology"
+            title="A Rigorous Lifecycle from Hypothesis to Production"
+            description="Our structured engineering process ensures deterministic performance, verifiable metrics, and complete data sovereignty."
           />
 
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {process.map((item) => (
               <div
                 key={item.step}
-                className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm"
+                className="group rounded-2xl border border-slate-200/80 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-400/60 hover:shadow-md"
               >
-                <span className="text-5xl font-bold text-blue-600">
+                <span className="font-mono text-2xl font-bold text-blue-600">
                   {item.step}
                 </span>
 
-                <h3 className="mt-6 text-2xl font-semibold text-gray-900">
+                <h3 className="mt-4 text-base font-bold text-slate-900 leading-snug">
                   {item.title}
                 </h3>
 
-                <p className="mt-4 leading-7 text-gray-600">
+                <p className="mt-2 text-xs leading-relaxed text-slate-600">
                   {item.description}
                 </p>
               </div>
@@ -117,46 +129,54 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      {/* Technologies */}
-      <section className="bg-slate-50 py-24">
+      {/* Technology Stack Taxonomy */}
+      <section className="py-24 bg-white">
         <Container>
           <SectionTitle
-            badge="Technology Stack"
-            title="Modern AI Technologies"
-            description="We use industry-leading frameworks and tools."
+            badge="Technical Taxonomy"
+            title="Accelerated Frameworks & Model Architecture"
+            description="We build on open-source, highly optimized computational frameworks designed for scale."
           />
 
-          <div className="mt-16 flex flex-wrap justify-center gap-4">
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {technologies.map((tech) => (
-              <span
-                key={tech}
-                className="rounded-full border border-blue-200 bg-white px-6 py-3 font-medium text-gray-700 shadow-sm"
+              <div
+                key={tech.name}
+                className="rounded-xl border border-slate-200/80 bg-slate-50/60 p-4 text-center hover:border-blue-300 transition-colors"
               >
-                {tech}
-              </span>
+                <span className="block font-semibold text-sm text-slate-900">
+                  {tech.name}
+                </span>
+                <span className="mt-1 block font-mono text-[11px] text-slate-500">
+                  {tech.category}
+                </span>
+              </div>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* Industries */}
-      <section className="py-24">
+      {/* Domain Impact */}
+      <section className="bg-slate-50/70 py-24 border-t border-slate-200/60">
         <Container>
           <SectionTitle
-            badge="Industries"
-            title="Industries We Serve"
-            description="AI solutions tailored for diverse sectors."
+            badge="Applied Domains"
+            title="High-Impact Industry Verticals"
+            description="Engineered for environments where accuracy, low latency, and regulatory compliance are non-negotiable."
           />
 
-          <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {industries.map((industry) => (
               <div
-                key={industry}
-                className="rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                key={industry.title}
+                className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm hover:border-blue-400/60 transition-colors"
               >
-                <h3 className="text-xl font-semibold text-gray-900">
-                  {industry}
+                <h3 className="text-base font-bold text-slate-900 leading-snug">
+                  {industry.title}
                 </h3>
+                <p className="mt-2 text-xs leading-relaxed text-slate-600">
+                  {industry.desc}
+                </p>
               </div>
             ))}
           </div>

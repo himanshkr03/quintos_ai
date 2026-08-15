@@ -1,28 +1,25 @@
-// File: E:\quintos_ai\components\marketing\hero\HeroButtons.tsx
-
-"use client";
-
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Compass } from "lucide-react";
 import Button from "@/components/shared/ui/Button";
 
 export default function HeroButtons() {
   return (
-    <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-      {/* Primary Button */}
+    <div className="mt-10 flex flex-wrap items-center gap-4">
       <Button
         href="/contact"
         variant="primary"
-        rightIcon={<ArrowRight size={18} />}
+        size="lg"
+        rightIcon={<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />}
       >
         Get Started
       </Button>
 
-      {/* Secondary Button */}
       <Button
-        href="/products"
-        variant="ghost"
+        href="/research"
+        variant="outline"
+        size="lg"
+        leftIcon={<Compass className="h-4 w-4 text-blue-600" />}
       >
-        Explore Products
+        Explore Research
       </Button>
     </div>
   );
