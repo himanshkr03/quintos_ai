@@ -1,8 +1,14 @@
 // File: E:\quintos_ai\app\(marketing)\faq\page.tsx
 
 import Container from "@/components/shared/layout/Container";
+import Button from "@/components/shared/ui/Button";
 import FAQ from "@/components/marketing/faq/FAQ";
 import CTA from "@/components/sections/CTA";
+
+export const metadata = {
+  title: "Frequently Asked Questions | Quintos AI",
+  description: "Get answers to common questions regarding Quintos AI products, research, and enterprise services.",
+};
 
 export default function FAQPage() {
   return (
@@ -18,7 +24,7 @@ export default function FAQPage() {
             <h1 className="mt-8 text-5xl font-bold text-gray-900 md:text-6xl">
               Have Questions?
               <span className="block text-blue-600">
-                We've Got Answers
+                We&apos;ve Got Answers
               </span>
             </h1>
 
@@ -46,12 +52,15 @@ export default function FAQPage() {
               enterprise services, research collaborations, and products.
             </p>
 
-            <a
-              href="/contact"
-              className="mt-10 inline-flex rounded-xl bg-blue-600 px-8 py-3 font-semibold text-white transition hover:bg-blue-700"
-            >
-              Contact Our Team
-            </a>
+            <div className="mt-8 flex justify-center">
+              <Button
+                href="/contact"
+                variant="primary"
+                size="lg"
+              >
+                Contact Our Team
+              </Button>
+            </div>
           </div>
         </Container>
       </section>

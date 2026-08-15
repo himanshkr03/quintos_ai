@@ -2,8 +2,13 @@
 
 import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
-
+import Button from "@/components/shared/ui/Button";
 import CTA from "@/components/sections/CTA";
+
+export const metadata = {
+  title: "Careers | Quintos AI",
+  description: "Join our team to build next-generation Artificial Intelligence systems.",
+};
 
 const openings = [
   {
@@ -108,9 +113,14 @@ export default function CareersPage() {
                     </p>
                   </div>
 
-                  <button className="rounded-xl bg-blue-600 px-8 py-3 font-semibold text-white transition hover:bg-blue-700">
+                  <Button
+                    href="/contact"
+                    variant="primary"
+                    size="md"
+                    className="shrink-0"
+                  >
                     Apply Now
-                  </button>
+                  </Button>
                 </div>
               </div>
             ))}

@@ -2,28 +2,32 @@
 
 import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
-
 import Services from "@/components/marketing/services/Services";
 import CTA from "@/components/sections/CTA";
+
+export const metadata = {
+  title: "AI Services & Solutions | Quintos AI",
+  description: "End-to-end enterprise AI services: consulting, custom LLMs, ML development, and computer vision deployment.",
+};
 
 const process = [
   {
     step: "01",
-    title: "Discovery",
+    title: "Discovery & Strategy",
     description:
-      "Understand business goals, identify opportunities, and define AI strategy.",
+      "Understand business goals, identify high-impact AI opportunities, and define architectural requirements.",
   },
   {
     step: "02",
-    title: "Development",
+    title: "Development & Tuning",
     description:
-      "Design, train, and build scalable AI models tailored to your requirements.",
+      "Design, fine-tune, and build scalable AI pipelines tailored to your private enterprise domain.",
   },
   {
     step: "03",
-    title: "Deployment",
+    title: "Deployment & Scale",
     description:
-      "Deploy secure, production-ready AI solutions with monitoring and optimization.",
+      "Deploy secure, production-ready AI solutions with telemetry, observability, and automated optimization.",
   },
 ];
 
@@ -100,7 +104,7 @@ export default function ServicesPage() {
                   {item.step}
                 </span>
 
-                <h3 className="mt-6 text-2xl font-semibold">
+                <h3 className="mt-6 text-2xl font-semibold text-gray-900">
                   {item.title}
                 </h3>
 
@@ -126,7 +130,7 @@ export default function ServicesPage() {
             {technologies.map((tech) => (
               <span
                 key={tech}
-                className="rounded-full border border-blue-200 bg-white px-6 py-3 font-medium text-gray-700"
+                className="rounded-full border border-blue-200 bg-white px-6 py-3 font-medium text-gray-700 shadow-sm"
               >
                 {tech}
               </span>

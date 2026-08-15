@@ -2,8 +2,12 @@
 
 import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
-
 import CTA from "@/components/sections/CTA";
+
+export const metadata = {
+  title: "Blog & Insights | Quintos AI",
+  description: "Explore the latest insights, research findings, and technical deep-dives from the Quintos AI team.",
+};
 
 const posts = [
   {
@@ -95,23 +99,25 @@ export default function BlogPage() {
             {posts.map((post) => (
               <article
                 key={post.title}
-                className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-blue-500 hover:shadow-xl"
+                className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-blue-500 hover:shadow-xl flex flex-col justify-between"
               >
-                <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
-                  {post.category}
-                </span>
+                <div>
+                  <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
+                    {post.category}
+                  </span>
 
-                <h2 className="mt-6 text-2xl font-bold text-gray-900">
-                  {post.title}
-                </h2>
+                  <h2 className="mt-6 text-2xl font-bold text-gray-900">
+                    {post.title}
+                  </h2>
 
-                <p className="mt-4 leading-7 text-gray-600">
-                  {post.description}
-                </p>
+                  <p className="mt-4 leading-7 text-gray-600">
+                    {post.description}
+                  </p>
+                </div>
 
-                <div className="mt-8 border-t border-gray-200 pt-4 text-sm text-gray-500">
-                  <p>{post.author}</p>
-                  <p>{post.date}</p>
+                <div className="mt-8 border-t border-gray-100 pt-4 text-xs text-gray-500 flex items-center justify-between">
+                  <span>{post.author}</span>
+                  <span>{post.date}</span>
                 </div>
               </article>
             ))}

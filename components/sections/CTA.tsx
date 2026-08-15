@@ -1,10 +1,8 @@
 // File: E:\quintos_ai\components\sections\CTA.tsx
 
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-
 import Container from "@/components/shared/layout/Container";
-import Button from "@/components/shared/common/Button";
+import Button from "@/components/shared/ui/Button";
 
 export default function CTA() {
   return (
@@ -17,8 +15,7 @@ export default function CTA() {
 
       <Container>
         <div className="relative z-10 mx-auto max-w-4xl text-center text-white">
-
-          <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur">
+          <span className="inline-block rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur">
             🚀 Ready to Build with AI?
           </span>
 
@@ -29,32 +26,27 @@ export default function CTA() {
           </h2>
 
           <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-blue-100">
-            Let's build intelligent applications, enterprise AI solutions,
+            Let&apos;s build intelligent applications, enterprise AI solutions,
             and next-generation products together.
           </p>
 
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button
+              href="/contact"
+              variant="white"
+              rightIcon={<ArrowRight size={18} />}
+            >
+              Get Started
+            </Button>
 
-            <Link href="/contact">
-              <Button
-                className="flex items-center gap-2 bg-white text-blue-700 hover:bg-gray-100"
-              >
-                Get Started
-                <ArrowRight size={18} />
-              </Button>
-            </Link>
-
-            <Link href="/services">
-              <Button
-                variant="ghost"
-                className="border border-white text-white hover:bg-white hover:text-blue-700"
-              >
-                Explore Services
-              </Button>
-            </Link>
-
+            <Button
+              href="/services"
+              variant="ghost"
+              className="border border-white text-white hover:bg-white hover:text-blue-700"
+            >
+              Explore Services
+            </Button>
           </div>
-
         </div>
       </Container>
     </section>

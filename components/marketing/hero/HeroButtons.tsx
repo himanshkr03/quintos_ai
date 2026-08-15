@@ -2,28 +2,28 @@
 
 "use client";
 
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-
-import Button from "@/components/shared/common/Button";
+import Button from "@/components/shared/ui/Button";
 
 export default function HeroButtons() {
   return (
     <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
       {/* Primary Button */}
-      <Link href="/contact">
-        <Button className="flex items-center gap-2">
-          Get Started
-          <ArrowRight size={18} />
-        </Button>
-      </Link>
+      <Button
+        href="/contact"
+        variant="primary"
+        rightIcon={<ArrowRight size={18} />}
+      >
+        Get Started
+      </Button>
 
       {/* Secondary Button */}
-      <Link href="/products">
-        <Button variant="ghost">
-          Explore Products
-        </Button>
-      </Link>
+      <Button
+        href="/products"
+        variant="ghost"
+      >
+        Explore Products
+      </Button>
     </div>
   );
 }

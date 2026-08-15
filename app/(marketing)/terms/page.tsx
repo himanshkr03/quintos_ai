@@ -3,6 +3,11 @@
 import Container from "@/components/shared/layout/Container";
 import CTA from "@/components/sections/CTA";
 
+export const metadata = {
+  title: "Terms of Service | Quintos AI",
+  description: "Terms and conditions governing the use of Quintos AI website, products, and services.",
+};
+
 const terms = [
   {
     title: "Acceptance of Terms",
@@ -55,7 +60,7 @@ export default function TermsPage() {
             </h1>
 
             <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-gray-600">
-              These Terms and Conditions govern your use of Quintos AI's
+              These Terms and Conditions govern your use of Quintos AI&apos;s
               website, products, research, and enterprise AI services.
             </p>
           </div>

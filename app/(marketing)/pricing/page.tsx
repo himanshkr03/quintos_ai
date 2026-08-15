@@ -1,9 +1,15 @@
 // File: E:\quintos_ai\app\(marketing)\pricing\page.tsx
 
+import { Check } from "lucide-react";
 import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
-
+import Button from "@/components/shared/ui/Button";
 import CTA from "@/components/sections/CTA";
+
+export const metadata = {
+  title: "Pricing | Quintos AI",
+  description: "Flexible, transparent pricing for individuals, startups, and enterprises.",
+};
 
 const plans = [
   {
@@ -16,10 +22,13 @@ const plans = [
       "Research Resources",
       "Limited API Access",
     ],
+    cta: "Get Started",
+    variant: "outline" as const,
   },
   {
     name: "Professional",
-    price: "$29/month",
+    price: "$29",
+    period: "/month",
     description: "Ideal for startups and growing businesses.",
     features: [
       "Everything in Starter",
@@ -28,6 +37,9 @@ const plans = [
       "API Access",
       "Analytics Dashboard",
     ],
+    popular: true,
+    cta: "Start Free Trial",
+    variant: "primary" as const,
   },
   {
     name: "Enterprise",
@@ -40,6 +52,8 @@ const plans = [
       "Custom Integrations",
       "24/7 Enterprise Support",
     ],
+    cta: "Contact Sales",
+    variant: "outline" as const,
   },
 ];
 
@@ -82,30 +96,58 @@ export default function PricingPage() {
             {plans.map((plan) => (
               <div
                 key={plan.name}
-                className="rounded-3xl border border-gray-200 bg-white p-10 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-blue-500 hover:shadow-xl"
+                className={`relative flex flex-col rounded-3xl border bg-white p-8 md:p-10 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl ${
+                  plan.popular
+                    ? "border-blue-600 ring-2 ring-blue-600/20"
+                    : "border-gray-200"
+                }`}
               >
-                <h3 className="text-2xl font-bold text-gray-900">
-                  {plan.name}
-                </h3>
+                {plan.popular && (
+                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-4 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-sm">
+                    Most Popular
+                  </span>
+                )}
 
-                <p className="mt-3 text-gray-600">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  {plan.name}
+                </h2>
+
+                <p className="mt-2 text-sm text-gray-600 min-h-[40px]">
                   {plan.description}
                 </p>
 
-                <div className="mt-8 text-5xl font-bold text-blue-600">
-                  {plan.price}
+                <div className="mt-6 flex items-baseline">
+                  <span className="text-4xl font-extrabold text-gray-900">
+                    {plan.price}
+                  </span>
+                  {plan.period && (
+                    <span className="ml-1 text-sm font-medium text-gray-500">
+                      {plan.period}
+                    </span>
+                  )}
                 </div>
 
-                <ul className="mt-10 space-y-4">
+                <ul className="mt-8 space-y-4 flex-1">
                   {plan.features.map((feature) => (
                     <li
                       key={feature}
-                      className="flex items-center gap-3 text-gray-700"
+                      className="flex items-center gap-3 text-sm text-gray-700"
                     >
-                      ✓ {feature}
+                      <Check className="h-4 w-4 text-blue-600 shrink-0" />
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
+
+                <div className="mt-8 pt-6 border-t border-gray-100">
+                  <Button
+                    href="/contact"
+                    variant={plan.variant}
+                    className="w-full justify-center"
+                  >
+                    {plan.cta}
+                  </Button>
+                </div>
               </div>
             ))}
           </div>

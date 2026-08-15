@@ -3,7 +3,7 @@
 export const SOCIALS = {
   github: "https://github.com/quintos-ai",
 
-  linkedin: "https://linkedin.com/company/quintos-ai",
+  linkedin: "https://www.linkedin.com/company/quintos-ai/",
 
   x: "https://x.com/quintosai",
 

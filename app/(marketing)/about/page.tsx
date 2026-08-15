@@ -2,8 +2,12 @@
 
 import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
-
 import CTA from "@/components/sections/CTA";
+
+export const metadata = {
+  title: "About Us | Quintos AI",
+  description: "Learn about Quintos AI, our research vision, core values, and our mission to build transformative AI technologies.",
+};
 
 export default function AboutPage() {
   return (

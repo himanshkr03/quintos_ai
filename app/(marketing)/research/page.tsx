@@ -2,9 +2,13 @@
 
 import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
-
 import Research from "@/components/marketing/research/Research";
 import CTA from "@/components/sections/CTA";
+
+export const metadata = {
+  title: "AI Research | Quintos AI",
+  description: "Pioneering research across Machine Learning, Generative AI, Quantum Computing, and Medical Intelligence.",
+};
 
 const researchAreas = [
   {

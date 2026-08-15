@@ -2,40 +2,44 @@
 
 import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
-
 import Products from "@/components/marketing/products/Products";
 import CTA from "@/components/sections/CTA";
+
+export const metadata = {
+  title: "AI Products | Quintos AI",
+  description: "Explore the Quintos AI product ecosystem for enterprise automation, multimodal intelligence, and secure AI infrastructure.",
+};
 
 const productCategories = [
   {
     title: "Enterprise AI",
     description:
-      "AI-powered business applications for automation and decision-making.",
+      "AI-powered business applications for automation, decision-making, and intelligent process workflows.",
   },
   {
     title: "Generative AI",
     description:
-      "Custom chatbots, copilots, content generation, and LLM-powered platforms.",
+      "Domain-adapted conversational agents, reasoning copilots, content generation, and RAG architectures.",
   },
   {
     title: "Computer Vision",
     description:
-      "Image analysis, object detection, OCR, and medical imaging solutions.",
+      "Real-time visual intelligence, automated defect inspection, OCR, and medical imaging diagnostics.",
   },
   {
-    title: "AI Agents",
+    title: "Autonomous AI Agents",
     description:
-      "Autonomous AI agents capable of planning, reasoning, and executing workflows.",
+      "Self-directed AI agents capable of multistep planning, tool usage, reasoning, and task execution.",
   },
 ];
 
 const features = [
-  "Cloud Ready",
-  "Enterprise Security",
-  "REST APIs",
-  "Multi-Model Support",
-  "Analytics Dashboard",
-  "Scalable Architecture",
+  "Cloud & On-Prem Ready",
+  "Enterprise Security & RBAC",
+  "Standardized REST & gRPC APIs",
+  "Multi-Model Routing & Fallbacks",
+  "Real-Time Analytics & Observability",
+  "Scalable Kubernetes Deployments",
 ];
 
 export default function ProductsPage() {

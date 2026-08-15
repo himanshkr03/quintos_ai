@@ -1,5 +1,1 @@
-"use client";
-
-export default function MobileMenu() {
-  return null;
-}
+export { default } from "./MobileNav";

@@ -7,8 +7,6 @@ import {
   Database,
 } from "lucide-react";
 
-import { DashboardLayout } from "@/components/dashboard/layout";
-
 import {
   StatsCard,
   UsageCard,
@@ -39,17 +37,21 @@ import {
   BillingTable,
 } from "@/components/dashboard/tables";
 
+export const metadata = {
+  title: "Dashboard | Quintos AI",
+  description: "Enterprise AI dashboard and workspace overview.",
+};
+
 export default function DashboardPage() {
   return (
-    <DashboardLayout>
+    <>
       {/* Page Heading */}
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-900">
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900">
           Dashboard
         </h1>
-
-        <p className="mt-2 text-gray-600">
-          Welcome back to Quintos AI.
+        <p className="mt-1 text-sm text-gray-600">
+          Welcome back to Quintos AI workspace overview.
         </p>
       </div>
 
@@ -85,16 +87,14 @@ export default function DashboardPage() {
       </div>
 
       {/* Charts */}
-      <div className="mt-10 grid gap-8 xl:grid-cols-3">
+      <div className="mt-8 grid gap-8 xl:grid-cols-3">
         <UsageChart />
-
         <RevenueChart />
-
         <ActivityChart />
       </div>
 
       {/* Usage */}
-      <div className="mt-10 grid gap-8 md:grid-cols-2">
+      <div className="mt-8 grid gap-8 md:grid-cols-2">
         <UsageCard
           title="API Usage"
           used={72}
@@ -109,34 +109,30 @@ export default function DashboardPage() {
       </div>
 
       {/* AI */}
-      <div className="mt-10 grid gap-8 xl:grid-cols-2">
+      <div className="mt-8 grid gap-8 xl:grid-cols-2">
         <ChatWidget />
 
         <div className="space-y-8">
           <PromptHistory />
-
           <RecentChats />
         </div>
       </div>
 
       {/* Widgets */}
-      <div className="mt-10 grid gap-8 xl:grid-cols-3">
+      <div className="mt-8 grid gap-8 xl:grid-cols-3">
         <QuickActions />
-
         <RecentActivity />
-
         <Notifications />
       </div>
 
       {/* Tables */}
-      <div className="mt-10 grid gap-8">
+      <div className="mt-8 grid gap-8">
         <APIKeysTable />
-
         <BillingTable />
       </div>
 
       {/* AI Models */}
-      <div className="mt-10 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
         <ModelCard
           name="GPT-4.1"
           provider="OpenAI"
@@ -157,13 +153,13 @@ export default function DashboardPage() {
       </div>
 
       {/* Activity */}
-      <div className="mt-10">
+      <div className="mt-8">
         <ActivityCard
           title="Latest Update"
           description="Your dashboard modules have been successfully integrated."
           time="Just now"
         />
       </div>
-    </DashboardLayout>
+    </>
   );
 }

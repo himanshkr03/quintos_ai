@@ -14,11 +14,9 @@ export const SITE = {
 
   favicon: "/favicon.ico",
 
-  ogImage: "/images/og-image.png",
+  ogImage: "/og-image.png",
 
-  email: "contact@quintosai.com",
-
-  phone: "+91-XXXXXXXXXX",
+  email: "contact.quintosresearch@gmail.com",
 
   copyright: `© ${new Date().getFullYear()} Quintos AI. All rights reserved.`,
 } as const;

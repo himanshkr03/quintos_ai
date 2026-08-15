@@ -3,6 +3,11 @@
 import Container from "@/components/shared/layout/Container";
 import CTA from "@/components/sections/CTA";
 
+export const metadata = {
+  title: "Privacy Policy | Quintos AI",
+  description: "Read the official privacy policy of Quintos AI outlining data protection, usage, and security practices.",
+};
+
 const sections = [
   {
     title: "Information We Collect",

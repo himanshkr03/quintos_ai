@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, MapPin, Send } from "lucide-react";
 
 import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
@@ -51,30 +51,27 @@ export default function ContactForm() {
           {/* Contact Information */}
           <div className="space-y-8">
             <div className="flex items-start gap-4">
-              <Mail className="mt-1 text-blue-600" />
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                <Mail className="h-6 w-6" />
+              </div>
               <div>
-                <h3 className="font-semibold">Email</h3>
-                <p className="text-gray-600">
-                  contact@quintosai.com
-                </p>
+                <h3 className="font-semibold text-gray-900">Email</h3>
+                <a
+                  href="mailto:contact.quintosresearch@gmail.com"
+                  className="mt-1 block text-gray-600 hover:text-blue-600 transition-colors"
+                >
+                  contact.quintosresearch@gmail.com
+                </a>
               </div>
             </div>
 
             <div className="flex items-start gap-4">
-              <Phone className="mt-1 text-blue-600" />
-              <div>
-                <h3 className="font-semibold">Phone</h3>
-                <p className="text-gray-600">
-                  +91 XXXXX XXXXX
-                </p>
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                <MapPin className="h-6 w-6" />
               </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <MapPin className="mt-1 text-blue-600" />
               <div>
-                <h3 className="font-semibold">Location</h3>
-                <p className="text-gray-600">
+                <h3 className="font-semibold text-gray-900">Location</h3>
+                <p className="mt-1 text-gray-600">
                   Mohali, Punjab, India
                 </p>
               </div>

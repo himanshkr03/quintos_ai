@@ -1,44 +1,51 @@
 "use client";
 
-import { Menu } from "lucide-react";
 import { useState } from "react";
-
-import MobileNav from "./MobileNav";
+import { Menu } from "lucide-react";
 
 import Container from "@/components/shared/layout/Container";
+import Button from "@/components/shared/ui/Button";
 import Logo from "./Logo";
-import DesktopMenu from "./DesktopMenu";
-import Button from "@/components/shared/common/Button";
+import DesktopNav from "./DesktopNav";
+import MobileNav from "./MobileNav";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-gray-200/80 bg-white/90 backdrop-blur-md">
         <Container>
-          <nav
-            className="flex h-20 items-center justify-between"
+          <div
+            className="flex h-16 items-center justify-between px-2"
+            role="navigation"
             aria-label="Main Navigation"
           >
             {/* Logo */}
             <Logo />
 
             {/* Desktop Navigation */}
-            <DesktopMenu />
+            <DesktopNav />
 
             {/* Right Section */}
             <div className="flex items-center gap-3">
-              {/* Login */}
+              {/* Dashboard Link */}
               <Button
+                href="/dashboard"
                 variant="ghost"
+                size="sm"
                 className="hidden lg:inline-flex"
               >
-                Login
+                Dashboard
               </Button>
 
               {/* CTA */}
-              <Button className="hidden lg:inline-flex">
+              <Button
+                href="/contact"
+                variant="primary"
+                size="sm"
+                className="hidden lg:inline-flex"
+              >
                 Get Started
               </Button>
 
@@ -47,12 +54,12 @@ export default function Navbar() {
                 type="button"
                 aria-label="Open navigation menu"
                 onClick={() => setMobileMenuOpen(true)}
-                className="inline-flex items-center justify-center rounded-lg p-2 transition-colors duration-200 hover:bg-gray-100 lg:hidden"
+                className="inline-flex items-center justify-center rounded-lg p-2 text-gray-700 transition-colors duration-200 hover:bg-gray-100 lg:hidden focus:outline-none focus:ring-2 focus:ring-blue-500/20"
               >
                 <Menu className="h-6 w-6" />
               </button>
             </div>
-          </nav>
+          </div>
         </Container>
       </header>
 
