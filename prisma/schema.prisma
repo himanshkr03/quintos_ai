@@ -1,0 +1,283 @@
+// ==============================================================================
+// QUINTOS AI — DATABASE SCHEMA (Prisma ORM & PostgreSQL)
+// ==============================================================================
+// Datasource connects to Supabase PostgreSQL.
+// Use DATABASE_URL for connection pooling (Transaction mode, port 6543).
+// Use DIRECT_URL for direct migrations (Session mode, port 5432).
+// ==============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ------------------------------------------------------------------------------
+// ENUMS
+// ------------------------------------------------------------------------------
+
+enum UserRole {
+  OWNER
+  ADMIN
+  MEMBER
+  RESEARCHER
+}
+
+enum ProjectStatus {
+  ACTIVE
+  ARCHIVED
+  DRAFT
+}
+
+enum ApiKeyEnvironment {
+  PRODUCTION
+  STAGING
+  EVALUATION
+}
+
+enum ApiKeyStatus {
+  ACTIVE
+  REVOKED
+  EXPIRED
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+  SYSTEM
+}
+
+enum InquiryStatus {
+  RECEIVED
+  UNDER_REVIEW
+  IN_PROGRESS
+  RESPONDED
+  CLOSED
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  TRIALING
+  PAST_DUE
+  CANCELED
+  INCOMPLETE
+}
+
+enum InvoiceStatus {
+  PAID
+  OPEN
+  VOID
+  UNCOLLECTIBLE
+}
+
+// ------------------------------------------------------------------------------
+// MODELS
+// ------------------------------------------------------------------------------
+
+/// Application-level user profile mapped to Supabase Auth (auth.users.id)
+model User {
+  id             String        @id @default(cuid())
+  authUserId     String        @unique /// References Supabase auth.users(id)
+  email          String        @unique
+  name           String?
+  avatarUrl      String?
+  role           UserRole      @default(MEMBER)
+  organizationId String?
+  organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+
+  // Relationships
+  conversations  Conversation[]
+  inquiries      Inquiry[]
+  usageRecords   UsageRecord[]
+
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([authUserId])
+  @@index([organizationId])
+  @@index([email])
+}
+
+/// Organization entity providing multi-tenant isolation
+model Organization {
+  id           String        @id @default(cuid())
+  name         String
+  slug         String        @unique
+
+  // Relationships
+  users        User[]
+  projects     Project[]
+  apiKeys      APIKey[]
+  usageRecords UsageRecord[]
+  subscription Subscription?
+
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([slug])
+}
+
+/// Project container grouping research pipelines, datasets, and conversations
+model Project {
+  id             String        @id @default(cuid())
+  organizationId String
+  organization   Organization  @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  name           String
+  description    String?
+  status         ProjectStatus @default(ACTIVE)
+
+  // Relationships
+  conversations  Conversation[]
+
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  @@index([organizationId])
+  @@index([status])
+}
+
+/// Programmatic API secret key reference (stores hash only, NEVER plaintext)
+model APIKey {
+  id             String            @id @default(cuid())
+  organizationId String
+  organization   Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  name           String
+  keyPrefix      String            /// Visible non-sensitive prefix (e.g., "qnt_live_8f9a")
+  keyHash        String            @unique /// SHA-256 hash of secret key
+  environment    ApiKeyEnvironment @default(PRODUCTION)
+  status         ApiKeyStatus      @default(ACTIVE)
+  lastUsedAt     DateTime?
+  revokedAt      DateTime?
+  expiresAt      DateTime?
+
+  createdAt      DateTime          @default(now())
+
+  @@index([organizationId])
+  @@index([keyPrefix])
+  @@index([status])
+}
+
+/// AI Research Conversation session
+model Conversation {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectId String?
+  project   Project?  @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  title     String
+  model     String    /// Model identifier (e.g., "quintos-reasoning-v1")
+  context   String    /// Research context (e.g., "general-research", "quantum-ml")
+
+  // Relationships
+  messages  Message[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([projectId])
+}
+
+/// Individual message turn within an AI research conversation
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role           MessageRole
+  content        String       @db.Text
+  model          String?
+  tokens         Int?
+
+  createdAt      DateTime     @default(now())
+
+  @@index([conversationId])
+}
+
+/// Inquiry record compiled from public marketing contact forms
+model Inquiry {
+  id           String        @id @default(cuid())
+  userId       String?
+  user         User?         @relation(fields: [userId], references: [id], onDelete: SetNull)
+  name         String
+  email        String
+  organization String?
+  inquiryType  String
+  subject      String?
+  message      String        @db.Text
+  researchArea String?
+  timeline     String?
+  plan         String?
+  billing      String?
+  position     String?
+  topic        String?
+  status       InquiryStatus @default(RECEIVED)
+
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([email])
+  @@index([status])
+  @@index([inquiryType])
+}
+
+/// Telemetry record capturing compute consumption and token throughput
+model UsageRecord {
+  id               String       @id @default(cuid())
+  organizationId   String
+  organization     Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  userId           String?
+  user             User?        @relation(fields: [userId], references: [id], onDelete: SetNull)
+  model            String
+  promptTokens     Int          @default(0)
+  completionTokens Int          @default(0)
+  computeUnits     Float        @default(0)
+  requestCount     Int          @default(1)
+  timestamp        DateTime     @default(now())
+
+  @@index([organizationId, timestamp])
+  @@index([userId])
+  @@index([model])
+}
+
+/// Organization subscription plan and billing cycle record
+model Subscription {
+  id                     String             @id @default(cuid())
+  organizationId         String             @unique
+  organization           Organization       @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  provider               String             @default("stripe")
+  externalCustomerId     String?            @unique
+  externalSubscriptionId String?            @unique
+  plan                   String             /// "developer", "pro", "enterprise"
+  status                 SubscriptionStatus @default(ACTIVE)
+  currentPeriodStart     DateTime
+  currentPeriodEnd       DateTime
+
+  // Relationships
+  invoices               Invoice[]
+
+  createdAt              DateTime           @default(now())
+  updatedAt              DateTime           @updatedAt
+
+  @@index([organizationId])
+  @@index([status])
+}
+
+/// Billing invoice record
+model Invoice {
+  id                String        @id @default(cuid())
+  subscriptionId    String
+  subscription      Subscription  @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+  externalInvoiceId String?       @unique
+  amount            Int           /// Amount in cents / smallest currency unit
+  currency          String        @default("USD")
+  status            InvoiceStatus @default(PAID)
+  billingDate       DateTime
+  pdfUrl            String?
+
+  createdAt         DateTime      @default(now())
+
+  @@index([subscriptionId])
+  @@index([status])
+}
