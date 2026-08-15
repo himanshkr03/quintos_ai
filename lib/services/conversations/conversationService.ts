@@ -2,15 +2,22 @@
 
 import prisma from "@/lib/db/prisma";
 import { CreateConversationData, CreateMessageData } from "@/lib/validations/conversation";
-import { Conversation, Message } from "@prisma/client";
+import { Prisma, Conversation, Message } from "@prisma/client";
 
-export type ConversationWithMessages = Conversation & { messages: Message[] };
+export type ConversationWithMessages = Prisma.ConversationGetPayload<{
+  include: {
+    messages: true;
+  };
+}>;
 
 export class ConversationService {
   /**
    * Creates a new conversation session for a user.
    */
-  async createConversation(data: CreateConversationData, userId: string) {
+  async createConversation(
+    data: CreateConversationData,
+    userId: string
+  ): Promise<Conversation> {
     return prisma.conversation.create({
       data: {
         userId,
@@ -25,7 +32,7 @@ export class ConversationService {
   /**
    * Appends a message to an existing conversation.
    */
-  async addMessage(data: CreateMessageData) {
+  async addMessage(data: CreateMessageData): Promise<Message> {
     return prisma.message.create({
       data: {
         conversationId: data.conversationId,
@@ -40,7 +47,10 @@ export class ConversationService {
   /**
    * Lists conversations belonging to a user with pagination.
    */
-  async listUserConversations(userId: string, limit = 50) {
+  async listUserConversations(
+    userId: string,
+    limit = 50
+  ): Promise<ConversationWithMessages[]> {
     return prisma.conversation.findMany({
       where: { userId },
       include: {
@@ -56,7 +66,10 @@ export class ConversationService {
   /**
    * Retrieves a single conversation with messages, verifying ownership.
    */
-  async getConversationById(conversationId: string, userId: string): Promise<ConversationWithMessages | null> {
+  async getConversationById(
+    conversationId: string,
+    userId: string
+  ): Promise<ConversationWithMessages | null> {
     return prisma.conversation.findFirst({
       where: {
         id: conversationId,
@@ -73,7 +86,11 @@ export class ConversationService {
   /**
    * Updates conversation title.
    */
-  async updateConversationTitle(conversationId: string, title: string, userId: string) {
+  async updateConversationTitle(
+    conversationId: string,
+    title: string,
+    userId: string
+  ): Promise<Prisma.BatchPayload> {
     return prisma.conversation.updateMany({
       where: {
         id: conversationId,
@@ -88,7 +105,10 @@ export class ConversationService {
   /**
    * Deletes a conversation and cascaded messages.
    */
-  async deleteConversation(conversationId: string, userId: string) {
+  async deleteConversation(
+    conversationId: string,
+    userId: string
+  ): Promise<Prisma.BatchPayload> {
     return prisma.conversation.deleteMany({
       where: {
         id: conversationId,
@@ -99,3 +119,4 @@ export class ConversationService {
 }
 
 export const conversationService = new ConversationService();
+
