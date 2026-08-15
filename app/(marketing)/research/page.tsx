@@ -7,7 +7,7 @@ import CTA from "@/components/sections/CTA";
 
 export const metadata = {
   title: "AI Research Laboratory | Quintos AI",
-  description: "Pioneering research across large-scale language models, quantum machine learning, biomedical vision, and mechanistic interpretability.",
+  description: "Research focus areas across large-scale language models, quantum machine learning, biomedical vision, and mechanistic interpretability.",
 };
 
 const methodologySteps = [
@@ -21,19 +21,19 @@ const methodologySteps = [
     step: "02",
     title: "Empirical Benchmarking & Ablation",
     description:
-      "Stress-testing architectures against standardized gold-standard benchmarks across out-of-distribution robustness and edge conditions.",
+      "Stress-testing architectures against standardized evaluation benchmarks across out-of-distribution robustness and edge conditions.",
   },
   {
     step: "03",
     title: "Mechanistic Interpretability Audits",
     description:
-      "Deconstructing internal activation circuits to verify exact decision pathways and eliminate deceptive alignment artifacts.",
+      "Analyzing internal activation circuits to inspect decision pathways and eliminate deceptive alignment artifacts.",
   },
   {
     step: "04",
-    title: "Translational Deployment & Open Tools",
+    title: "Translational Frameworks & Open Tools",
     description:
-      "Packaging verified algorithms into hardened open-source libraries, reproducible notebooks, and enterprise SDK components.",
+      "Packaging verified algorithms into open-source repositories, reproducible notebooks, and experimental SDK components.",
   },
 ];
 
@@ -58,7 +58,7 @@ export default function ResearchPage() {
           <div className="relative z-10 mx-auto max-w-3xl text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-200/80 bg-purple-50/80 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-purple-700">
               <span className="h-1.5 w-1.5 rounded-full bg-purple-600 animate-pulse" />
-              Scientific Inquiries & Discoveries
+              Scientific Inquiries & Research Areas
             </div>
 
             <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl leading-[1.12]">
@@ -118,7 +118,7 @@ export default function ResearchPage() {
           <SectionTitle
             badge="Open Topics"
             title="Active Research Directions & Inquiries"
-            description="Domains where we actively explore partnerships with academic institutions, laboratories, and technology organizations."
+            description="Domains where we welcome prospective research discussions and exploratory inquiries with academic institutions, laboratories, and independent researchers."
           />
 
           <div className="mt-10 flex flex-wrap justify-center gap-2.5 max-w-4xl mx-auto">

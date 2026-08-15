@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
 
 import Container from "@/components/shared/layout/Container";
@@ -6,15 +9,19 @@ import SectionTitle from "@/components/shared/common/SectionTitle";
 import { products } from "@/data/products";
 
 export default function Products() {
+  const pathname = usePathname();
+  const isProductsPage = pathname === "/products";
+
   const getStageBadge = (stage?: string) => {
     switch (stage) {
-      case "Enterprise Platform":
+      case "In Development":
         return "bg-blue-50 text-blue-700 border-blue-200";
-      case "Platform Infrastructure":
+      case "Architecture Concept":
         return "bg-slate-100 text-slate-700 border-slate-200";
-      case "Research Engine":
+      case "Research Direction":
         return "bg-purple-50 text-purple-700 border-purple-200";
-      case "Applied Framework":
+      case "Research Prototype":
+      case "Prototype Concept":
       default:
         return "bg-emerald-50 text-emerald-700 border-emerald-200";
     }
@@ -25,13 +32,20 @@ export default function Products() {
       <Container>
         <SectionTitle
           badge="Product & Platform Architectures"
-          title="Engineered Intelligent Systems"
-          description="Quintos AI develops modular, high-performance platforms designed for sovereign enterprise deployment, biomedical imaging, and autonomous automation."
+          title="Engineered Intelligent Systems & Architectures"
+          description="Quintos AI develops modular software architectures designed for sovereign enterprise computing, biomedical imaging research, and autonomous automation."
         />
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => {
             const Icon = product.icon;
+            const targetHref = isProductsPage
+              ? `/contact?topic=${encodeURIComponent(product.title)}`
+              : "/products";
+
+            const ctaLabel = isProductsPage
+              ? "Inquire Platform Scope"
+              : "View Architectural Scope";
 
             return (
               <div
@@ -85,10 +99,10 @@ export default function Products() {
 
                 <div className="mt-6 pt-4 border-t border-slate-100">
                   <Link
-                    href={product.href || "/products"}
+                    href={targetHref}
                     className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-600 hover:text-blue-700 transition-colors"
                   >
-                    <span>View Architecture</span>
+                    <span>{ctaLabel}</span>
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>

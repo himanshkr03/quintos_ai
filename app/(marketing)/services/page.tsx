@@ -7,7 +7,7 @@ import CTA from "@/components/sections/CTA";
 
 export const metadata = {
   title: "AI Services & Solutions | Quintos AI",
-  description: "End-to-end enterprise AI engineering: custom LLMs, computer vision, autonomous agents, and high-performance ML inference.",
+  description: "Enterprise AI engineering & consultation: custom LLM adaptation, computer vision, autonomous agents, and high-performance ML inference.",
 };
 
 const process = [
@@ -103,7 +103,7 @@ export default function ServicesPage() {
           <SectionTitle
             badge="Engineering Methodology"
             title="A Rigorous Lifecycle from Hypothesis to Production"
-            description="Our structured engineering process ensures deterministic performance, verifiable metrics, and complete data sovereignty."
+            description="Our structured engineering methodology emphasizes predictable execution, verifiable evaluation, and complete data sovereignty."
           />
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -161,8 +161,8 @@ export default function ServicesPage() {
         <Container>
           <SectionTitle
             badge="Applied Domains"
-            title="High-Impact Industry Verticals"
-            description="Engineered for environments where accuracy, low latency, and regulatory compliance are non-negotiable."
+            title="High-Impact Technical Verticals"
+            description="Focusing on technical domains where low latency, precision, and privacy boundaries are critical requirements."
           />
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

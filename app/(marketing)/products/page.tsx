@@ -65,8 +65,8 @@ export default function ProductsPage() {
             </h1>
 
             <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-600 font-normal">
-              Modular, high-throughput software architectures designed for
-              sovereign enterprise deployment, precision biomedical imaging,
+              Modular software architectures designed for
+              sovereign enterprise computing, precision biomedical imaging,
               and autonomous process automation.
             </p>
           </div>
@@ -113,8 +113,8 @@ export default function ProductsPage() {
         <Container>
           <SectionTitle
             badge="Engineering Standards"
-            title="Enterprise Guarantees Built Into Every System"
-            description="Production-grade foundations designed to satisfy strict compliance and high reliability."
+            title="Architectural Standards Built Into Every System"
+            description="Architectural principles designed to ensure data isolation, high throughput, and system reliability."
           />
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

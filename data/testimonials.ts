@@ -13,21 +13,21 @@ export const engineeringPrinciples: EngineeringPrinciple[] = [
     category: "Methodology",
     title: "Scientific Rigor & Reproducibility",
     description:
-      "Every architecture and algorithmic approach is validated through peer-reviewed benchmarks, statistical significance testing, and transparent evaluation criteria.",
+      "Every architecture and algorithmic approach is guided by rigorous mathematical formulation, reproducible methodology, and transparent evaluation criteria.",
   },
   {
     icon: Shield,
     category: "Architecture",
     title: "Zero-Trust Data Sovereignty",
     description:
-      "Enterprise systems operate with air-gapped guarantees, zero telemetry data leakage, and cryptographic safeguards ensuring proprietary knowledge stays private.",
+      "Enterprise systems are designed for air-gapped guarantees, zero telemetry data leakage, and cryptographic safeguards ensuring proprietary knowledge stays private.",
   },
   {
     icon: Eye,
     category: "Interpretability",
     title: "Mechanistic Explainability",
     description:
-      "We build inspection layers and attention maps into deep neural models so decision-makers can audit exact reasoning chains rather than trusting black boxes.",
+      "We design inspection layers and attention maps into deep neural models so decision-makers can audit exact reasoning chains rather than trusting black boxes.",
   },
   {
     icon: CheckCircle2,

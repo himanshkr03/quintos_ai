@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 
 import Container from "@/components/shared/layout/Container";
@@ -6,6 +9,9 @@ import SectionTitle from "@/components/shared/common/SectionTitle";
 import { services } from "@/data/services";
 
 export default function Services() {
+  const pathname = usePathname();
+  const isServicesPage = pathname === "/services";
+
   return (
     <section className="py-20 bg-white">
       <Container>
@@ -18,6 +24,13 @@ export default function Services() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => {
             const Icon = service.icon;
+            const targetHref = isServicesPage
+              ? `/contact?topic=${encodeURIComponent(service.title)}`
+              : "/services";
+
+            const ctaLabel = isServicesPage
+              ? "Inquire Custom Engineering"
+              : "Explore Capability";
 
             return (
               <div
@@ -54,10 +67,10 @@ export default function Services() {
 
                 <div className="mt-6 pt-4 border-t border-slate-100">
                   <Link
-                    href={service.href || "/services"}
+                    href={targetHref}
                     className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-blue-600 hover:text-blue-700 transition-colors"
                   >
-                    <span>Explore Capability</span>
+                    <span>{ctaLabel}</span>
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>

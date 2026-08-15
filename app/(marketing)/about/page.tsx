@@ -15,7 +15,7 @@ const foundations = [
     icon: Brain,
     title: "Scientific Rigor",
     description:
-      "Every model architecture and algorithm is grounded in empirical verification, statistical benchmarks, and repeatable methodology.",
+      "Every model architecture and algorithm is grounded in empirical verification, mathematical bounds, and repeatable methodology.",
   },
   {
     icon: Shield,
@@ -57,8 +57,8 @@ export default function AboutPage() {
 
             <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-600 font-normal">
               Quintos AI is an artificial intelligence research and technology
-              company. We operate at the intersection of fundamental machine
-              learning research, autonomous agent architectures, biomedical
+              company based in Mohali, Punjab, India. We explore fundamental
+              machine learning research, autonomous agent architectures, biomedical
               perception, and quantum computing.
             </p>
           </div>
@@ -85,7 +85,7 @@ export default function AboutPage() {
                   robustness of enterprise systems engineering.
                 </p>
                 <p>
-                  Our multidisciplinary teams investigate Large Language Models,
+                  Our multidisciplinary focus spans Large Language Models,
                   high-precision computer vision, autonomous agent swarms, and
                   hybrid quantum algorithms—delivering sovereign intelligence
                   platforms to forward-looking organizations.
@@ -114,10 +114,10 @@ export default function AboutPage() {
                     Our Vision
                   </span>
                   <h3 className="mt-1 text-base font-bold text-slate-900">
-                    Global Scientific & Technical Leadership
+                    Scientific & Technical Excellence
                   </h3>
                   <p className="mt-2 text-xs leading-relaxed text-slate-600">
-                    To become a premier artificial intelligence laboratory known
+                    To build a premier artificial intelligence laboratory known
                     for research integrity, algorithmic innovation, and responsible
                     technology stewardship.
                   </p>
@@ -134,7 +134,7 @@ export default function AboutPage() {
           <SectionTitle
             badge="Pillars of Excellence"
             title="Core Principles That Define Our Work"
-            description="The methodological standards governing our research papers, model architectures, and enterprise solutions."
+            description="The methodological standards governing our research notes, model architectures, and enterprise solutions."
           />
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

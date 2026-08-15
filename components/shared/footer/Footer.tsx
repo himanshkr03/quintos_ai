@@ -31,7 +31,7 @@ const footerLinks = {
     { label: "About Quintos AI", href: "/about" },
     { label: "Careers & Fellowships", href: "/careers" },
     { label: "Pricing & Compute", href: "/pricing" },
-    { label: "Research Insights", href: "/blog" },
+    { label: "Research Notes", href: "/blog" },
     { label: "FAQ", href: "/faq" },
     { label: "Contact Lab", href: "/contact" },
   ],

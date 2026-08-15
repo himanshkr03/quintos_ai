@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 
 import Container from "@/components/shared/layout/Container";
@@ -6,6 +9,9 @@ import SectionTitle from "@/components/shared/common/SectionTitle";
 import { researchAreas } from "@/data/research";
 
 export default function Research() {
+  const pathname = usePathname();
+  const isResearchPage = pathname === "/research";
+
   return (
     <section className="py-20 bg-white border-b border-slate-100">
       <Container>
@@ -18,6 +24,13 @@ export default function Research() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {researchAreas.map((area) => {
             const Icon = area.icon;
+            const targetHref = isResearchPage
+              ? `/contact?topic=${encodeURIComponent(area.title)}`
+              : "/research";
+
+            const ctaLabel = isResearchPage
+              ? "Propose Collaboration"
+              : "Read Research Program";
 
             return (
               <div
@@ -59,10 +72,10 @@ export default function Research() {
 
                 <div className="mt-6 pt-4 border-t border-slate-100">
                   <Link
-                    href={area.href || "/research"}
+                    href={targetHref}
                     className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-purple-600 hover:text-purple-700 transition-colors"
                   >
-                    <span>Read Research Program</span>
+                    <span>{ctaLabel}</span>
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>

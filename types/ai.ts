@@ -41,7 +41,14 @@ export interface AIProduct {
   title: string;
   description: string;
   category?: string;
-  stage?: "Enterprise Platform" | "Applied Framework" | "Research Engine" | "Platform Infrastructure";
+  stage?:
+    | "In Development"
+    | "Research Prototype"
+    | "Architecture Concept"
+    | "Research Direction"
+    | "Prototype Concept"
+    | "Enterprise Platform"
+    | "Applied Framework";
   capabilities?: string[];
   href?: string;
 }
