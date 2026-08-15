@@ -2,6 +2,9 @@
 
 import prisma from "@/lib/db/prisma";
 import { CreateConversationData, CreateMessageData } from "@/lib/validations/conversation";
+import { Conversation, Message } from "@prisma/client";
+
+export type ConversationWithMessages = Conversation & { messages: Message[] };
 
 export class ConversationService {
   /**
@@ -53,7 +56,7 @@ export class ConversationService {
   /**
    * Retrieves a single conversation with messages, verifying ownership.
    */
-  async getConversationById(conversationId: string, userId: string) {
+  async getConversationById(conversationId: string, userId: string): Promise<ConversationWithMessages | null> {
     return prisma.conversation.findFirst({
       where: {
         id: conversationId,
