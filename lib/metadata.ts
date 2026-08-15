@@ -4,9 +4,9 @@ import type { Metadata } from "next";
 
 export const siteConfig = {
   name: "Quintos AI",
-  title: "Quintos AI | AI Solutions, Products & Research",
+  title: "Quintos AI | AI Research, Intelligent Systems & Advanced Computing",
   description:
-    "Quintos AI builds intelligent AI products, enterprise solutions, research platforms, and automation systems for the future.",
+    "Quintos AI builds sovereign artificial intelligence architectures, foundational reasoning models, biomedical vision systems, and quantum machine learning.",
 
   url: "https://quintosai.com",
 
@@ -18,14 +18,14 @@ export const siteConfig = {
     "Artificial Intelligence",
     "Generative AI",
     "Machine Learning",
-    "LLM",
+    "LLM Reasoning",
     "RAG",
     "AI Agents",
-    "Automation",
+    "Sovereign AI",
     "Enterprise AI",
     "Deep Learning",
     "Computer Vision",
-    "Natural Language Processing",
+    "Quantum Machine Learning",
   ],
 };
 
@@ -71,7 +71,6 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: "@quintosai",
   },
 
   robots: {

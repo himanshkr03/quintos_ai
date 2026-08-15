@@ -1,13 +1,7 @@
-// constants/social.ts
+// File: E:\quintos_ai\constants\social.ts
 
 export const SOCIALS = {
-  github: "https://github.com/quintos-ai",
-
+  github: "https://github.com/Quintos-AI",
   linkedin: "https://www.linkedin.com/company/quintos-ai/",
-
-  x: "https://x.com/quintosai",
-
-  youtube: "https://youtube.com/@quintosai",
-
-  instagram: "https://instagram.com/quintosai",
+  email: "contact.quintosresearch@gmail.com",
 } as const;

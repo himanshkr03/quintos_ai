@@ -4,6 +4,8 @@ import Container from "@/components/shared/layout/Container";
 import Logo from "@/components/shared/navigation/Logo";
 import { SITE } from "@/constants/site";
 import { SOCIALS } from "@/constants/social";
+import GitHubIcon from "@/components/shared/icons/GitHubIcon";
+import LinkedInIcon from "@/components/shared/icons/LinkedInIcon";
 
 const footerLinks = {
   products: [
@@ -42,11 +44,18 @@ const footerLinks = {
 };
 
 const socialItems = [
-  { name: "GitHub", href: SOCIALS.github },
-  { name: "LinkedIn", href: SOCIALS.linkedin },
-  { name: "X", href: SOCIALS.x },
-  { name: "YouTube", href: SOCIALS.youtube },
-  { name: "Instagram", href: SOCIALS.instagram },
+  {
+    name: "LinkedIn",
+    href: SOCIALS.linkedin,
+    icon: LinkedInIcon,
+    label: "Quintos AI Official LinkedIn Organization",
+  },
+  {
+    name: "GitHub",
+    href: SOCIALS.github,
+    icon: GitHubIcon,
+    label: "Quintos AI Official GitHub Organization",
+  },
 ];
 
 export default function Footer() {
@@ -70,24 +79,30 @@ export default function Footer() {
               <a
                 href={`mailto:${SITE.email}`}
                 className="hover:text-blue-600 transition-colors"
+                aria-label="Email Quintos AI official research and inquiry contact"
               >
                 {SITE.email}
               </a>
             </div>
 
-            {/* Social Links */}
-            <div className="mt-5 flex flex-wrap gap-4 text-xs font-medium">
-              {socialItems.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-500 hover:text-blue-600 transition-colors"
-                >
-                  {social.name}
-                </a>
-              ))}
+            {/* Verified Official Social Links */}
+            <div className="mt-5 flex items-center gap-3">
+              {socialItems.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm hover:border-blue-300 hover:text-blue-600 hover:shadow transition-all duration-150"
+                  >
+                    <Icon className="h-3.5 w-3.5" />
+                    <span>{social.name}</span>
+                  </a>
+                );
+              })}
             </div>
           </div>
 
