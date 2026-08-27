@@ -2,6 +2,7 @@
 
 import prisma from "@/lib/db/prisma";
 import { ProfileUpdateData } from "@/lib/validations/profile";
+import { Prisma } from "@prisma/client";
 
 export class UserService {
   /**
@@ -55,7 +56,7 @@ export class UserService {
       .replace(/^-|-$/g, "") || "workspace";
     const uniqueSlug = `${baseSlug}-${Math.random().toString(36).substring(2, 7)}`;
 
-    return prisma.$transaction(async (tx) => {
+    return prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       // Create Organization
       const org = await tx.organization.create({
         data: {

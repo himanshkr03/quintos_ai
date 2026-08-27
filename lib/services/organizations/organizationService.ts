@@ -2,13 +2,14 @@
 
 import prisma from "@/lib/db/prisma";
 import { OrganizationCreateData } from "@/lib/validations/organization";
+import { Prisma } from "@prisma/client";
 
 export class OrganizationService {
   /**
    * Creates a new Organization and assigns the creator as OWNER.
    */
   async createOrganization(data: OrganizationCreateData, creatorUserId: string) {
-    return prisma.$transaction(async (tx) => {
+    return prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const org = await tx.organization.create({
         data: {
           name: data.name,

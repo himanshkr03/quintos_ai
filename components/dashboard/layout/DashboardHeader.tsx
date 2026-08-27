@@ -17,44 +17,28 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { MOCK_NOTIFICATIONS, MockNotification } from "@/data/dashboard";
-import { createClient } from "@/lib/supabase/client";
+import { useAuth } from "@/providers";
 import DashboardSidebar from "./DashboardSidebar";
 
 export default function DashboardHeader() {
   const router = useRouter();
+  const { user, signOut: authSignOut } = useAuth();
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [notifications, setNotifications] = useState<MockNotification[]>(
     MOCK_NOTIFICATIONS
   );
-  const [userName, setUserName] = useState("Research Fellow");
-  const [userEmail, setUserEmail] = useState("himanshkr03@gmail.com");
-  const [isLiveAuth, setIsLiveAuth] = useState(false);
+
+  const userName =
+    user?.user_metadata?.full_name ||
+    user?.email?.split("@")[0] ||
+    "Research Fellow";
+  const userEmail = user?.email || "himanshkr03@gmail.com";
+  const isLiveAuth = !!user;
 
   const notifRef = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
-
-  // Check Supabase session on client
-  useEffect(() => {
-    async function resolveClientAuth() {
-      try {
-        const supabase = createClient();
-        const {
-          data: { user },
-        } = await supabase.auth.getUser();
-
-        if (user) {
-          setIsLiveAuth(true);
-          setUserName(user.user_metadata?.full_name || user.email?.split("@")[0] || "User");
-          setUserEmail(user.email || "");
-        }
-      } catch {
-        // Fallback to demo credentials
-      }
-    }
-    resolveClientAuth();
-  }, []);
 
   // Close dropdowns on click outside
   useEffect(() => {
@@ -85,8 +69,7 @@ export default function DashboardHeader() {
 
   const handleSignOut = async () => {
     try {
-      const supabase = createClient();
-      await supabase.auth.signOut();
+      await authSignOut();
       router.push("/login");
       router.refresh();
     } catch (err) {

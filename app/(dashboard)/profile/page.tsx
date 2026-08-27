@@ -18,14 +18,21 @@ import {
 } from "lucide-react";
 import Button from "@/components/shared/ui/Button";
 import { SITE } from "@/constants/site";
-import { createClient } from "@/lib/supabase/client";
+import { useAuth } from "@/providers";
 
 export default function ProfilePage() {
+  const { user } = useAuth();
   const [name, setName] = useState<string>("Himanshu Rajak");
   const [email, setEmail] = useState<string>(SITE.email);
-  const [organization, setOrganization] = useState<string>("Quintos AI Research Laboratory");
-  const [roleTitle, setRoleTitle] = useState<string>("Lead AI & Quantum Systems Engineer");
-  const [location, setLocation] = useState<string>("Based in Mohali, Punjab, India");
+  const [organization, setOrganization] = useState<string>(
+    "Quintos AI Research Laboratory"
+  );
+  const [roleTitle, setRoleTitle] = useState<string>(
+    "Lead AI & Quantum Systems Engineer"
+  );
+  const [location, setLocation] = useState<string>(
+    "Based in Mohali, Punjab, India"
+  );
   const [bio, setBio] = useState<string>(
     "Focusing on foundational LLM reasoning bounds, variational quantum eigensolvers, and sovereign distributed model inference."
   );
@@ -33,34 +40,21 @@ export default function ProfilePage() {
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(true);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
-  const [isAuthenticatedSession, setIsAuthenticatedSession] = useState(false);
+  const isAuthenticatedSession = !!user;
 
   useEffect(() => {
-    async function loadAuthMetadata() {
-      try {
-        const supabase = createClient();
-        const {
-          data: { user },
-        } = await supabase.auth.getUser();
-
-        if (user) {
-          setIsAuthenticatedSession(true);
-          if (user.user_metadata?.full_name) {
-            setName(user.user_metadata.full_name);
-          }
-          if (user.email) {
-            setEmail(user.email);
-          }
-          if (user.user_metadata?.organization_name) {
-            setOrganization(user.user_metadata.organization_name);
-          }
-        }
-      } catch {
-        // Fallback to default demo metadata
+    if (user) {
+      if (user.user_metadata?.full_name) {
+        setName(user.user_metadata.full_name);
+      }
+      if (user.email) {
+        setEmail(user.email);
+      }
+      if (user.user_metadata?.organization_name) {
+        setOrganization(user.user_metadata.organization_name);
       }
     }
-    loadAuthMetadata();
-  }, []);
+  }, [user]);
 
   const handleSaveProfile = (e: React.FormEvent) => {
     e.preventDefault();
