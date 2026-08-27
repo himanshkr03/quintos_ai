@@ -11,6 +11,7 @@ import { getAIConfig, validateAIConfig } from "@/lib/ai/config";
 import { checkRateLimit } from "@/lib/security/rateLimit";
 import { InferenceHistoryMessage, InferenceUsage } from "@/lib/ai/types";
 import { RESEARCH_MODELS } from "@/lib/ai/prompts";
+import { Message } from "@prisma/client";
 
 export const runtime = "nodejs";
 
@@ -177,7 +178,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Extract last 6 messages for multi-turn conversational context
-        historyMessages = existingConv.messages.slice(-6).map((m) => ({
+        historyMessages = existingConv.messages.slice(-6).map((m: Message) => ({
           role: m.role.toLowerCase() as "user" | "assistant" | "system",
           content: m.content,
         }));
