@@ -19,6 +19,7 @@ import {
 import { MOCK_NOTIFICATIONS, MockNotification } from "@/data/dashboard";
 import { useAuth } from "@/providers";
 import DashboardSidebar from "./DashboardSidebar";
+import ProjectSelector from "../projects/ProjectSelector";
 
 export default function DashboardHeader() {
   const router = useRouter();
@@ -81,7 +82,7 @@ export default function DashboardHeader() {
   return (
     <>
       <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200/80 bg-white/95 px-4 md:px-8 backdrop-blur-md">
-        {/* Left Section: Mobile Toggle & Search */}
+        {/* Left Section: Mobile Toggle & Project / Search */}
         <div className="flex items-center gap-3">
           {/* Mobile Drawer Trigger */}
           <button
@@ -93,15 +94,18 @@ export default function DashboardHeader() {
             <Menu className="h-5 w-5" />
           </button>
 
+          {/* Project Workspace Selector */}
+          <ProjectSelector className="hidden sm:block" />
+
           {/* Quick Search */}
-          <div className="relative hidden sm:flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-1.5 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20 transition">
+          <div className="relative hidden md:flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-1.5 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20 transition">
             <Search className="h-4 w-4 text-slate-400 shrink-0" />
             <input
               type="text"
               placeholder="Search models, keys, compute..."
-              className="w-44 md:w-64 bg-transparent text-xs text-slate-900 placeholder:text-slate-400 outline-none"
+              className="w-36 lg:w-56 bg-transparent text-xs text-slate-900 placeholder:text-slate-400 outline-none"
             />
-            <kbd className="hidden md:inline-block rounded border border-slate-200 bg-white px-1.5 py-0.5 text-[10px] font-mono text-slate-400">
+            <kbd className="hidden lg:inline-block rounded border border-slate-200 bg-white px-1.5 py-0.5 text-[10px] font-mono text-slate-400">
               ⌘K
             </kbd>
           </div>

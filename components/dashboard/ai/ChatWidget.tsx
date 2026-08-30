@@ -39,8 +39,10 @@ import MarkdownRenderer from "./MarkdownRenderer";
 import ModelSelector from "./ModelSelector";
 import ContextSelector from "./ContextSelector";
 import ConversationHistory from "./ConversationHistory";
+import ProjectSelector from "../projects/ProjectSelector";
 
 export default function ChatWidget() {
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [sessions, setSessions] = useState<ConversationSession[]>(
     INITIAL_DEMO_SESSIONS
   );
@@ -247,6 +249,7 @@ export default function ChatWidget() {
           model: selectedModelId,
           context: selectedContextId,
           conversationId: activeSessionId || undefined,
+          projectId: selectedProjectId || undefined,
         }),
         signal: abortController.signal,
       });
@@ -465,6 +468,13 @@ export default function ChatWidget() {
               selectedModelId={selectedModelId}
               onSelectModel={(id) => setSelectedModelId(id)}
               disabled={inferenceStatus === "streaming"}
+            />
+
+            {/* Project Selector */}
+            <ProjectSelector
+              currentProjectId={selectedProjectId}
+              onSelectProject={(proj) => setSelectedProjectId(proj.id)}
+              className="hidden md:block"
             />
 
             {/* Context Selector */}
