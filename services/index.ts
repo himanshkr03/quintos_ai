@@ -1,4 +1,4 @@
+// File: E:\quintos_ai\services\index.ts
+
 export * from "./api";
-export * from "./auth";
-export * from "./ai";
 export * from "./storage";
