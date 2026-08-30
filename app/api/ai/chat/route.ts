@@ -26,7 +26,7 @@ function deriveConversationTitle(message: string): string {
 
 /**
  * POST /api/ai/chat
- * Authenticated AI inference and conversation streaming endpoint.
+ * Authenticated AI inference and conversation streaming endpoint with rate limits and quota protection.
  */
 export async function POST(request: NextRequest) {
   try {
@@ -91,6 +91,27 @@ export async function POST(request: NextRequest) {
           },
         }
       );
+    }
+
+    // 2.5 Organization AI Compute Quota Check (Resource Protection)
+    if (user?.organizationId) {
+      try {
+        const quota = await usageService.checkOrganizationQuota(user.organizationId);
+        if (!quota.allowed) {
+          return NextResponse.json(
+            {
+              success: false,
+              error: {
+                code: "QUOTA_EXCEEDED",
+                message: `Monthly research compute quota reached (${quota.currentUsage} / ${quota.limit} CU). Quota resets at the beginning of the next calendar month.`,
+              },
+            },
+            { status: 429 }
+          );
+        }
+      } catch (quotaErr) {
+        console.warn("[Compute Quota Check Warning]:", quotaErr);
+      }
     }
 
     // 3. Parse and Validate Request Payload

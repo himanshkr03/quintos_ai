@@ -19,17 +19,28 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ success: true, conversations: [] });
       }
       return NextResponse.json(
-        { success: false, error: { code: "UNAUTHORIZED", message: "Sign in required." } },
+        {
+          success: false,
+          error: { code: "UNAUTHORIZED", message: "Sign in required." },
+        },
         { status: 401 }
       );
     }
 
-    const conversations = await conversationService.listUserConversations(user.id);
+    const conversations = await conversationService.listUserConversations(
+      user.id
+    );
     return NextResponse.json({ success: true, conversations });
   } catch (error) {
     console.error("[Get Conversations Error]:", error);
     return NextResponse.json(
-      { success: false, error: { code: "INTERNAL_ERROR", message: "Failed to fetch conversations." } },
+      {
+        success: false,
+        error: {
+          code: "INTERNAL_ERROR",
+          message: "Failed to fetch conversations.",
+        },
+      },
       { status: 500 }
     );
   }
@@ -37,14 +48,17 @@ export async function GET(request: NextRequest) {
 
 /**
  * DELETE /api/ai/conversations?id=...
- * Deletes a conversation owned by the authenticated user.
+ * Deletes a conversation owned strictly by the authenticated user.
  */
 export async function DELETE(request: NextRequest) {
   try {
     const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
-        { success: false, error: { code: "UNAUTHORIZED", message: "Sign in required." } },
+        {
+          success: false,
+          error: { code: "UNAUTHORIZED", message: "Sign in required." },
+        },
         { status: 401 }
       );
     }
@@ -54,17 +68,49 @@ export async function DELETE(request: NextRequest) {
 
     if (!conversationId) {
       return NextResponse.json(
-        { success: false, error: { code: "BAD_REQUEST", message: "Conversation ID required." } },
+        {
+          success: false,
+          error: {
+            code: "BAD_REQUEST",
+            message: "Conversation ID required.",
+          },
+        },
         { status: 400 }
       );
     }
 
-    await conversationService.deleteConversation(conversationId, user.id);
-    return NextResponse.json({ success: true, message: "Conversation deleted." });
+    const result = await conversationService.deleteConversation(
+      conversationId,
+      user.id
+    );
+
+    if (result.count === 0) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "NOT_FOUND",
+            message: "Conversation not found or unauthorized.",
+          },
+        },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: "Conversation deleted.",
+    });
   } catch (error) {
     console.error("[Delete Conversation Error]:", error);
     return NextResponse.json(
-      { success: false, error: { code: "INTERNAL_ERROR", message: "Failed to delete conversation." } },
+      {
+        success: false,
+        error: {
+          code: "INTERNAL_ERROR",
+          message: "Failed to delete conversation.",
+        },
+      },
       { status: 500 }
     );
   }
@@ -72,34 +118,82 @@ export async function DELETE(request: NextRequest) {
 
 /**
  * PATCH /api/ai/conversations
- * Renames a conversation owned by the authenticated user.
+ * Renames a conversation owned strictly by the authenticated user.
  */
 export async function PATCH(request: NextRequest) {
   try {
     const user = await getCurrentUser();
     if (!user) {
       return NextResponse.json(
-        { success: false, error: { code: "UNAUTHORIZED", message: "Sign in required." } },
+        {
+          success: false,
+          error: { code: "UNAUTHORIZED", message: "Sign in required." },
+        },
         { status: 401 }
       );
     }
 
-    const body = await request.json();
-    const { id, title } = body;
-
-    if (!id || !title || typeof title !== "string") {
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
       return NextResponse.json(
-        { success: false, error: { code: "BAD_REQUEST", message: "ID and title required." } },
+        {
+          success: false,
+          error: { code: "BAD_REQUEST", message: "Invalid JSON body." },
+        },
         { status: 400 }
       );
     }
 
-    await conversationService.updateConversationTitle(id, title.trim(), user.id);
-    return NextResponse.json({ success: true, message: "Conversation renamed." });
+    const { id, title } = (body || {}) as { id?: string; title?: string };
+
+    if (!id || !title || typeof title !== "string" || !title.trim()) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "BAD_REQUEST",
+            message: "Valid conversation ID and title required.",
+          },
+        },
+        { status: 400 }
+      );
+    }
+
+    const result = await conversationService.updateConversationTitle(
+      id,
+      title.trim(),
+      user.id
+    );
+
+    if (result.count === 0) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "NOT_FOUND",
+            message: "Conversation not found or unauthorized.",
+          },
+        },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: "Conversation renamed.",
+    });
   } catch (error) {
     console.error("[Rename Conversation Error]:", error);
     return NextResponse.json(
-      { success: false, error: { code: "INTERNAL_ERROR", message: "Failed to rename conversation." } },
+      {
+        success: false,
+        error: {
+          code: "INTERNAL_ERROR",
+          message: "Failed to rename conversation.",
+        },
+      },
       { status: 500 }
     );
   }

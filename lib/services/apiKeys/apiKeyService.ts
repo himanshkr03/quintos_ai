@@ -71,13 +71,23 @@ export class ApiKeyService {
   }
 
   /**
-   * Revokes an active API Key.
+   * Revokes an active API Key scoped strictly to the organization.
    */
-  async revokeApiKey(data: RevokeApiKeyData) {
+  async revokeApiKey(
+    paramOrKeyId: RevokeApiKeyData | string,
+    maybeOrgId?: string
+  ) {
+    const keyId =
+      typeof paramOrKeyId === "string" ? paramOrKeyId : paramOrKeyId.keyId;
+    const organizationId =
+      typeof paramOrKeyId === "string"
+        ? maybeOrgId!
+        : paramOrKeyId.organizationId;
+
     return prisma.aPIKey.updateMany({
       where: {
-        id: data.keyId,
-        organizationId: data.organizationId,
+        id: keyId,
+        organizationId,
         status: "ACTIVE",
       },
       data: {
@@ -101,11 +111,17 @@ export class ApiKeyService {
       return null;
     }
 
-    // Touch lastUsedAt timestamp asynchronously
-    await prisma.aPIKey.update({
-      where: { id: keyRecord.id },
-      data: { lastUsedAt: new Date() },
-    });
+    if (keyRecord.expiresAt && keyRecord.expiresAt < new Date()) {
+      return null;
+    }
+
+    // Update lastUsedAt timestamp asynchronously
+    prisma.aPIKey
+      .update({
+        where: { id: keyRecord.id },
+        data: { lastUsedAt: new Date() },
+      })
+      .catch((err) => console.warn("[APIKey LastUsed Update Warning]:", err));
 
     return keyRecord;
   }

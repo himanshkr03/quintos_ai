@@ -29,6 +29,13 @@ export class ProjectService {
   }
 
   /**
+   * Alias for listProjectsByOrganization
+   */
+  async listProjects(organizationId: string) {
+    return this.listProjectsByOrganization(organizationId);
+  }
+
+  /**
    * Retrieves a single project verifying organization membership.
    */
   async getProjectById(projectId: string, organizationId: string) {
@@ -37,6 +44,38 @@ export class ProjectService {
         id: projectId,
         organizationId,
       },
+    });
+  }
+
+  /**
+   * Archives a project strictly scoped to an organization.
+   */
+  async archiveProject(projectId: string, organizationId: string) {
+    return prisma.project.updateMany({
+      where: {
+        id: projectId,
+        organizationId,
+      },
+      data: {
+        status: "ARCHIVED",
+      },
+    });
+  }
+
+  /**
+   * Updates project details strictly scoped to an organization.
+   */
+  async updateProject(
+    projectId: string,
+    organizationId: string,
+    data: { name?: string; description?: string }
+  ) {
+    return prisma.project.updateMany({
+      where: {
+        id: projectId,
+        organizationId,
+      },
+      data,
     });
   }
 }
