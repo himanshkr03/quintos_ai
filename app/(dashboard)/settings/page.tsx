@@ -1,6 +1,8 @@
+// File: E:\quintos_ai\app\(dashboard)\settings\page.tsx
+
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Bell,
   Cpu,
@@ -13,28 +15,98 @@ import {
   Sliders,
   Shield,
   Layers,
+  Loader2,
 } from "lucide-react";
 import Button from "@/components/shared/ui/Button";
+import { useAuth } from "@/providers";
 
 export default function SettingsPage() {
-  const [defaultModel, setDefaultModel] = useState("quintos-reasoning-v1");
-  const [dataResidency, setDataResidency] = useState("in-sovereign");
-  const [latencyBudget, setLatencyBudget] = useState("balanced");
+  const { user } = useAuth();
+  const [defaultModel, setDefaultModel] = useState<
+    | "quintos-reasoning-v1"
+    | "quintos-bio-vision-3d"
+    | "quintos-quantum-vqe"
+    | "quintos-secure-llm"
+  >("quintos-reasoning-v1");
+  const [dataResidency, setDataResidency] = useState<
+    "in-sovereign" | "eu-sovereign" | "us-dedicated"
+  >("in-sovereign");
+  const [latencyBudget, setLatencyBudget] = useState<
+    "balanced" | "low-latency" | "batch"
+  >("balanced");
   const [weeklyDigest, setWeeklyDigest] = useState(true);
   const [quotaAlerts, setQuotaAlerts] = useState(true);
   const [anomalyAlerts, setAnomalyAlerts] = useState(true);
+
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
 
-  const handleSaveSettings = (e: React.FormEvent) => {
+  useEffect(() => {
+    async function loadSettings() {
+      setIsLoading(true);
+      try {
+        const res = await fetch("/api/settings");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.settings) {
+            if (data.settings.defaultModel) setDefaultModel(data.settings.defaultModel);
+            if (data.settings.dataResidency) setDataResidency(data.settings.dataResidency);
+            if (data.settings.latencyBudget) setLatencyBudget(data.settings.latencyBudget);
+            if (typeof data.settings.weeklyDigest === "boolean")
+              setWeeklyDigest(data.settings.weeklyDigest);
+            if (typeof data.settings.quotaAlerts === "boolean")
+              setQuotaAlerts(data.settings.quotaAlerts);
+            if (typeof data.settings.anomalyAlerts === "boolean")
+              setAnomalyAlerts(data.settings.anomalyAlerts);
+          }
+        }
+      } catch (err) {
+        console.warn("[Fetch Settings Warning]:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadSettings();
+  }, []);
+
+  const handleSaveSettings = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
+    setToastMessage(null);
+    setErrorMessage(null);
 
-    setTimeout(() => {
-      setIsSaving(false);
-      setToastMessage("Workspace preferences updated successfully in demonstration mode.");
+    try {
+      const res = await fetch("/api/settings", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          defaultModel,
+          dataResidency,
+          latencyBudget,
+          weeklyDigest,
+          quotaAlerts,
+          anomalyAlerts,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        setErrorMessage(data?.error?.message || "Failed to persist workspace settings.");
+        setIsSaving(false);
+        return;
+      }
+
+      setToastMessage("Workspace preferences saved successfully to database.");
       setTimeout(() => setToastMessage(null), 4000);
-    }, 500);
+    } catch (err) {
+      console.error("[Save Settings Exception]:", err);
+      setErrorMessage("Network error occurred while persisting settings.");
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -50,6 +122,17 @@ export default function SettingsPage() {
         </div>
       )}
 
+      {/* Error Feedback */}
+      {errorMessage && (
+        <div
+          role="alert"
+          className="rounded-2xl border border-red-200 bg-red-50 p-4 text-xs text-red-900 flex items-center gap-2.5 animate-in fade-in"
+        >
+          <AlertTriangle className="h-4 w-4 text-red-600 shrink-0" />
+          <span>{errorMessage}</span>
+        </div>
+      )}
+
       {/* Header */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
@@ -60,16 +143,28 @@ export default function SettingsPage() {
         </p>
       </div>
 
-      {/* Demo Notice */}
-      <div className="rounded-2xl border border-amber-200/80 bg-amber-50/80 p-4 text-xs text-amber-900 flex items-start gap-3">
-        <AlertTriangle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
-        <div>
-          <strong className="block font-bold">Demonstration Workspace Settings</strong>
-          <p className="mt-0.5 text-amber-800 leading-relaxed">
-            Settings configured below are simulated locally to preview computing routing and telemetry controls without invoking production cloud infrastructure.
-          </p>
+      {/* Mode Notice */}
+      {user ? (
+        <div className="rounded-2xl border border-emerald-200/80 bg-emerald-50/80 p-4 text-xs text-emerald-900 flex items-start gap-3">
+          <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0 mt-0.5" />
+          <div>
+            <strong className="block font-bold">Live Workspace Configuration</strong>
+            <p className="mt-0.5 text-emerald-800 leading-relaxed">
+              Settings are saved directly to your PostgreSQL research organization profile and enforce sovereign cluster dispatch rules.
+            </p>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="rounded-2xl border border-amber-200/80 bg-amber-50/80 p-4 text-xs text-amber-900 flex items-start gap-3">
+          <AlertTriangle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
+          <div>
+            <strong className="block font-bold">Demonstration Mode &bull; Local Settings</strong>
+            <p className="mt-0.5 text-amber-800 leading-relaxed">
+              Sign in with an authenticated session to persist organization-wide routing policies and compute alert channels.
+            </p>
+          </div>
+        </div>
+      )}
 
       <form onSubmit={handleSaveSettings} className="space-y-6">
         {/* Computing & Model Defaults Card */}
@@ -87,8 +182,17 @@ export default function SettingsPage() {
               </label>
               <select
                 value={defaultModel}
-                onChange={(e) => setDefaultModel(e.target.value)}
-                className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition"
+                onChange={(e) =>
+                  setDefaultModel(
+                    e.target.value as
+                      | "quintos-reasoning-v1"
+                      | "quintos-bio-vision-3d"
+                      | "quintos-quantum-vqe"
+                      | "quintos-secure-llm"
+                  )
+                }
+                disabled={isSaving || isLoading}
+                className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition disabled:bg-slate-50"
               >
                 <option value="quintos-reasoning-v1">Quintos Reasoning v1 (Mathematical & Logic)</option>
                 <option value="quintos-bio-vision-3d">Quintos Bio-Vision 3D (Medical Perception)</option>
@@ -104,8 +208,13 @@ export default function SettingsPage() {
               </label>
               <select
                 value={dataResidency}
-                onChange={(e) => setDataResidency(e.target.value)}
-                className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition"
+                onChange={(e) =>
+                  setDataResidency(
+                    e.target.value as "in-sovereign" | "eu-sovereign" | "us-dedicated"
+                  )
+                }
+                disabled={isSaving || isLoading}
+                className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition disabled:bg-slate-50"
               >
                 <option value="in-sovereign">India Sovereign VPC (Primary Lab Base)</option>
                 <option value="eu-sovereign">EU Sovereign Zone (Frankfurt Air-Gapped)</option>
@@ -122,17 +231,17 @@ export default function SettingsPage() {
             <div className="grid gap-3 sm:grid-cols-3">
               {[
                 {
-                  id: "balanced",
+                  id: "balanced" as const,
                   title: "Balanced Throughput",
                   desc: "Optimal trade-off between batch throughput and token latency.",
                 },
                 {
-                  id: "low-latency",
+                  id: "low-latency" as const,
                   title: "Ultra-Low Latency",
                   desc: "Prioritizes immediate time-to-first-token for interactive applications.",
                 },
                 {
-                  id: "batch",
+                  id: "batch" as const,
                   title: "High-Density Batch",
                   desc: "Maximized compute utilization for heavy offline dataset processing.",
                 },
@@ -143,6 +252,7 @@ export default function SettingsPage() {
                     key={profile.id}
                     type="button"
                     onClick={() => setLatencyBudget(profile.id)}
+                    disabled={isSaving || isLoading}
                     className={`rounded-xl border p-3.5 text-left transition ${
                       isSelected
                         ? "border-blue-600 bg-blue-50/60 ring-1 ring-blue-600"
@@ -176,13 +286,14 @@ export default function SettingsPage() {
                   Weekly Compute Digest
                 </span>
                 <p className="text-xs text-slate-500">
-                  Receive simulated email summaries of model invocations and GPU credits.
+                  Receive email summaries of model invocations and GPU credits.
                 </p>
               </div>
               <input
                 type="checkbox"
                 checked={weeklyDigest}
                 onChange={(e) => setWeeklyDigest(e.target.checked)}
+                disabled={isSaving || isLoading}
                 className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
               />
             </div>
@@ -200,6 +311,7 @@ export default function SettingsPage() {
                 type="checkbox"
                 checked={quotaAlerts}
                 onChange={(e) => setQuotaAlerts(e.target.checked)}
+                disabled={isSaving || isLoading}
                 className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
               />
             </div>
@@ -217,6 +329,7 @@ export default function SettingsPage() {
                 type="checkbox"
                 checked={anomalyAlerts}
                 onChange={(e) => setAnomalyAlerts(e.target.checked)}
+                disabled={isSaving || isLoading}
                 className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
               />
             </div>
@@ -229,10 +342,16 @@ export default function SettingsPage() {
             type="submit"
             variant="primary"
             size="md"
-            disabled={isSaving}
-            leftIcon={<Save className="h-4 w-4" />}
+            disabled={isSaving || isLoading}
+            leftIcon={
+              isSaving ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <Save className="h-4 w-4" />
+              )
+            }
           >
-            {isSaving ? "Saving Preferences..." : "Save Preferences (Demo)"}
+            {isSaving ? "Saving Preferences..." : "Save Preferences"}
           </Button>
         </div>
       </form>

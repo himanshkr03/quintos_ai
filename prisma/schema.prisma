@@ -84,6 +84,7 @@ model User {
   name           String?
   avatarUrl      String?
   role           UserRole      @default(MEMBER)
+  settings       Json?         /// User-specific workspace and interface preferences (JSON)
   organizationId String?
   organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: SetNull)
 
@@ -105,6 +106,7 @@ model Organization {
   id           String        @id @default(cuid())
   name         String
   slug         String        @unique
+  settings     Json?         /// Organization workspace compute, routing, and alert settings (JSON)
 
   // Relationships
   users        User[]

@@ -97,15 +97,26 @@ export class UserService {
    * Updates user profile fields with validated input.
    */
   async updateProfile(userId: string, data: ProfileUpdateData) {
-    return prisma.user.update({
-      where: { id: userId },
-      data: {
-        name: data.name,
-        avatarUrl: data.avatarUrl || null,
-      },
-      include: {
-        organization: true,
-      },
+    return prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+      const user = await tx.user.update({
+        where: { id: userId },
+        data: {
+          name: data.name,
+          avatarUrl: data.avatarUrl || null,
+        },
+        include: {
+          organization: true,
+        },
+      });
+
+      if (data.organizationName && user.organizationId && (user.role === "OWNER" || user.role === "ADMIN")) {
+        await tx.organization.update({
+          where: { id: user.organizationId },
+          data: { name: data.organizationName },
+        });
+      }
+
+      return user;
     });
   }
 }

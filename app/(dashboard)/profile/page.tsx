@@ -15,13 +15,14 @@ import {
   Smartphone,
   Save,
   Laptop,
+  Loader2,
 } from "lucide-react";
 import Button from "@/components/shared/ui/Button";
 import { SITE } from "@/constants/site";
 import { useAuth } from "@/providers";
 
 export default function ProfilePage() {
-  const { user } = useAuth();
+  const { user, refreshSession } = useAuth();
   const [name, setName] = useState<string>("Himanshu Rajak");
   const [email, setEmail] = useState<string>(SITE.email);
   const [organization, setOrganization] = useState<string>(
@@ -37,45 +38,77 @@ export default function ProfilePage() {
     "Focusing on foundational LLM reasoning bounds, variational quantum eigensolvers, and sovereign distributed model inference."
   );
 
-  const [twoFactorEnabled, setTwoFactorEnabled] = useState(true);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [isLoadingProfile, setIsLoadingProfile] = useState(false);
   const isAuthenticatedSession = !!user;
 
   useEffect(() => {
-    if (user) {
-      if (user.user_metadata?.full_name) {
-        setName(user.user_metadata.full_name);
-      }
-      if (user.email) {
-        setEmail(user.email);
-      }
-      if (user.user_metadata?.organization_name) {
-        setOrganization(user.user_metadata.organization_name);
+    async function loadProfile() {
+      if (!user) return;
+      setIsLoadingProfile(true);
+      try {
+        const res = await fetch("/api/user/profile");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.profile) {
+            if (data.profile.name) setName(data.profile.name);
+            if (data.profile.email) setEmail(data.profile.email);
+            if (data.profile.organizationName)
+              setOrganization(data.profile.organizationName);
+            if (data.profile.roleTitle) setRoleTitle(data.profile.roleTitle);
+            if (data.profile.location) setLocation(data.profile.location);
+            if (data.profile.bio) setBio(data.profile.bio);
+          }
+        }
+      } catch (err) {
+        console.warn("[Profile Fetch Warning]:", err);
+      } finally {
+        setIsLoadingProfile(false);
       }
     }
+
+    loadProfile();
   }, [user]);
 
-  const handleSaveProfile = (e: React.FormEvent) => {
+  const handleSaveProfile = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
+    setToastMessage(null);
+    setErrorMessage(null);
 
-    setTimeout(() => {
-      setIsSaving(false);
-      setToastMessage("Profile changes saved successfully.");
+    try {
+      const res = await fetch("/api/user/profile", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          organizationName: organization.trim(),
+          roleTitle: roleTitle.trim(),
+          location: location.trim(),
+          bio: bio.trim(),
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        setErrorMessage(data?.error?.message || "Failed to update profile.");
+        setIsSaving(false);
+        return;
+      }
+
+      setToastMessage("Profile changes saved successfully to database.");
       setTimeout(() => setToastMessage(null), 4000);
-    }, 500);
-  };
-
-  const toggleTwoFactor = () => {
-    const nextState = !twoFactorEnabled;
-    setTwoFactorEnabled(nextState);
-    setToastMessage(
-      nextState
-        ? "Two-Factor Authentication enabled."
-        : "Two-Factor Authentication disabled."
-    );
-    setTimeout(() => setToastMessage(null), 4000);
+      if (refreshSession) {
+        await refreshSession();
+      }
+    } catch (err) {
+      console.error("[Save Profile Error]:", err);
+      setErrorMessage("An unexpected network error occurred while saving.");
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -88,6 +121,17 @@ export default function ProfilePage() {
         >
           <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
           <span>{toastMessage}</span>
+        </div>
+      )}
+
+      {/* Error Alert */}
+      {errorMessage && (
+        <div
+          role="alert"
+          className="rounded-2xl border border-red-200 bg-red-50 p-4 text-xs text-red-900 flex items-center gap-2.5 animate-in fade-in"
+        >
+          <AlertTriangle className="h-4 w-4 text-red-600 shrink-0" />
+          <span>{errorMessage}</span>
         </div>
       )}
 
@@ -108,7 +152,7 @@ export default function ProfilePage() {
           <div>
             <strong className="block font-bold">Authenticated Workspace Identity</strong>
             <p className="mt-0.5 text-emerald-800 leading-relaxed">
-              Your profile is synchronized with your active Supabase authentication identity.
+              Your profile is synchronized with your active Supabase authentication identity and PostgreSQL user record.
             </p>
           </div>
         </div>
@@ -116,9 +160,9 @@ export default function ProfilePage() {
         <div className="rounded-2xl border border-amber-200/80 bg-amber-50/80 p-4 text-xs text-amber-900 flex items-start gap-3">
           <AlertTriangle className="h-5 w-5 text-amber-600 shrink-0 mt-0.5" />
           <div>
-            <strong className="block font-bold">Demonstration Mode &bull; Local Profile Simulation</strong>
+            <strong className="block font-bold">Demonstration Mode &bull; Local Profile View</strong>
             <p className="mt-0.5 text-amber-800 leading-relaxed">
-              Profile modifications are simulated locally for dashboard evaluation. In production environments, credentials sync with your identity provider.
+              Sign in with an authenticated account to persist custom profile updates across your research organization.
             </p>
           </div>
         </div>
@@ -133,7 +177,7 @@ export default function ProfilePage() {
           </div>
           <div>
             <h2 className="text-xl font-bold text-slate-900">{name}</h2>
-            <p className="text-xs font-mono text-slate-500">{roleTitle} &bull; Workspace Owner</p>
+            <p className="text-xs font-mono text-slate-500">{roleTitle} &bull; Workspace Member</p>
           </div>
         </div>
 
@@ -151,7 +195,8 @@ export default function ProfilePage() {
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition"
+                  disabled={isSaving || isLoadingProfile}
+                  className="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition disabled:bg-slate-50"
                 />
               </div>
             </div>
@@ -166,8 +211,9 @@ export default function ProfilePage() {
                   type="email"
                   required
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition"
+                  disabled
+                  title="Email cannot be changed directly from profile"
+                  className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-xs sm:text-sm text-slate-600 outline-none cursor-not-allowed"
                 />
               </div>
             </div>
@@ -184,7 +230,8 @@ export default function ProfilePage() {
                 required
                 value={organization}
                 onChange={(e) => setOrganization(e.target.value)}
-                className="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition"
+                disabled={isSaving || isLoadingProfile}
+                className="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition disabled:bg-slate-50"
               />
             </div>
 
@@ -198,7 +245,8 @@ export default function ProfilePage() {
                 required
                 value={roleTitle}
                 onChange={(e) => setRoleTitle(e.target.value)}
-                className="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition"
+                disabled={isSaving || isLoadingProfile}
+                className="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition disabled:bg-slate-50"
               />
             </div>
           </div>
@@ -213,7 +261,8 @@ export default function ProfilePage() {
               required
               value={location}
               onChange={(e) => setLocation(e.target.value)}
-              className="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition"
+              disabled={isSaving || isLoadingProfile}
+              className="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition disabled:bg-slate-50"
             />
           </div>
 
@@ -226,7 +275,8 @@ export default function ProfilePage() {
               rows={3}
               value={bio}
               onChange={(e) => setBio(e.target.value)}
-              className="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition"
+              disabled={isSaving || isLoadingProfile}
+              className="w-full rounded-xl border border-slate-300 px-3.5 py-2.5 text-xs sm:text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition disabled:bg-slate-50"
             />
           </div>
 
@@ -235,8 +285,14 @@ export default function ProfilePage() {
               type="submit"
               variant="primary"
               size="sm"
-              disabled={isSaving}
-              leftIcon={<Save className="h-4 w-4" />}
+              disabled={isSaving || isLoadingProfile}
+              leftIcon={
+                isSaving ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Save className="h-4 w-4" />
+                )
+              }
             >
               {isSaving ? "Saving..." : "Save Changes"}
             </Button>
@@ -254,26 +310,18 @@ export default function ProfilePage() {
               <span>Two-Factor Authentication</span>
             </div>
             <p className="text-xs text-slate-500 leading-relaxed">
-              Require a time-based one-time password (TOTP) from an authenticator application for API token issuance and billing updates.
+              Require a time-based one-time password (TOTP) from an authenticator application for API token issuance and workspace administration.
             </p>
           </div>
 
           <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <span
-              className={`font-mono text-xs font-bold ${
-                twoFactorEnabled ? "text-emerald-600" : "text-slate-400"
-              }`}
-            >
-              {twoFactorEnabled ? "Status: Enabled" : "Status: Disabled"}
+            <span className="font-mono text-xs font-semibold text-slate-500">
+              Status: Not Configured
             </span>
 
-            <button
-              type="button"
-              onClick={toggleTwoFactor}
-              className="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition"
-            >
-              {twoFactorEnabled ? "Disable (Demo)" : "Enable (Demo)"}
-            </button>
+            <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-500">
+              Requires TOTP Setup
+            </span>
           </div>
         </div>
 
