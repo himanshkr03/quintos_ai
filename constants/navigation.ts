@@ -23,6 +23,10 @@ export const NAVIGATION: readonly NavigationItem[] = [
     href: "/research",
   },
   {
+    label: "Founder",
+    href: "/portfolio",
+  },
+  {
     label: "Pricing",
     href: "/pricing",
   },

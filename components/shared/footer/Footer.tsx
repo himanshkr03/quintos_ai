@@ -29,14 +29,7 @@ const footerLinks = {
     { label: "Autonomous Agent Systems", href: "/research" },
     { label: "Interpretable & Safe AI", href: "/research" },
   ],
-  company: [
-    { label: "About Quintos AI", href: "/about" },
-    { label: "Careers & Fellowships", href: "/careers" },
-    { label: "Pricing & Compute", href: "/pricing" },
-    { label: "Research Notes", href: "/blog" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Contact Lab", href: "/contact" },
-  ],
+
   legal: [
     { label: "Privacy & Sovereignty", href: "/privacy" },
     { label: "Terms of Service", href: "/terms" },
