@@ -5,7 +5,7 @@ import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
 import GitHubIcon from "@/components/shared/icons/GitHubIcon";
 import LinkedInIcon from "@/components/shared/icons/LinkedInIcon";
-import { PROFESSIONAL_LINKS, PERSONAL_PORTFOLIO_URL } from "@/data/portfolio";
+import { PROFESSIONAL_LINKS } from "@/data/portfolio";
 
 export default function PortfolioLinks() {
   const getIcon = (category: string) => {
@@ -27,16 +27,16 @@ export default function PortfolioLinks() {
         <SectionTitle
           badge="Verified Channels"
           title="Professional Profiles & Links"
-          description="Direct access to code repositories, professional networks, and personal research portfolio."
+          description="Direct access to verified code repositories, professional networks, and research portfolios."
           align="center"
         />
 
-        <div className="mx-auto max-w-3xl grid gap-4 sm:grid-cols-3">
+        <div className="mx-auto max-w-4xl grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {PROFESSIONAL_LINKS.filter((item) => !!item.url).map((item) => {
             const Icon = getIcon(item.category);
             return (
               <a
-                key={item.name}
+                key={item.id}
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -45,7 +45,7 @@ export default function PortfolioLinks() {
                     ? "border-blue-300 bg-white shadow-sm ring-2 ring-blue-600/10 hover:border-blue-400 hover:shadow-md"
                     : "border-slate-200/80 bg-white hover:border-slate-300 hover:shadow-xs"
                 }`}
-                aria-label={`Open ${item.name} (opens in a new tab)`}
+                aria-label={`Open ${item.founder}'s ${item.name} (opens in a new tab)`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
@@ -62,15 +62,15 @@ export default function PortfolioLinks() {
                     <ExternalLink className="h-3.5 w-3.5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </div>
 
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
-                    {item.category}
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-0.5">
+                    {item.founder}
                   </span>
                   <h3 className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                     {item.name}
                   </h3>
                 </div>
 
-                <p className="mt-3 text-xs text-slate-500 font-mono truncate">
+                <p className="mt-4 text-xs text-slate-500 font-mono truncate">
                   {item.label}
                 </p>
               </a>

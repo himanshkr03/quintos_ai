@@ -13,22 +13,22 @@ import {
 } from "@/components/marketing/portfolio";
 
 export const metadata: Metadata = {
-  title: "Himanshu Rajak — Founder & AI Researcher | Quintos AI",
+  title: "Founding Team — Himanshu Rajak & Shabnam | Quintos AI",
   description:
-    "Founder, AI researcher, and technology innovator building at the intersection of Artificial Intelligence, Quantum Machine Learning, Healthcare AI, and Intelligent Systems.",
+    "Meet the founders and researchers behind Quintos AI — Himanshu Rajak (Founder & AI Researcher) and Shabnam (Founder & Lead AI Developer), building at the intersection of AI, Quantum Computing, and Intelligent Systems.",
   openGraph: {
-    title: "Himanshu Rajak — Founder & AI Researcher | Quintos AI",
+    title: "Founding Team — Himanshu Rajak & Shabnam | Quintos AI",
     description:
-      "Founder, AI researcher, and technology innovator building at the intersection of Artificial Intelligence, Quantum Machine Learning, Healthcare AI, and Intelligent Systems.",
+      "Meet the founders and researchers behind Quintos AI — Himanshu Rajak (Founder & AI Researcher) and Shabnam (Founder & Lead AI Developer), building at the intersection of AI, Quantum Computing, and Intelligent Systems.",
     url: "https://quintosai.com/portfolio",
     siteName: "Quintos AI",
     type: "profile",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Himanshu Rajak — Founder & AI Researcher | Quintos AI",
+    title: "Founding Team — Himanshu Rajak & Shabnam | Quintos AI",
     description:
-      "Founder, AI researcher, and technology innovator building at the intersection of Artificial Intelligence, Quantum Machine Learning, Healthcare AI, and Intelligent Systems.",
+      "Meet the founders and researchers behind Quintos AI — Himanshu Rajak (Founder & AI Researcher) and Shabnam (Founder & Lead AI Developer), building at the intersection of AI, Quantum Computing, and Intelligent Systems.",
   },
 };
 
@@ -38,7 +38,7 @@ export default function PortfolioPage() {
       {/* 1. Hero Section */}
       <PortfolioHero />
 
-      {/* 2. About the Researcher */}
+      {/* 2. About the Founding Team */}
       <PortfolioAbout />
 
       {/* 3. Research Interests */}

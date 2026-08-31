@@ -8,35 +8,54 @@ import {
   Terminal,
   Layers,
   Atom,
+  ExternalLink,
+  Code2,
 } from "lucide-react";
 import Container from "@/components/shared/layout/Container";
 import SectionTitle from "@/components/shared/common/SectionTitle";
-import { FOUNDER_DATA } from "@/data/portfolio";
+import GitHubIcon from "@/components/shared/icons/GitHubIcon";
+import { FOUNDERS_DATA } from "@/data/portfolio";
 
 export default function PortfolioAbout() {
   return (
     <section className="py-20 sm:py-24 bg-white border-b border-slate-100">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-12 items-center">
-          {/* Left Column: Visual Profile Card */}
-          <div className="lg:col-span-5">
-            <div className="relative rounded-3xl border border-slate-200/90 bg-gradient-to-b from-slate-50/90 to-white p-6 sm:p-8 shadow-sm overflow-hidden">
+        <SectionTitle
+          badge="Leadership & Research Foundations"
+          title="About the Founding Team"
+          description="Combining foundational mathematical inquiry with resilient AI systems engineering and sovereign architecture."
+          align="center"
+        />
+
+        {/* Both Founders with Equal Visual Prominence */}
+        <div className="grid gap-8 lg:grid-cols-2">
+          {FOUNDERS_DATA.map((founder) => (
+            <div
+              key={founder.id}
+              className="relative rounded-3xl border border-slate-200/90 bg-gradient-to-b from-slate-50/90 to-white p-6 sm:p-8 shadow-sm flex flex-col justify-between overflow-hidden"
+            >
               {/* Subtle background tech grid */}
               <div className="absolute inset-0 tech-grid-dense opacity-40 pointer-events-none" />
 
               <div className="relative z-10 space-y-6">
-                {/* Researcher Monogram / Visual Badge */}
+                {/* Founder Header */}
                 <div className="flex items-center justify-between pb-6 border-b border-slate-100">
                   <div className="flex items-center gap-4">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-extrabold text-2xl tracking-wider shadow-md shadow-blue-600/20">
-                      HR
+                    <div
+                      className={`flex h-16 w-16 items-center justify-center rounded-2xl text-white font-extrabold text-2xl tracking-wider shadow-md ${
+                        founder.id === "himanshu-rajak"
+                          ? "bg-gradient-to-tr from-blue-600 to-indigo-600 shadow-blue-600/20"
+                          : "bg-gradient-to-tr from-indigo-600 to-cyan-600 shadow-indigo-600/20"
+                      }`}
+                    >
+                      {founder.initials}
                     </div>
                     <div>
-                      <h2 className="text-base font-bold text-slate-900">
-                        {FOUNDER_DATA.name}
-                      </h2>
-                      <p className="text-xs font-mono text-blue-600 font-medium">
-                        {FOUNDER_DATA.role}
+                      <h3 className="text-xl font-bold text-slate-900">
+                        {founder.name}
+                      </h3>
+                      <p className="text-xs font-mono text-blue-600 font-medium mt-0.5">
+                        {founder.role}
                       </p>
                     </div>
                   </div>
@@ -47,30 +66,21 @@ export default function PortfolioAbout() {
                   </span>
                 </div>
 
-                {/* Profile Key Metadata */}
-                <div className="space-y-3 text-xs">
-                  <div className="rounded-xl border border-slate-200/70 bg-white/80 p-3.5 space-y-1">
-                    <span className="text-[11px] font-mono text-slate-400 block uppercase tracking-wider">
-                      Initiative & Laboratory
+                {/* Key Focus & Location Metadata */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  <div className="rounded-xl border border-slate-200/70 bg-white/80 p-3 space-y-0.5">
+                    <span className="text-[10px] font-mono text-slate-400 block uppercase tracking-wider">
+                      Role & Organization
                     </span>
-                    <strong className="text-slate-900 font-semibold block text-sm">
+                    <strong className="text-slate-900 font-semibold block">
                       Quintos AI Labs
                     </strong>
                   </div>
 
-                  <div className="rounded-xl border border-slate-200/70 bg-white/80 p-3.5 space-y-1">
-                    <span className="text-[11px] font-mono text-slate-400 block uppercase tracking-wider">
-                      Primary Focus Areas
-                    </span>
-                    <p className="text-slate-700 font-medium leading-relaxed">
-                      AI Reasoning &bull; Quantum ML &bull; Medical 3D Vision &bull; Multi-Agent Swarms
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl border border-slate-200/70 bg-white/80 p-3.5 flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-slate-600">
-                      <MapPin className="h-4 w-4 text-slate-400" />
-                      <span>{FOUNDER_DATA.location}</span>
+                  <div className="rounded-xl border border-slate-200/70 bg-white/80 p-3 flex items-center justify-between">
+                    <div className="flex items-center gap-1.5 text-slate-600">
+                      <MapPin className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                      <span>{founder.location}</span>
                     </div>
                     <span className="text-[10px] font-mono rounded bg-slate-100 px-2 py-0.5 text-slate-600">
                       Active
@@ -78,56 +88,44 @@ export default function PortfolioAbout() {
                   </div>
                 </div>
 
-                {/* Cryptographic/Integrity Footer Note */}
-                <div className="pt-2 flex items-center gap-2 text-[11px] font-mono text-slate-500">
-                  <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
-                  <span>Sovereign Research & Deep-Tech Profile</span>
+                {/* Bio Paragraphs */}
+                <div className="space-y-3 text-xs sm:text-sm leading-relaxed text-slate-600">
+                  {founder.bio.map((paragraph, idx) => (
+                    <p key={idx} className="leading-relaxed">
+                      {paragraph}
+                    </p>
+                  ))}
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* Right Column: Biography & Research Focus */}
-          <div className="lg:col-span-7 space-y-6">
-            <SectionTitle
-              badge="Researcher Biography"
-              title="About the Researcher"
-              description="Exploring foundational mathematical models, sovereign computational architectures, and intelligent systems."
-              align="left"
-              className="mb-6"
-            />
+              {/* Verified Links & Actions */}
+              <div className="relative z-10 mt-6 pt-5 border-t border-slate-100 flex flex-wrap items-center gap-3">
+                {founder.portfolioUrl && (
+                  <a
+                    href={founder.portfolioUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2 text-xs font-bold text-white shadow-xs hover:bg-blue-700 transition-colors"
+                    aria-label={`Explore external portfolio of ${founder.name} (opens in new tab)`}
+                  >
+                    <span>Personal Portfolio</span>
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                )}
 
-            <div className="space-y-4 text-xs sm:text-sm leading-relaxed text-slate-600">
-              {FOUNDER_DATA.bio.map((paragraph, index) => (
-                <p key={index} className="leading-relaxed">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-
-            {/* Core Pillars */}
-            <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-              <div className="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-4 space-y-1.5">
-                <div className="flex items-center gap-2 font-bold text-xs text-slate-900">
-                  <Brain className="h-4 w-4 text-blue-600" />
-                  <span>Foundational AI</span>
-                </div>
-                <p className="text-[11px] text-slate-600 leading-relaxed">
-                  Investigating symbolic deductions, transformer dynamics, and mathematical verification gates.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-4 space-y-1.5">
-                <div className="flex items-center gap-2 font-bold text-xs text-slate-900">
-                  <Atom className="h-4 w-4 text-indigo-600" />
-                  <span>Emerging Computing</span>
-                </div>
-                <p className="text-[11px] text-slate-600 leading-relaxed">
-                  Exploring hybrid quantum-classical algorithms and low-power sovereign compute nodes.
-                </p>
+                <a
+                  href={founder.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-medium text-slate-800 shadow-2xs hover:border-slate-300 hover:bg-slate-50 transition-colors"
+                  aria-label={`Open GitHub profile of ${founder.name} (opens in new tab)`}
+                >
+                  <GitHubIcon className="h-3.5 w-3.5" />
+                  <span>GitHub</span>
+                </a>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </Container>
     </section>
