@@ -30,9 +30,7 @@ const footerLinks = {
     { label: "Interpretable & Safe AI", href: "/research" },
   ],
   company: [
-    { label: "About Quintos AI", href: "/about" },
-    { label: "Founder Profile", href: "/portfolio" },
-    { label: "Careers & Fellowships", href: "/careers" },
+
     { label: "Pricing & Compute", href: "/pricing" },
     { label: "Research Notes", href: "/blog" },
     { label: "FAQ", href: "/faq" },

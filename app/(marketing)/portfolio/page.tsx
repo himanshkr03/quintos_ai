@@ -2,61 +2,65 @@
 
 import { Metadata } from "next";
 import {
-  PortfolioHero,
-  PortfolioAbout,
-  PortfolioInterests,
-  PortfolioInnovation,
+  FounderHero,
+  FoundersOverview,
+  HimanshuPortfolio,
+  ShabnamPortfolio,
+  FoundingPhilosophy,
+  BuildingQuintos,
   PortfolioSelectedWork,
-  PortfolioQuintosConnection,
   PortfolioLinks,
   PortfolioCTA,
 } from "@/components/marketing/portfolio";
 
 export const metadata: Metadata = {
-  title: "Founding Team — Himanshu Rajak & Shabnam | Quintos AI",
+  title: "Founders & Leadership | Quintos AI",
   description:
-    "Meet the founders and researchers behind Quintos AI — Himanshu Rajak (Founder & AI Researcher) and Shabnam (Founder & Lead AI Developer), building at the intersection of AI, Quantum Computing, and Intelligent Systems.",
+    "Meet the founding team behind Quintos AI — Himanshu Rajak, Founder, Researcher & AI Operational Head, and Shabnam, Founder, AI Developer & Executive Operations Lead.",
   openGraph: {
-    title: "Founding Team — Himanshu Rajak & Shabnam | Quintos AI",
+    title: "Founders & Leadership | Quintos AI",
     description:
-      "Meet the founders and researchers behind Quintos AI — Himanshu Rajak (Founder & AI Researcher) and Shabnam (Founder & Lead AI Developer), building at the intersection of AI, Quantum Computing, and Intelligent Systems.",
+      "Meet the founding team behind Quintos AI — Himanshu Rajak, Founder, Researcher & AI Operational Head, and Shabnam, Founder, AI Developer & Executive Operations Lead.",
     url: "https://quintosai.com/portfolio",
     siteName: "Quintos AI",
     type: "profile",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Founding Team — Himanshu Rajak & Shabnam | Quintos AI",
+    title: "Founders & Leadership | Quintos AI",
     description:
-      "Meet the founders and researchers behind Quintos AI — Himanshu Rajak (Founder & AI Researcher) and Shabnam (Founder & Lead AI Developer), building at the intersection of AI, Quantum Computing, and Intelligent Systems.",
+      "Meet the founding team behind Quintos AI — Himanshu Rajak, Founder, Researcher & AI Operational Head, and Shabnam, Founder, AI Developer & Executive Operations Lead.",
   },
 };
 
 export default function PortfolioPage() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* 1. Hero Section */}
-      <PortfolioHero />
+      {/* Hero: Building Quintos AI */}
+      <FounderHero />
 
-      {/* 2. About the Founding Team */}
-      <PortfolioAbout />
+      {/* Section 01: Founding Team Overview (Equal Visual Cards) */}
+      <FoundersOverview />
 
-      {/* 3. Research Interests */}
-      <PortfolioInterests />
+      {/* Section 02: Himanshu Rajak Dedicated Portfolio */}
+      <HimanshuPortfolio />
 
-      {/* 4. Research & Innovation Trajectories */}
-      <PortfolioInnovation />
+      {/* Section 03: Shabnam Dedicated Portfolio */}
+      <ShabnamPortfolio />
 
-      {/* 5. Selected Work & Technical Notes */}
+      {/* Section 04: Founding Philosophy (Research. Engineering. Execution.) */}
+      <FoundingPhilosophy />
+
+      {/* Section 05: Building Quintos AI Narrative */}
+      <BuildingQuintos />
+
+      {/* Section 06: Selected Work & Technical Notes with Attribution */}
       <PortfolioSelectedWork />
 
-      {/* 6. Building Quintos AI Connection */}
-      <PortfolioQuintosConnection />
-
-      {/* 7. Professional Profiles & Links */}
+      {/* Section 07: Professional Profiles & Links (Two-Column Grid) */}
       <PortfolioLinks />
 
-      {/* 8. Final CTA Section */}
+      {/* Section 08: Final CTA (Research. Build. Execute.) */}
       <PortfolioCTA />
     </div>
   );

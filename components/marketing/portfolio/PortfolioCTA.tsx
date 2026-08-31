@@ -1,15 +1,11 @@
 // File: E:\quintos_ai\components\marketing\portfolio\PortfolioCTA.tsx
 
 import Link from "next/link";
-import { ExternalLink, Mail, ArrowRight } from "lucide-react";
+import { ArrowRight, Users, Sparkles, Mail } from "lucide-react";
 import Container from "@/components/shared/layout/Container";
 import Button from "@/components/shared/ui/Button";
-import GitHubIcon from "@/components/shared/icons/GitHubIcon";
-import { FOUNDERS_DATA, PERSONAL_PORTFOLIO_URL } from "@/data/portfolio";
 
 export default function PortfolioCTA() {
-  const shabnam = FOUNDERS_DATA[1];
-
   return (
     <section className="relative overflow-hidden bg-slate-900 py-20 sm:py-24 text-white">
       {/* Background grid and ambient dark tech glow */}
@@ -26,48 +22,35 @@ export default function PortfolioCTA() {
 
           {/* Heading */}
           <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            Research. Innovation. Intelligence.
+            Research. Build. Execute.
           </h2>
 
           {/* Supporting Text */}
           <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal max-w-2xl mx-auto">
-            Exploring new frontiers in artificial intelligence, systems engineering, and emerging computational paradigms.
+            Advancing artificial intelligence through research, engineering, and focused execution.
           </p>
 
           {/* Actions */}
-          <div className="pt-4 flex flex-wrap items-center justify-center gap-3.5">
-            <a
-              href={PERSONAL_PORTFOLIO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto"
-              aria-label="Visit personal external portfolio of Himanshu Rajak (opens in new tab)"
-            >
+          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/" className="w-full sm:w-auto">
               <Button
                 variant="primary"
                 size="md"
-                rightIcon={<ExternalLink className="h-4 w-4" />}
+                rightIcon={<ArrowRight className="h-4 w-4" />}
                 className="w-full sm:w-auto bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-500/25 border-0"
               >
-                Himanshu&apos;s Portfolio
+                Explore Quintos AI
               </Button>
-            </a>
+            </Link>
 
-            <a
-              href={shabnam.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto"
-              aria-label="Visit verified GitHub profile of Shabnam (opens in new tab)"
-            >
+            <a href="#founding-team" className="w-full sm:w-auto">
               <Button
                 variant="outline"
                 size="md"
-                leftIcon={<GitHubIcon className="h-4 w-4" />}
-                rightIcon={<ExternalLink className="h-3.5 w-3.5" />}
+                rightIcon={<Users className="h-4 w-4" />}
                 className="w-full sm:w-auto border-slate-700 bg-slate-800/80 text-slate-200 hover:bg-slate-800 hover:text-white"
               >
-                Shabnam&apos;s GitHub
+                Meet the Founders
               </Button>
             </a>
 
@@ -78,7 +61,7 @@ export default function PortfolioCTA() {
                 rightIcon={<Mail className="h-4 w-4" />}
                 className="w-full sm:w-auto bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white"
               >
-                Contact Quintos AI
+                Contact Lab
               </Button>
             </Link>
           </div>

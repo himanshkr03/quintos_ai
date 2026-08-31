@@ -11,6 +11,12 @@ import {
   Activity,
   Network,
   Binary,
+  Shield,
+  Workflow,
+  Compass,
+  Zap,
+  Terminal,
+  Settings,
   LucideIcon,
 } from "lucide-react";
 
@@ -25,202 +31,322 @@ export const PERSONAL_PORTFOLIO_URL =
   process.env.NEXT_PUBLIC_PERSONAL_PORTFOLIO_URL ||
   "https://github.com/himanshkr03";
 
-export interface FounderProfile {
-  id: string;
-  name: string;
-  role: string;
-  eyebrow: string;
-  positioning: string;
-  location: string;
-  headline: string;
-  initials: string;
-  bio: string[];
-  githubUrl: string;
-  portfolioUrl?: string;
+export interface LeadershipDimension {
+  title: string;
+  badge: string;
+  description: string;
 }
 
-export interface ResearchInterest {
+export interface FocusArea {
   number: string;
   title: string;
   description: string;
-  icon: LucideIcon;
   tags: string[];
 }
 
-export interface ResearchDomain {
-  category: string;
-  focus: string;
-  description: string;
-  topics: string[];
-}
-
-export interface SelectedWorkItem {
-  id: string;
-  title: string;
-  category: "Research Note" | "AI System" | "Algorithmic Model" | "Framework";
-  description: string;
-  domain: string;
-  link?: string;
-  isExternal?: boolean;
-}
-
 export interface ProfessionalLink {
-  id: string;
   name: string;
-  founder: string;
   label: string;
   url: string;
   isPrimary?: boolean;
   category: "Portfolio" | "Code" | "Network" | "Research";
 }
 
-export const FOUNDERS_DATA: FounderProfile[] = [
+export interface FounderData {
+  id: string;
+  name: string;
+  primaryRole: string;
+  leadershipRoles: string[];
+  displayTitle: string;
+  eyebrow: string;
+  positioning: string;
+  location: string;
+  initials: string;
+  accentColor: "blue" | "indigo";
+  about: string[];
+  coreAreas: string[];
+  dimensions: LeadershipDimension[];
+  focusAreasTitle: string;
+  focusAreasDescription: string;
+  focusAreas: FocusArea[];
+  links: ProfessionalLink[];
+}
+
+export interface FoundingPhilosophyPillar {
+  pillar: string;
+  title: string;
+  tagline: string;
+  description: string;
+  leader: string;
+  icon: LucideIcon;
+}
+
+export interface SelectedWorkItem {
+  id: string;
+  title: string;
+  category: "Research Note" | "AI System" | "Algorithmic Model" | "Framework";
+  domain: string;
+  description: string;
+  attribution: {
+    lead: string;
+    role: "Research / Strategy" | "AI Development / Technical Execution" | "Collaborative Deep-Tech";
+  };
+  link?: string;
+  isExternal?: boolean;
+}
+
+export const FOUNDERS: FounderData[] = [
   {
     id: "himanshu-rajak",
     name: "HIMANSHU RAJAK",
-    role: "Founder & AI Researcher",
-    eyebrow: "CO-FOUNDER & RESEARCHER",
-    positioning: "Founder • AI Researcher • Technology Innovator",
+    primaryRole: "Founder",
+    leadershipRoles: ["Research Lead", "AI Operational Head"],
+    displayTitle: "Founder • Researcher • AI Operational Head",
+    eyebrow: "FOUNDER & RESEARCH LEAD",
+    positioning:
+      "Himanshu Rajak is a founding leader of Quintos AI focused on AI research, research direction, intelligent systems, emerging technologies, and operational leadership of AI initiatives.",
     location: "Mohali, Punjab, India",
-    headline:
-      "Building at the intersection of Artificial Intelligence, Emerging Computing, and Intelligent Systems.",
     initials: "HR",
-    bio: [
-      "Himanshu Rajak is the co-founder and lead researcher behind Quintos AI, driving foundational exploration into machine learning architectures, automated reasoning systems, and high-precision perception.",
-      "His work focuses on bridging theoretical computational mathematics with practical sovereign intelligence systems—investigating how latent-space reasoning, variational quantum algorithms, and multimodal vision models can be engineered for high-reliability real-world applications.",
-      "Through Quintos AI, Himanshu is dedicated to building an open, mathematically verifiable, and privacy-first research ecosystem that advances the next generation of artificial intelligence.",
+    accentColor: "blue",
+    about: [
+      "Himanshu Rajak is a founding leader of Quintos AI, driving the foundational research agenda, mathematical verification methodologies, and strategic operational direction of AI initiatives.",
+      "His work centers on exploratory machine learning paradigms, theoretical bounds for reasoning trajectories in transformer architectures, and formulating hybrid quantum-classical algorithmic approaches.",
+      "At Quintos AI, Himanshu oversees research-to-system execution, aligning exploratory computational science with long-term technological roadmaps and operational frameworks.",
     ],
-    githubUrl: "https://github.com/himanshkr03",
-    portfolioUrl: PERSONAL_PORTFOLIO_URL,
+    coreAreas: [
+      "Artificial Intelligence",
+      "AI Research",
+      "Quantum Machine Learning",
+      "Artificial General Intelligence",
+      "Intelligent Systems",
+      "Emerging Computing",
+      "AI Operations",
+      "Research & Innovation Strategy",
+    ],
+    dimensions: [
+      {
+        title: "FOUNDATION",
+        badge: "Venture Architecture",
+        description:
+          "Building, shaping, and establishing the foundational pillars and long-term vision of Quintos AI.",
+      },
+      {
+        title: "RESEARCH",
+        badge: "Theoretical Inquiry",
+        description:
+          "Driving rigorous exploration of advanced AI models, latent reasoning bounds, and emerging computational paradigms.",
+      },
+      {
+        title: "AI OPERATIONS",
+        badge: "Strategic Execution",
+        description:
+          "Coordinating the operational direction of AI initiatives and translating laboratory research into structured technical execution.",
+      },
+    ],
+    focusAreasTitle: "Research Interests & Strategy",
+    focusAreasDescription:
+      "Core mathematical, algorithmic, and operational domains guiding foundational investigation.",
+    focusAreas: [
+      {
+        number: "01",
+        title: "Artificial Intelligence",
+        description:
+          "Deep neural networks, latent representation learning, transformer hidden-state dynamics, and verifiable reasoning bounds.",
+        tags: ["Neural Dynamics", "Representation Learning", "Verification"],
+      },
+      {
+        number: "02",
+        title: "Quantum Machine Learning",
+        description:
+          "Formulating hybrid quantum-classical algorithms, variational circuits (VQE), and quantum state kernel optimizations.",
+        tags: ["Variational Ansatz", "Quantum Kernels", "NISQ Algorithms"],
+      },
+      {
+        number: "03",
+        title: "Artificial General Intelligence",
+        description:
+          "Investigating foundational cognitive topologies, test-time compute search, and cross-domain generalization paradigms.",
+        tags: ["Cognitive Architectures", "Search & Planning", "Autonomous Cognition"],
+      },
+      {
+        number: "04",
+        title: "Intelligent Systems",
+        description:
+          "Architecting autonomous multi-agent coordination, goal decomposition protocols, and deterministic safety verifiers.",
+        tags: ["Agent Swarms", "Deterministic Verification", "System Alignment"],
+      },
+      {
+        number: "05",
+        title: "Emerging Computing",
+        description:
+          "Evaluating extreme integer quantization (INT4/FP8), low-power sovereign compute nodes, and specialized hardware acceleration.",
+        tags: ["Sovereign Clusters", "Edge Acceleration", "Tensor Kernels"],
+      },
+      {
+        number: "06",
+        title: "AI Operations & Strategy",
+        description:
+          "Structuring end-to-end AI operational pipelines, research milestones, and institutional technological strategy.",
+        tags: ["Operations Strategy", "Execution Pipelines", "Technology Roadmaps"],
+      },
+    ],
+    links: [
+      {
+        name: "Personal Portfolio",
+        label: "Explore Personal Portfolio",
+        url: PERSONAL_PORTFOLIO_URL,
+        isPrimary: true,
+        category: "Portfolio",
+      },
+      {
+        name: "GitHub",
+        label: "github.com/himanshkr03",
+        url: "https://github.com/himanshkr03",
+        isPrimary: false,
+        category: "Code",
+      },
+      {
+        name: "LinkedIn",
+        label: "Quintos AI Network",
+        url: "https://www.linkedin.com/company/quintos-ai/",
+        isPrimary: false,
+        category: "Network",
+      },
+    ],
   },
   {
     id: "shabnam",
     name: "SHABNAM",
-    role: "Founder & Lead AI Developer",
-    eyebrow: "CO-FOUNDER & LEAD DEVELOPER",
-    positioning: "Founder • Lead AI Developer • Technology Innovator",
+    primaryRole: "Founder",
+    leadershipRoles: ["AI Developer", "Executive Operations Lead"],
+    displayTitle: "Founder • AI Developer • Executive Operations Lead",
+    eyebrow: "FOUNDER & LEAD DEVELOPER",
+    positioning:
+      "Shabnam is a founding leader of Quintos AI focused on AI development, technical implementation, intelligent systems, and executive operational coordination.",
     location: "Mohali, Punjab, India",
-    headline:
-      "Engineering resilient AI systems, scalable intelligent architectures, and sovereign developer platforms.",
     initials: "SH",
-    bio: [
-      "Shabnam is the co-founder and lead AI developer at Quintos AI, spearheading the engineering, system architecture, and production implementation of intelligent deep-tech applications.",
+    accentColor: "indigo",
+    about: [
+      "Shabnam is a founding leader of Quintos AI, spearheading technical implementation, systems engineering, and executive operational coordination across deep-tech initiatives.",
       "Her work focuses on building robust AI systems, integrating foundational models with high-throughput backend infrastructure, and developing sovereign intelligent frameworks that deliver reliable, scalable performance.",
-      "At Quintos AI, Shabnam leads core AI development, translating advanced research breakthroughs into production-grade systems and developer platforms.",
+      "At Quintos AI, Shabnam manages technical execution, orchestrating complex model pipelines and aligning product engineering with institutional operations.",
     ],
-    githubUrl: "https://github.com/Shabnam110",
+    coreAreas: [
+      "AI Development",
+      "AI Engineering",
+      "Applied AI",
+      "Intelligent Systems",
+      "AI Systems",
+      "Technical Implementation",
+      "Executive Operations",
+      "Product & Technical Coordination",
+    ],
+    dimensions: [
+      {
+        title: "TECHNICAL EXECUTION",
+        badge: "Systems Engineering",
+        description:
+          "Turning advanced AI concepts into reliable, high-performance working systems and production infrastructure.",
+      },
+      {
+        title: "AI DEVELOPMENT",
+        badge: "Architecture & Integration",
+        description:
+          "Building, fine-tuning, and integrating sovereign AI capabilities, inference pipelines, and autonomous workflows.",
+      },
+      {
+        title: "EXECUTIVE OPERATIONS",
+        badge: "Operational Coordination",
+        description:
+          "Leading operational coordination, execution timelines, and interdisciplinary technical workflows across Quintos AI initiatives.",
+      },
+    ],
+    focusAreasTitle: "AI Development & Implementation",
+    focusAreasDescription:
+      "Core engineering, systems architecture, and operational domains guiding technical development.",
+    focusAreas: [
+      {
+        number: "01",
+        title: "AI Development",
+        description:
+          "Engineering full-stack artificial intelligence applications, streaming neural endpoints, and developer SDK interfaces.",
+        tags: ["Full-Stack AI", "Streaming Endpoints", "Developer Tooling"],
+      },
+      {
+        number: "02",
+        title: "AI Engineering",
+        description:
+          "Optimizing inference pipelines, GPU memory utilization, model containerization, and low-latency API architectures.",
+        tags: ["Inference Optimization", "Pipeline Architecture", "High Throughput"],
+      },
+      {
+        number: "03",
+        title: "Applied AI",
+        description:
+          "Translating complex algorithmic models into real-world applications across biomedical vision and enterprise automation.",
+        tags: ["Real-World Deployment", "Vision Systems", "Domain Adaptation"],
+      },
+      {
+        number: "04",
+        title: "Intelligent Systems",
+        description:
+          "Implementing autonomous agent architectures, multi-tenant state isolation, and runtime safety telemetry.",
+        tags: ["Agent Architectures", "Multi-Tenant Isolation", "Runtime Safety"],
+      },
+      {
+        number: "05",
+        title: "Technical Implementation",
+        description:
+          "Establishing robust database schemas, secure session management, and deterministic backend microservices.",
+        tags: ["PostgreSQL / Supabase", "Security Architecture", "Reliability"],
+      },
+      {
+        number: "06",
+        title: "AI Systems & Operations",
+        description:
+          "Managing executive operational coordination, technical milestones, and cross-functional product execution.",
+        tags: ["Technical Coordination", "Operations Management", "System Health"],
+      },
+    ],
+    links: [
+      {
+        name: "GitHub",
+        label: "github.com/Shabnam110",
+        url: "https://github.com/Shabnam110",
+        isPrimary: true,
+        category: "Code",
+      },
+    ],
   },
 ];
 
-// Single founder alias for backward compatibility
-export const FOUNDER_DATA = FOUNDERS_DATA[0];
-
-export const RESEARCH_INTERESTS: ResearchInterest[] = [
+export const PHILOSOPHY_PILLARS: FoundingPhilosophyPillar[] = [
   {
-    number: "01",
-    title: "Artificial Intelligence",
+    pillar: "RESEARCH",
+    title: "Theoretical Inquiry",
+    tagline: "Exploring New Computational Frontiers",
     description:
-      "Deep neural networks, transformer dynamics, multi-step symbolic reasoning, and latent representation learning with mathematical verification bounds.",
+      "Investigating foundational mathematics, reasoning convergence in latent spaces, and emerging quantum-classical algorithms.",
+    leader: "Himanshu Rajak • Research Lead",
     icon: Brain,
-    tags: ["LLM Reasoning", "Latent Dynamics", "Neural Verification"],
   },
   {
-    number: "02",
-    title: "Quantum Machine Learning",
+    pillar: "ENGINEERING",
+    title: "Technical Implementation",
+    tagline: "Building Practical Intelligent Systems",
     description:
-      "Formulating hybrid quantum-classical heuristics, variational quantum eigensolvers (VQE), and quantum kernel methods for high-dimensional state spaces.",
-    icon: Atom,
-    tags: ["Variational Circuits", "Quantum Kernels", "NISQ Algorithms"],
+      "Designing resilient system architectures, sovereign inference pipelines, and scalable multi-agent developer frameworks.",
+    leader: "Shabnam • AI Developer",
+    icon: Code2,
   },
   {
-    number: "03",
-    title: "Artificial General Intelligence",
+    pillar: "EXECUTION",
+    title: "Executive Operations",
+    tagline: "Purposeful Institutional Delivery",
     description:
-      "Investigating foundational cognitive architectures, test-time compute search, recursive error correction, and cross-domain generalization paradigms.",
-    icon: Sparkles,
-    tags: ["AGI Architectures", "Search & Planning", "Autonomous Cognition"],
-  },
-  {
-    number: "04",
-    title: "Healthcare AI",
-    description:
-      "Volumetric 3D computer vision, multi-organ anomaly segmentation, self-supervised biomedical representation learning, and clinical decision support.",
-    icon: Microscope,
-    tags: ["3D MRI/CT Vision", "Pathology AI", "Uncertainty Estimation"],
-  },
-  {
-    number: "05",
-    title: "Intelligent Systems",
-    description:
-      "Autonomous multi-agent orchestration, dynamic tool synthesis, goal decomposition, and deterministic safety guardrails for mission-critical deployments.",
-    icon: Network,
-    tags: ["Agent Swarms", "Tool Synthesis", "Execution Guardrails"],
-  },
-  {
-    number: "06",
-    title: "Emerging Computing",
-    description:
-      "Low-latency tensor kernel engineering, extreme integer quantization (INT4/FP8), and hardware-aware neural acceleration across sovereign clusters.",
-    icon: Cpu,
-    tags: ["Edge Inference", "Quantization", "Sovereign Compute"],
-  },
-];
-
-export const RESEARCH_DOMAINS: ResearchDomain[] = [
-  {
-    category: "AI Research",
-    focus: "Latent Reasoning & Neural Convergence",
-    description:
-      "Exploration of internal hidden-state trajectories in transformer architectures to evaluate monotonic convergence during multi-step deductive problem solving.",
-    topics: [
-      "Latent Chain-of-Thought",
-      "Dynamic Memory Routing",
-      "Mechanistic Interpretability",
-    ],
-  },
-  {
-    category: "Quantum Computing",
-    focus: "Hybrid Quantum Algorithms",
-    description:
-      "Investigation of parameterized quantum circuits and error-mitigated variational ansatzes for molecular simulation and complex combinatorial graph problems.",
-    topics: [
-      "Variational Eigensolvers",
-      "Parameterized Circuits",
-      "Quantum State Tomography",
-    ],
-  },
-  {
-    category: "Intelligent Systems",
-    focus: "Autonomous Agent Swarms",
-    description:
-      "Designing decentralized agent topologies with hierarchical task allocation, runtime observation loops, and deterministic constraint validation.",
-    topics: [
-      "Hierarchical Swarms",
-      "Goal Decomposition",
-      "Runtime Safety Verifiers",
-    ],
-  },
-  {
-    category: "Healthcare Technology",
-    focus: "Volumetric Coordinate Perception",
-    description:
-      "Self-supervised 3D vision models engineered for sub-millimeter lesion localization, multi-planar reconstruction, and organ boundary demarcation.",
-    topics: [
-      "3D Volumetric Segmentation",
-      "Multi-Modal Alignment",
-      "Zero-Shot Anomaly Detection",
-    ],
-  },
-  {
-    category: "Experimental AI Systems",
-    focus: "Test-Time Compute & Optimization",
-    description:
-      "Benchmarking adaptive test-time compute allocation and algorithmic verification gates to enhance reasoning reliability without proportional parameter scaling.",
-    topics: [
-      "Test-Time Search",
-      "Algorithmic Verification",
-      "Resource-Constrained Serving",
-    ],
+      "Coordinating research-to-system deployment, operational governance, and purposeful execution across all Quintos AI initiatives.",
+    leader: "Founding Leadership",
+    icon: Workflow,
   },
 ];
 
@@ -232,6 +358,10 @@ export const SELECTED_WORK: SelectedWorkItem[] = [
     domain: "Theoretical AI & Reasoning",
     description:
       "Theoretical formulation and empirical analysis of internal hidden-state reasoning trajectories in transformer models during multi-step symbolic tasks.",
+    attribution: {
+      lead: "Himanshu Rajak",
+      role: "Research / Strategy",
+    },
     link: "/blog/latent-chain-of-thought-reasoning-bounds",
     isExternal: false,
   },
@@ -239,9 +369,13 @@ export const SELECTED_WORK: SelectedWorkItem[] = [
     id: "work-2",
     title: "Quintos Bio-Vision 3D Perception Framework",
     category: "AI System",
-    domain: "Medical AI & Computer Vision",
+    domain: "Medical AI & Systems Engineering",
     description:
       "Volumetric coordinate perception model for sub-millimeter anomaly detection and anatomical segmentation across dense 3D MRI and CT imaging volumes.",
+    attribution: {
+      lead: "Collaborative Initiative",
+      role: "Collaborative Deep-Tech",
+    },
     link: "/blog/sub-millimeter-anomaly-detection-3d-mri",
     isExternal: false,
   },
@@ -252,6 +386,10 @@ export const SELECTED_WORK: SelectedWorkItem[] = [
     domain: "Quantum Machine Learning",
     description:
       "Exploring zero-noise extrapolation and hardware-efficient ansatz designs for molecular ground state estimation on noisy intermediate-scale quantum devices.",
+    attribution: {
+      lead: "Himanshu Rajak",
+      role: "Research / Strategy",
+    },
     link: "/blog/variational-eigensolvers-nisq-quantum-hardware",
     isExternal: false,
   },
@@ -259,49 +397,14 @@ export const SELECTED_WORK: SelectedWorkItem[] = [
     id: "work-4",
     title: "Autonomous Multi-Agent Swarm Orchestration",
     category: "Framework",
-    domain: "Intelligent Systems",
+    domain: "Intelligent Systems & Applied AI",
     description:
       "A decentralized orchestration framework for multi-agent reasoning, hierarchical action execution, and dynamic environment self-correction.",
+    attribution: {
+      lead: "Shabnam",
+      role: "AI Development / Technical Execution",
+    },
     link: "/blog/autonomous-multi-agent-swarms",
     isExternal: false,
-  },
-];
-
-export const PROFESSIONAL_LINKS: ProfessionalLink[] = [
-  {
-    id: "link-himanshu-portfolio",
-    name: "Personal Portfolio",
-    founder: "Himanshu Rajak",
-    label: "Explore Personal Portfolio",
-    url: PERSONAL_PORTFOLIO_URL,
-    isPrimary: true,
-    category: "Portfolio",
-  },
-  {
-    id: "link-himanshu-github",
-    name: "GitHub",
-    founder: "Himanshu Rajak",
-    label: "github.com/himanshkr03",
-    url: "https://github.com/himanshkr03",
-    isPrimary: false,
-    category: "Code",
-  },
-  {
-    id: "link-shabnam-github",
-    name: "GitHub",
-    founder: "Shabnam",
-    label: "github.com/Shabnam110",
-    url: "https://github.com/Shabnam110",
-    isPrimary: false,
-    category: "Code",
-  },
-  {
-    id: "link-quintos-linkedin",
-    name: "LinkedIn",
-    founder: "Quintos AI",
-    label: "Quintos AI Official Network",
-    url: "https://www.linkedin.com/company/quintos-ai/",
-    isPrimary: false,
-    category: "Network",
   },
 ];

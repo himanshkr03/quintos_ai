@@ -23,7 +23,7 @@ export const NAVIGATION: readonly NavigationItem[] = [
     href: "/research",
   },
   {
-    label: "Founder",
+    label: "Founding Team",
     href: "/portfolio",
   },
   {
