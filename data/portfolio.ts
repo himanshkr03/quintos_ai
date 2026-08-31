@@ -26,13 +26,17 @@ export const PERSONAL_PORTFOLIO_URL =
   "https://github.com/himanshkr03";
 
 export interface FounderProfile {
+  id: string;
   name: string;
   role: string;
   eyebrow: string;
   positioning: string;
   location: string;
   headline: string;
+  initials: string;
   bio: string[];
+  githubUrl: string;
+  portfolioUrl?: string;
 }
 
 export interface ResearchInterest {
@@ -61,27 +65,55 @@ export interface SelectedWorkItem {
 }
 
 export interface ProfessionalLink {
+  id: string;
   name: string;
+  founder: string;
   label: string;
   url: string;
   isPrimary?: boolean;
   category: "Portfolio" | "Code" | "Network" | "Research";
 }
 
-export const FOUNDER_DATA: FounderProfile = {
-  name: "HIMANSHU RAJAK",
-  role: "Founder & AI Researcher",
-  eyebrow: "FOUNDER & RESEARCHER",
-  positioning: "Founder • AI Researcher • Technology Innovator",
-  location: "Mohali, Punjab, India",
-  headline:
-    "Building at the intersection of Artificial Intelligence, Emerging Computing, and Intelligent Systems.",
-  bio: [
-    "Himanshu Rajak is the founder and lead researcher behind Quintos AI, driving foundational exploration into machine learning architectures, automated reasoning systems, and high-precision perception.",
-    "His work focuses on bridging theoretical computational mathematics with practical sovereign intelligence systems—investigating how latent-space reasoning, variational quantum algorithms, and multimodal vision models can be engineered for high-reliability real-world applications.",
-    "Through Quintos AI, Himanshu is dedicated to building an open, mathematically verifiable, and privacy-first research ecosystem that advances the next generation of artificial intelligence.",
-  ],
-};
+export const FOUNDERS_DATA: FounderProfile[] = [
+  {
+    id: "himanshu-rajak",
+    name: "HIMANSHU RAJAK",
+    role: "Founder & AI Researcher",
+    eyebrow: "CO-FOUNDER & RESEARCHER",
+    positioning: "Founder • AI Researcher • Technology Innovator",
+    location: "Mohali, Punjab, India",
+    headline:
+      "Building at the intersection of Artificial Intelligence, Emerging Computing, and Intelligent Systems.",
+    initials: "HR",
+    bio: [
+      "Himanshu Rajak is the co-founder and lead researcher behind Quintos AI, driving foundational exploration into machine learning architectures, automated reasoning systems, and high-precision perception.",
+      "His work focuses on bridging theoretical computational mathematics with practical sovereign intelligence systems—investigating how latent-space reasoning, variational quantum algorithms, and multimodal vision models can be engineered for high-reliability real-world applications.",
+      "Through Quintos AI, Himanshu is dedicated to building an open, mathematically verifiable, and privacy-first research ecosystem that advances the next generation of artificial intelligence.",
+    ],
+    githubUrl: "https://github.com/himanshkr03",
+    portfolioUrl: PERSONAL_PORTFOLIO_URL,
+  },
+  {
+    id: "shabnam",
+    name: "SHABNAM",
+    role: "Founder & Lead AI Developer",
+    eyebrow: "CO-FOUNDER & LEAD DEVELOPER",
+    positioning: "Founder • Lead AI Developer • Technology Innovator",
+    location: "Mohali, Punjab, India",
+    headline:
+      "Engineering resilient AI systems, scalable intelligent architectures, and sovereign developer platforms.",
+    initials: "SH",
+    bio: [
+      "Shabnam is the co-founder and lead AI developer at Quintos AI, spearheading the engineering, system architecture, and production implementation of intelligent deep-tech applications.",
+      "Her work focuses on building robust AI systems, integrating foundational models with high-throughput backend infrastructure, and developing sovereign intelligent frameworks that deliver reliable, scalable performance.",
+      "At Quintos AI, Shabnam leads core AI development, translating advanced research breakthroughs into production-grade systems and developer platforms.",
+    ],
+    githubUrl: "https://github.com/Shabnam110",
+  },
+];
+
+// Single founder alias for backward compatibility
+export const FOUNDER_DATA = FOUNDERS_DATA[0];
 
 export const RESEARCH_INTERESTS: ResearchInterest[] = [
   {
@@ -237,22 +269,37 @@ export const SELECTED_WORK: SelectedWorkItem[] = [
 
 export const PROFESSIONAL_LINKS: ProfessionalLink[] = [
   {
+    id: "link-himanshu-portfolio",
     name: "Personal Portfolio",
+    founder: "Himanshu Rajak",
     label: "Explore Personal Portfolio",
     url: PERSONAL_PORTFOLIO_URL,
     isPrimary: true,
     category: "Portfolio",
   },
   {
+    id: "link-himanshu-github",
     name: "GitHub",
+    founder: "Himanshu Rajak",
     label: "github.com/himanshkr03",
     url: "https://github.com/himanshkr03",
     isPrimary: false,
     category: "Code",
   },
   {
+    id: "link-shabnam-github",
+    name: "GitHub",
+    founder: "Shabnam",
+    label: "github.com/Shabnam110",
+    url: "https://github.com/Shabnam110",
+    isPrimary: false,
+    category: "Code",
+  },
+  {
+    id: "link-quintos-linkedin",
     name: "LinkedIn",
-    label: "Quintos AI Network",
+    founder: "Quintos AI",
+    label: "Quintos AI Official Network",
     url: "https://www.linkedin.com/company/quintos-ai/",
     isPrimary: false,
     category: "Network",
