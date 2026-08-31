@@ -29,7 +29,15 @@ const footerLinks = {
     { label: "Autonomous Agent Systems", href: "/research" },
     { label: "Interpretable & Safe AI", href: "/research" },
   ],
-
+  company: [
+    { label: "About Quintos AI", href: "/about" },
+    { label: "Founder Profile", href: "/portfolio" },
+    { label: "Careers & Fellowships", href: "/careers" },
+    { label: "Pricing & Compute", href: "/pricing" },
+    { label: "Research Notes", href: "/blog" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Contact Lab", href: "/contact" },
+  ],
   legal: [
     { label: "Privacy & Sovereignty", href: "/privacy" },
     { label: "Terms of Service", href: "/terms" },
@@ -182,7 +190,7 @@ export default function Footer() {
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-xs text-slate-500 hover:text-blue-600 transition-colors"
+                    className="text-xs text-slate-600 hover:text-blue-600 transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -192,16 +200,16 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-slate-200/80 py-6 flex flex-col items-center justify-between gap-3 md:flex-row text-xs text-slate-500">
-          <p>© {currentYear} Quintos AI. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <span>Based in Mohali, Punjab, India</span>
-            <span>•</span>
-            <span className="inline-flex items-center gap-1.5 text-emerald-600 font-medium font-mono text-[11px]">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              Sovereign & Operational
-            </span>
+        {/* Bottom Bar: Copyright & Location */}
+        <div className="border-t border-slate-200/80 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+          <div className="flex items-center gap-2">
+            <span>&copy; {currentYear} Quintos AI Labs. All rights reserved.</span>
+          </div>
+
+          <div className="flex items-center gap-4 text-[11px] font-mono">
+            <span>Sovereign Lab &bull; Mohali, Punjab, India</span>
+            <span>&bull;</span>
+            <span className="text-slate-600">Enterprise AI Research</span>
           </div>
         </div>
       </Container>
