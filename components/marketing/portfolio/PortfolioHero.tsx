@@ -4,9 +4,13 @@ import Link from "next/link";
 import { ExternalLink, ArrowRight, Sparkles, Brain, Code2 } from "lucide-react";
 import Container from "@/components/shared/layout/Container";
 import Button from "@/components/shared/ui/Button";
-import { FOUNDER_DATA, PERSONAL_PORTFOLIO_URL } from "@/data/portfolio";
+import GitHubIcon from "@/components/shared/icons/GitHubIcon";
+import { FOUNDERS_DATA, PERSONAL_PORTFOLIO_URL } from "@/data/portfolio";
 
 export default function PortfolioHero() {
+  const himanshu = FOUNDERS_DATA[0];
+  const shabnam = FOUNDERS_DATA[1];
+
   return (
     <section className="relative overflow-hidden bg-white py-16 sm:py-20 md:py-28 border-b border-slate-100">
       {/* Background scientific grids and subtle glow */}
@@ -18,26 +22,28 @@ export default function PortfolioHero() {
           {/* Eyebrow Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-blue-50/80 px-3.5 py-1 text-xs font-mono font-semibold uppercase tracking-wider text-blue-700 shadow-2xs backdrop-blur-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
-            <span>{FOUNDER_DATA.eyebrow}</span>
+            <span>FOUNDING TEAM & LEADERSHIP</span>
           </div>
 
-          {/* Founder Name */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.08]">
-            {FOUNDER_DATA.name}
+          {/* Founders Names with Equal Visual Prominence */}
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
+            <span>{himanshu.name}</span>
+            <span className="text-blue-600 mx-2 sm:mx-3 font-light">&amp;</span>
+            <span>{shabnam.name}</span>
           </h1>
 
           {/* Positioning & Statement */}
           <div className="space-y-3 max-w-2xl mx-auto">
             <p className="text-base sm:text-xl font-medium text-slate-800 leading-snug">
-              {FOUNDER_DATA.headline}
+              Building at the intersection of Artificial Intelligence, Emerging Computing, and Intelligent Systems.
             </p>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-              {FOUNDER_DATA.positioning}
+              Founders of Quintos AI &bull; AI Research &bull; Systems Architecture &bull; Deep-Tech Innovation
             </p>
           </div>
 
           {/* Action CTAs */}
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-3.5">
             <a
               href={PERSONAL_PORTFOLIO_URL}
               target="_blank"
@@ -51,7 +57,25 @@ export default function PortfolioHero() {
                 rightIcon={<ExternalLink className="h-4 w-4" />}
                 className="w-full sm:w-auto shadow-md shadow-blue-600/15"
               >
-                Explore My Portfolio
+                Explore Himanshu&apos;s Portfolio
+              </Button>
+            </a>
+
+            <a
+              href={shabnam.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+              aria-label="Explore Shabnam's verified GitHub profile (opens in new tab)"
+            >
+              <Button
+                variant="secondary"
+                size="md"
+                leftIcon={<GitHubIcon className="h-4 w-4" />}
+                rightIcon={<ExternalLink className="h-3.5 w-3.5" />}
+                className="w-full sm:w-auto border-slate-200 bg-white text-slate-800 hover:bg-slate-50 shadow-xs"
+              >
+                Shabnam on GitHub
               </Button>
             </a>
 
@@ -73,13 +97,13 @@ export default function PortfolioHero() {
               Artificial Intelligence
             </span>
             <span className="rounded-lg border border-slate-200 bg-white px-2.5 py-1">
+              Systems Engineering
+            </span>
+            <span className="rounded-lg border border-slate-200 bg-white px-2.5 py-1">
               Quantum Machine Learning
             </span>
             <span className="rounded-lg border border-slate-200 bg-white px-2.5 py-1">
-              Biomedical Vision
-            </span>
-            <span className="rounded-lg border border-slate-200 bg-white px-2.5 py-1">
-              Autonomous Systems
+              Biomedical Perception
             </span>
           </div>
         </div>
